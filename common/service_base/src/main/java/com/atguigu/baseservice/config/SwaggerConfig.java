@@ -24,21 +24,20 @@ public class SwaggerConfig {
     @Bean
     public Docket webApiConfig(){
         return new Docket(DocumentationType.SWAGGER_2)
-                .groupName("webApi")
+                .groupName("web api")
                 .apiInfo(webApiInfo())
                 .select()
                 .paths(Predicates.not(PathSelectors.regex("/admin/.*")))
                 .paths(Predicates.not(PathSelectors.regex("/error.*")))
                 .build();
-
     }
 
     private ApiInfo webApiInfo(){
         return new ApiInfoBuilder()
-                .title("网站-课程中心API文档")
-                .description("本文档描述了课程中心微服务接口定义")
+                .title("web app-在线教育平台-谷粒学院-API文档")
+                .description("本文档描述了谷粒学院微服务接口定义")
                 .version("1.0")
-                .contact(new Contact("java", "http://atguigu.com", "1123@qq.com"))
+                .contact(new Contact("hskVirtuoso", "https://github.com/Hushunkang/guli_parent.git", "2752962035@qq.com"))
                 .build();
     }
 
