@@ -21,7 +21,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)//指定出现什么样的异常，会执行这个方法
 //    @ResponseBody
     public R error(Exception e){
-        e.printStackTrace();
+        e.printStackTrace();//在控制台打印异常的栈追踪信息
         return R.error().message("执行了全局异常处理器...");
     }
 
