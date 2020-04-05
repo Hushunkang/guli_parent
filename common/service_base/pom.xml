@@ -6,10 +6,10 @@
 
     <parent>
         <groupId>com.atguigu</groupId>
-        <artifactId>service</artifactId>
+        <artifactId>common</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>service_edu</artifactId>
+    <artifactId>service_base</artifactId>
 
 </project>

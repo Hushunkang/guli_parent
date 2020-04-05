@@ -5,6 +5,7 @@
 
     <modules>
         <module>service</module>
+        <module>common</module>
     </modules>
 
     <parent>
@@ -82,14 +83,14 @@
                 <version>${velocity.version}</version>
             </dependency>
 
-            <!--swagger-->
+            <!--swagger2-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
                 <version>${swagger.version}</version>
             </dependency>
 
-            <!--swagger ui-->
+            <!--swagger2 ui-->
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
