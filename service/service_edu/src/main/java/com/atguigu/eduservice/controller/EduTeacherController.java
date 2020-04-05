@@ -3,6 +3,7 @@ package com.atguigu.eduservice.controller;
 
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.service.EduTeacherService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import java.util.List;
 public class EduTeacherController {
 
     //DI service
+    @Autowired
     private EduTeacherService eduTeacherService;
 
     //查询所有讲师数据
