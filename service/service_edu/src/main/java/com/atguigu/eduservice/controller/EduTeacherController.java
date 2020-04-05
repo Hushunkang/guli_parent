@@ -1,7 +1,9 @@
 package com.atguigu.eduservice.controller;
 
 
+import com.atguigu.baseservice.exception.GuliException;
 import com.atguigu.commonutil.R;
+import com.atguigu.commonutil.ResultCode;
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.entity.vo.TeacherQuery;
 import com.atguigu.eduservice.service.EduTeacherService;
@@ -63,7 +65,12 @@ public class EduTeacherController {
                          @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size){
         Page<EduTeacher> pageTeacher = new Page<>(current,size);
 
-        int i = 10 / 0;//手动模拟一个运行时异常
+//        int i = 10 / 0;//手动模拟一个运行时异常
+
+        //业务上面要求每页的大小不能超过100
+        if(size > 100){
+            throw new GuliException(ResultCode.ERROR,"分页操作每页的大小不能超过100");//项目中业务异常种类多的情况下，往往都需要定义一个异常的枚举类
+        }
 
         eduTeacherService.page(pageTeacher, null);
 
