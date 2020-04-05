@@ -12,5 +12,4 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-04-05
  */
 public interface EduTeacherMapper extends BaseMapper<EduTeacher> {
-
 }
