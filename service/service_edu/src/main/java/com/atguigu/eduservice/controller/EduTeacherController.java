@@ -4,6 +4,7 @@ package com.atguigu.eduservice.controller;
 import com.atguigu.commonutil.R;
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.service.EduTeacherService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -42,13 +43,32 @@ public class EduTeacherController {
     @ApiOperation(value = "逻辑删除讲师")
     @DeleteMapping("{id}")
     public R removeTeacher(@ApiParam(name = "id", value = "讲师ID", required = true)
-                                 @PathVariable String id){
+                                 @PathVariable Integer id){
         boolean flag = eduTeacherService.removeById(id);
         if (flag) {
             return R.ok();
         } else {
             return R.error();
         }
+    }
+
+    //分页查询所有讲师数据
+    @ApiOperation(value = "分页查询讲师列表")
+    //current表示当前页；size表示每页记录数
+    @GetMapping("pageTeacher/{current}/{size}")
+    public R pageListTeacher(@PathVariable Long current,
+                             @PathVariable Long size){
+        Page<EduTeacher> pageTeacher = new Page<>(current,size);
+        eduTeacherService.page(pageTeacher, null);
+
+        long total = pageTeacher.getTotal();
+        List<EduTeacher> rows = pageTeacher.getRecords();
+
+//        Map<String,Object> map = new HashMap<>();
+//        map.put("total",total);
+//        map.put("rows",rows);
+//        return R.ok().data(map);
+        return R.ok().data("total",total).data("rows",rows);
     }
 
 }
