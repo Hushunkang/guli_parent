@@ -1,0 +1,14 @@
+package com.atguigu.commonutil;
+
+/**
+ * @author hskBeginner Email：2752962035@qq.com
+ * @version 1.0
+ * @description
+ * @create 2020年04月05日 12时06分52秒
+ */
+public interface ResultCode {
+
+    Integer SUCCESS = 20000;//成功
+    Integer ERROR = 20001;//失败
+
+}
