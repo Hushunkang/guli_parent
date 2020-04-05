@@ -1,7 +1,9 @@
 package com.atguigu.baseservice.handler;
 
 import com.atguigu.baseservice.exception.GuliException;
+import com.atguigu.commonutil.ExceptionUtils;
 import com.atguigu.commonutil.R;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 //@ControllerAdvice
 @RestControllerAdvice
+@Slf4j//可以程序编译的时候给我们隐式的生成一个log属性，说白了就是最终的.class字节码文件里面有这个属性
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)//指定出现什么样的异常，会执行这个方法
@@ -38,6 +41,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(GuliException.class)
     public R error(GuliException e){
+//        log.error(e.getMessage());
+        log.error(ExceptionUtils.getMessage(e));
         e.printStackTrace();
         return R.error().code(e.getCode()).message(e.getMsg());
     }

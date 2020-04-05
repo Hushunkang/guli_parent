@@ -3,6 +3,7 @@ package com.atguigu.baseservice.exception;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 /**
  * @author hskBeginner Email：2752962035@qq.com
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor//lombok生成无参构造器
 @AllArgsConstructor//lombok生成所有属性参数构造器
+@ToString
 public class GuliException extends RuntimeException {
 
     private Integer code;//异常状态码
