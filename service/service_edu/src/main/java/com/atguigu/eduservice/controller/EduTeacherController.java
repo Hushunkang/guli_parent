@@ -62,6 +62,9 @@ public class EduTeacherController {
     public R pageTeacher(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
                          @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size){
         Page<EduTeacher> pageTeacher = new Page<>(current,size);
+
+        int i = 10 / 0;//手动模拟一个运行时异常
+
         eduTeacherService.page(pageTeacher, null);
 
         long total = pageTeacher.getTotal();

@@ -10,8 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
  * @description
  * @create 2020年04月05日 07时31分07秒
  */
-@SpringBootApplication
-@ComponentScan(basePackages = {"com.atguigu"})
+@SpringBootApplication//默认只在当前模块下扫描，注册bean
+@ComponentScan(basePackages = {"com.atguigu"})//不仅仅在当前模块下扫描，还在其依赖的模块下扫描，注册bean
 public class EduApplication {
 
     public static void main(String[] args) {
