@@ -110,8 +110,28 @@ public class EduTeacherController {
     //添加讲师
     @ApiOperation(value = "添加讲师")
     @PostMapping("addTeacher")
-    public R addTeacher(@ApiParam(name = "eduTeacher", value = "讲师json数据") @RequestBody EduTeacher eduTeacher){
+    public R addTeacher(@ApiParam(name = "eduTeacher", value = "添加讲师json数据") @RequestBody EduTeacher eduTeacher){
         boolean flag = eduTeacherService.save(eduTeacher);
+        if (flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
+    }
+
+    //根据讲师id查询讲师
+    @ApiOperation(value = "根据讲师表的主键查询讲师")
+    @GetMapping("getTeacherById/{id}")
+    public R getTeacherById(@ApiParam(name = "id", value = "讲师ID", required = true) @PathVariable String id){
+        EduTeacher eduTeacher = eduTeacherService.getById(id);
+        return R.ok().data("teacher",eduTeacher);
+    }
+
+    //修改讲师
+    @ApiOperation(value = "修改讲师")
+    @PostMapping("updateTeacher")
+    public R updateTeacher(@ApiParam(name = "eduTeacher", value = "修改讲师json数据") @RequestBody EduTeacher eduTeacher){
+        boolean flag = eduTeacherService.updateById(eduTeacher);
         if (flag) {
             return R.ok();
         } else {
