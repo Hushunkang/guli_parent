@@ -112,6 +112,10 @@ public class EduTeacherController {
         if(!StringUtils.isEmpty(end)) {
             wrapper.le("gmt_create",end);
         }
+
+        //按照添加时间降序来排序记录
+        wrapper.orderByDesc("gmt_create");
+
         eduTeacherService.page(pageTeacher,wrapper);
         long total = pageTeacher.getTotal();
         List<EduTeacher> rows = pageTeacher.getRecords();
