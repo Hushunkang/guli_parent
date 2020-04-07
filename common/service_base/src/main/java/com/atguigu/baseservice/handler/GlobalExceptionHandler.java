@@ -1,8 +1,8 @@
 package com.atguigu.baseservice.handler;
 
 import com.atguigu.baseservice.exception.GuliException;
-import com.atguigu.commonutil.ExceptionUtils;
-import com.atguigu.commonutil.R;
+import com.atguigu.util.ExceptionUtils;
+import com.atguigu.util.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

@@ -1,4 +1,4 @@
-package com.atguigu.commonutil;
+package com.atguigu.util;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

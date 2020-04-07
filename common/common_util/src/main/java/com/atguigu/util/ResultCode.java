@@ -1,4 +1,4 @@
-package com.atguigu.commonutil;
+package com.atguigu.util;
 
 /**
  * @author hskBeginner Email：2752962035@qq.com

@@ -2,11 +2,11 @@ package com.atguigu.eduservice.controller;
 
 
 import com.atguigu.baseservice.exception.GuliException;
-import com.atguigu.commonutil.R;
-import com.atguigu.commonutil.ResultCode;
 import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.entity.vo.TeacherQuery;
 import com.atguigu.eduservice.service.EduTeacherService;
+import com.atguigu.util.R;
+import com.atguigu.util.ResultCode;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;

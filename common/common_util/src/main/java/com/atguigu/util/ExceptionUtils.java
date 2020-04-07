@@ -1,4 +1,4 @@
-package com.atguigu.commonutil;
+package com.atguigu.util;
 
 import java.io.IOException;
 import java.io.PrintWriter;

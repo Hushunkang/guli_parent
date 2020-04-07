@@ -1,6 +1,6 @@
 package com.atguigu.eduservice.controller;
 
-import com.atguigu.commonutil.R;
+import com.atguigu.util.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
