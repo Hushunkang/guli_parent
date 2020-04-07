@@ -97,7 +97,7 @@
                 <version>${swagger.version}</version>
             </dependency>
 
-            <!--aliyunOSS-->
+            <!--aliyun oss-->
             <dependency>
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
