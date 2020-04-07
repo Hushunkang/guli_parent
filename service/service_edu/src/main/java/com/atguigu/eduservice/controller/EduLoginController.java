@@ -3,10 +3,7 @@ package com.atguigu.eduservice.controller;
 import com.atguigu.commonutil.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author hskBeginner Email：2752962035@qq.com
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Api(description = "后台管理信息系统登录API")
 @RestController
 @RequestMapping("/eduservice/user")
+@CrossOrigin//解决前端访问后端接口的跨域问题，还可以通过网关来解决跨域问题
 public class EduLoginController {
 
     //用户登录
