@@ -4,6 +4,7 @@ import com.atguigu.ossservice.service.OssService;
 import com.atguigu.util.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,8 +29,8 @@ public class OssController {
 
     //上传头像
     @ApiOperation(value = "上传头像")
-    @PostMapping("uploadFileToOss")
-    public R uploadFileToOss(MultipartFile file){//获取上传的文件，spring mvc文件上传就这种操作(*￣︶￣)
+    @PostMapping("uploadFileToOss")//文件上传时提交的数据以多段的形式进行拼接，最终数据以二进制流的形式发送给服务器
+    public R uploadFileToOss(@ApiParam(name = "file", value = "上传的文件") MultipartFile file){//获取上传的文件，spring mvc文件上传就这种操作(*￣︶￣)
         String url = ossService.uploadAvatar(file);
         return R.ok().data("url",url);
     }

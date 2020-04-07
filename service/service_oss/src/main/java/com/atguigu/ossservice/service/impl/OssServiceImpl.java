@@ -4,11 +4,13 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.atguigu.ossservice.service.OssService;
 import com.atguigu.ossservice.util.ConstantPropertiesUtils;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.UUID;
 
 /**
  * @author hskBeginner Email：2752962035@qq.com
@@ -41,10 +43,19 @@ public class OssServiceImpl implements OssService {
             //获取文件原始名称
             String originalFilename = file.getOriginalFilename();
 
+            //bug：上传同名的文件，后者会覆盖前者的问题！！！
+            //1、采用拼接UUID
+            String uuid = UUID.randomUUID().toString().replaceAll("-","");
+
+            //2、将上传的文件按照日期来分类
+            StringBuilder datePath = new StringBuilder(new DateTime().toString("yyyy-MM-dd"));
+            String fileName = datePath.append("/").append(uuid).toString();
+
+
             //putObject方法第一个参数指的是存储空间名称
             //第二个参数指的是文件上传到oss的路径和名称
             //第三个参数指的是流式上传的上传文件流（流的理解：是数据存在的一种形式）
-            ossClient.putObject(bucketName, originalFilename, inputStream);
+            ossClient.putObject(bucketName, fileName, inputStream);
 
             // 关闭OSSClient。
             ossClient.shutdown();
