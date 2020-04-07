@@ -48,8 +48,8 @@ public class OssServiceImpl implements OssService {
             String uuid = UUID.randomUUID().toString().replaceAll("-","");
 
             //2、将上传的文件按照日期来分类
-            StringBuilder datePath = new StringBuilder(new DateTime().toString("yyyy-MM-dd"));
-            String fileName = datePath.append("/").append(uuid).toString();
+            StringBuilder datePath = new StringBuilder(new DateTime().toString("yyyy/MM/dd"));
+            String fileName = datePath.append("/").append(uuid).append(originalFilename).toString();
 
 
             //putObject方法第一个参数指的是存储空间名称
@@ -63,7 +63,7 @@ public class OssServiceImpl implements OssService {
             //把上传到阿里云oss的文件所在路径手动拼接出来
 
             //https://hsk-virtuoso-edu-guli.oss-cn-hangzhou.aliyuncs.com/0.jpg
-            String url = "https://" + bucketName + "." + endpoint + "/" + originalFilename;
+            String url = "https://" + bucketName + "." + endpoint + "/" + fileName;
 
             return url;
         } catch (IOException e) {
