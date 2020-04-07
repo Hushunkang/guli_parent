@@ -26,14 +26,16 @@ public class GlobalExceptionHandler {
 //    @ResponseBody
     public R error(Exception e){
         e.printStackTrace();//在控制台打印异常的栈追踪信息
-        return R.error().message("执行了全局异常处理方法...");
+//        return R.error().message("执行了全局异常处理方法...");
+        return R.error().message("系统出错了(⊙︿⊙)");
     }
     //全局异常处理
 
     @ExceptionHandler(ArithmeticException.class)
     public R error(ArithmeticException e){
         e.printStackTrace();
-        return R.error().message("执行了特定异常ArithmeticException处理方法...");
+//        return R.error().message("执行了特定异常ArithmeticException处理方法...");
+        return R.error().message("系统出现了算术异常(⊙︿⊙)");
     }
     //特定异常处理
 
