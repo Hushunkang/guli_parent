@@ -26,7 +26,7 @@ import java.util.List;
  * @author hskBeginner
  * @since 2020-04-05
  */
-@Api(description = "讲师管理")
+@Api(description = "讲师管理API")
 @RestController
 @RequestMapping("/eduservice/teacher")
 public class EduTeacherController {
