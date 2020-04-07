@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(description = "后台管理信息系统登录API")
 @RestController
 @RequestMapping("/eduservice/user")
-@CrossOrigin//解决前端访问后端接口的跨域问题，还可以通过网关来解决跨域问题
+@CrossOrigin//解决前端访问后端接口的跨域问题，还可以通过网关（spring cloud getway）来解决跨域问题
 public class EduLoginController {
 
     //用户登录
