@@ -2,7 +2,7 @@
 # Date: 2019-11-18 15:49:32
 # Generator: MySQL-Front 6.1  (Build 1.26)
 
-
+# 说明：此数据库表结构等设计参照阿里巴巴Java开发手册的MySQL规约
 
 #
 # Structure for table "edu_chapter"
