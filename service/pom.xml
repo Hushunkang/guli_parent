@@ -29,7 +29,7 @@
             <groupId>com.atguigu</groupId>
             <artifactId>common_util</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>--><!--本身引入了service_base依赖，service_base又引入了common_util依赖，因此本身就没必要再引入service_base依赖，这个就叫做maven的依赖传递-->
+        </dependency>--><!--本身引入了service_base依赖，service_base又引入了common_util依赖，因此本身就没必要再引入common_util依赖，这个就叫做maven的依赖传递-->
 
         <!--<dependency>
             <groupId>org.springframework.cloud</groupId>

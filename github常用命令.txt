@@ -1,0 +1,32 @@
+比如说我现在想找一个比较优秀的秒杀系统案例，迁移到工作中来，如何在github上面搜索？
+可以使用in命令
+*** in:name,description,readme
+上面命令和sql语句很像，表示找项目名称或者项目描述或者readme文件里面有***的项目
+这样查询的精准度有所提升
+如seckill in:name,description,readme
+
+想找一个点赞数不低于5000的spring boot项目，咋找？
+springboot stars:>=5000
+
+找一个被拷贝次数不低于500的spring cloud项目吗，咋找？
+springcloud forks:>=500
+
+组合使用stars和forks命令实例
+springboot stars:5000..8000 forks:2000..4000，意思不解释了哈哈哈，..类似于between and操作
+
+awesome命令找“令人敬畏的名单”，一般用来收集学习、书籍、工具等相关的项目
+比如说你现在想学redis，那么你可以这样去搜索，awesome redis，会给你返回一个awesome list，里面的内容质量一般都不错
+可以说github是某某技术的官网的第二个官网，甚至比官网还管用
+
+github怎么样高亮显示某一行代码，比如说我要高亮显示一个具体的接口的第15行代码，如何做
+在具体的接口的url后面带上#L15即可定位并高亮显示这一行代码
+上面讲的是高亮显示单行的命令
+要是多行，那就以15行到23行为例子，该咋整
+在具体的接口的url后面带上#L15-L23
+
+github快捷键，如果在某个作者的一个仓库（往往对应一个项目）内快速搜索，小写的英文字母t
+当然还有很多其它的命令，请参照，https://help.github.com/en/github/getting-started-with-github/keyboard-shortcuts
+
+如何在github上面搜索某个地区内的技术大佬
+比如想找杭州这边从事Java工作的技术大佬问问问题，聊聊技术等哈哈哈（典型同城同性交友网站哈哈哈）
+location:hangzhou language:java
