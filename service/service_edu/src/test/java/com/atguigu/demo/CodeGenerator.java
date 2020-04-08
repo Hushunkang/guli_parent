@@ -12,6 +12,9 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import org.junit.Test;
 
 /**
+ *
+ * mp代码生成器
+ *
  * @author
  * @since 2018/12/13
  */
@@ -56,7 +59,7 @@ public class CodeGenerator {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("edu_teacher");
+        strategy.setInclude("edu_subject");
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体类的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_");//生成实体类时去掉表前缀
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);//数据库表字段映射到实体类属性的命名策略

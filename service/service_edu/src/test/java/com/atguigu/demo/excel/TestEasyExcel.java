@@ -37,7 +37,7 @@ public class TestEasyExcel {
     public void read(){
         String filePath = "C:\\Users\\27529\\Desktop\\essential\\subject.xlsx";
 
-        EasyExcel.read(filePath,new ExcelListener()).sheet().doRead();
+        EasyExcel.read(filePath,Subject.class,new ExcelListener()).sheet().doRead();
     }
 
 }
