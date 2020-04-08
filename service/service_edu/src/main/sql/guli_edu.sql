@@ -127,21 +127,31 @@ INSERT INTO `edu_course_description` VALUES ('1104870479077879809','<p>11</p>','
 #
 
 CREATE TABLE `edu_subject` (
-                               `id` char(19) NOT NULL COMMENT '课程类别ID',
-                               `title` varchar(10) NOT NULL COMMENT '类别名称',
-                               `parent_id` char(19) NOT NULL DEFAULT '0' COMMENT '父ID',
+                               `id` char(19) NOT NULL COMMENT '课程科目ID',
+                               `title` varchar(10) NOT NULL COMMENT '科目名称',
+                               `parent_id` char(19) NOT NULL DEFAULT '0' COMMENT '父ID，0表示科目为一级分类',
                                `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序字段',
                                `gmt_create` datetime NOT NULL COMMENT '创建时间',
                                `gmt_modified` datetime NOT NULL COMMENT '更新时间',
                                PRIMARY KEY (`id`),
                                KEY `idx_parent_id` (`parent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='课程科目';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=COMPACT COMMENT='课程科目表';
 
 #
 # Data for table "edu_subject"
 #
 
-INSERT INTO `edu_subject` VALUES ('1178214681118568449','后端开发','0',1,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681139539969','Java','1178214681118568449',1,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681181483010','前端开发','0',3,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681210843137','JavaScript','1178214681181483010',4,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681231814658','云计算','0',5,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681252786178','Docker','1178214681231814658',5,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681294729217','Linux','1178214681231814658',6,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681324089345','系统/运维','0',7,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681353449473','Linux','1178214681324089345',7,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681382809602','Windows','1178214681324089345',8,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681399586817','数据库','0',9,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681428946945','MySQL','1178214681399586817',9,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681454112770','MongoDB','1178214681399586817',10,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681483472898','大数据','0',11,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681504444418','Hadoop','1178214681483472898',11,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681529610242','Spark','1178214681483472898',12,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681554776066','人工智能','0',13,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681584136193','Python','1178214681554776066',13,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681613496321','编程语言','0',14,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178214681626079234','Java','1178214681613496321',14,'2019-09-29 15:47:25','2019-09-29 15:47:25'),('1178585108407984130','Python','1178214681118568449',2,'2019-09-30 16:19:22','2019-09-30 16:19:22'),('1178585108454121473','HTML/CSS','1178214681181483010',3,'2019-09-30 16:19:22','2019-09-30 16:19:22');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728560211247106', '数学', '0', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728560471293954', '高等数学', '1247728560211247106', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728560748118018', '数学分析', '1247728560211247106', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728561041719298', '线性代数', '1247728560211247106', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728561234657281', '概率论与数理统计', '1247728560211247106', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728561410818050', '物理', '0', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728561595367425', '经典物理', '1247728561410818050', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728562018992129', '量子物理', '1247728561410818050', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728562484559873', '化学', '0', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728562660720642', '有机化学', '1247728562484559873', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
+INSERT INTO guli.edu_subject (id, title, parent_id, sort, gmt_create, gmt_modified) VALUES ('1247728562870435842', '无机化学', '1247728562484559873', 0, '2020-04-08 11:30:45', '2020-04-08 11:30:45');
 
 #
 # Structure for table "edu_teacher"
@@ -151,16 +161,16 @@ CREATE TABLE `edu_teacher` (
                                `id` char(19) NOT NULL COMMENT '讲师ID',
                                `name` varchar(20) NOT NULL COMMENT '讲师姓名',
                                `intro` varchar(500) NOT NULL DEFAULT '' COMMENT '讲师简介',
-                               `career` varchar(500) DEFAULT NULL COMMENT '讲师资历,一句话说明讲师',
-                               `level` int(10) unsigned NOT NULL COMMENT '头衔 1高级讲师 2首席讲师',
+                               `career` varchar(500) DEFAULT NULL COMMENT '讲师资历，一句话说明讲师',
+                               `level` int(10) unsigned NOT NULL COMMENT '头衔：1高级讲师，2首席讲师',
                                `avatar` varchar(255) DEFAULT NULL COMMENT '讲师头像',
                                `sort` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
-                               `is_deleted` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '逻辑删除 1（true）已删除， 0（false）未删除',
+                               `is_deleted` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0（false）未删除，1（true）已删除',
                                `gmt_create` datetime NOT NULL COMMENT '创建时间',
                                `gmt_modified` datetime NOT NULL COMMENT '更新时间',
                                PRIMARY KEY (`id`),
                                UNIQUE KEY `uk_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='讲师';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='讲师表';
 
 #
 # Data for table "edu_teacher"

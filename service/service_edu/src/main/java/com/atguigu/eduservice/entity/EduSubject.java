@@ -24,19 +24,19 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="EduSubject对象", description="课程科目")
+@ApiModel(value="EduSubject对象", description="课程科目实体类")
 public class EduSubject implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "课程类别ID")
+    @ApiModelProperty(value = "课程科目ID")
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
-    @ApiModelProperty(value = "类别名称")
+    @ApiModelProperty(value = "科目名称")
     private String title;
 
-    @ApiModelProperty(value = "父ID")
+    @ApiModelProperty(value = "父ID，0表示科目为一级分类")
     private String parentId;
 
     @ApiModelProperty(value = "排序字段")

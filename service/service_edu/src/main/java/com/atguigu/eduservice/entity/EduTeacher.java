@@ -21,7 +21,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="EduTeacher对象", description="讲师")
+@ApiModel(value="EduTeacher对象", description="讲师实体类")
 public class EduTeacher implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -36,10 +36,10 @@ public class EduTeacher implements Serializable {
     @ApiModelProperty(value = "讲师简介")
     private String intro;
 
-    @ApiModelProperty(value = "讲师资历,一句话说明讲师")
+    @ApiModelProperty(value = "讲师资历，一句话说明讲师")
     private String career;
 
-    @ApiModelProperty(value = "头衔 1高级讲师 2首席讲师")
+    @ApiModelProperty(value = "头衔：1高级讲师，2首席讲师")
     private Integer level;
 
     @ApiModelProperty(value = "讲师头像")
@@ -48,7 +48,7 @@ public class EduTeacher implements Serializable {
     @ApiModelProperty(value = "排序")
     private Integer sort;
 
-    @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
+    @ApiModelProperty(value = "0（false）未删除，1（true）已删除")
     @TableLogic
     private Boolean isDeleted;
 
