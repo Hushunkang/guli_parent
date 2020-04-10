@@ -217,7 +217,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <!-- spring boot提供的maven插件，这个插件可以将应用打包成一个可执行的jar包 -->
+    <!-- spring boot提供的maven插件，这个插件可以将spring boot应用打包成一个可执行的jar包 -->
     <build>
         <plugins>
             <plugin>
