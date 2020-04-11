@@ -114,19 +114,25 @@ docker部署很快的原因一部分可以归功于共用宿主机的内核这�
 docker端口映射以及docker commit指令：
 很简单，可以看看docker commit.jpg+Docker.xmind脑图（思维导图）
 
-docker容器数据卷：
-docker容器数据卷出现的诉求.png+docker容器数据卷能干嘛.png
-为了持久化的保存docker容器运行的时候产生的数据，docker容器数据卷的概念诞生
-docker容器数据卷主要做两件事，第一件docker容器的持久化，第二件docker容器之间的继承和共享数据
+数据卷：
+数据卷出现的诉求.png+数据卷能干嘛.png
+为了持久化的保存docker容器运行的时候产生的数据，数据卷的概念诞生
+数据卷主要做两件事，第一件docker容器的持久化，第二件docker容器之间的继承和共享数据
 
-在docker容器中添加数据卷的方式：
+在docker容器中添加数据卷的两种基本方式：
 1、直接使用相关命令添加
 docker run -it -v /docker宿主机绝对路径目录:/docker容器内目录 镜像名（备注：v是volume的缩写，有体积、卷的含义）
 说明：这个命令是双向同步写数据（写权限包含了读权限，怎么可能存在能写不能读的操作呢？读写权限一般就两种：只读，非只读）
 docker run -it -v /docker宿主机绝对路径目录:/docker容器内目录:ro 镜像名（这个命令相当于上一个命令而言表示带了ro（只读）权限，不能进行写操作）
 说明：这个命令是单向同步写数据，docker宿主机可以写数据，docker容器内不能写数据
-2、使用DockerFile添加
-2.1、DockerFile是啥，DockerFile是对docker镜像的一种源码级别的描述文件
+
+浅谈DockerFile是啥：
+DockerFile是对docker镜像的一种源码级别的描述文件
 就好比java字节码文件可以来描述java源文件一样
 DockerFile有点类似于linux操作系统里面的shell编程，只不过这里面是docker编程
 
+2、使用DockerFile添加
+看DockerFile的方式在docker容器中添加数据卷.jpg+Docker.xmind脑图（思维导图）
+
+容器数据卷：
+todo p21，后期持续更新
