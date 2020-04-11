@@ -1,0 +1,61 @@
+勿在浮沙筑高台，理论和实践55开，同等重要
+
+随便谈谈docker（我也说不太好，总结说几个关键词(*￣︶￣)）：
+能解决开发和运维的“矛盾”，devops开发自运维
+借助docker弹性云伸缩（扩容和缩容）的手段解决峰值流量的问题
+云端开发模式，mysql、redis等一些开发的工具不需要装你本机上了，可能直接搞在一个云平台上（比如阿里云）
+
+docker hub是啥：
+docker hub就是一个docker镜像的仓库，就类似于maven里面说的仓库概念，其实你仔细想想，泛泛的讲（细讲的话就是层次更细致了一点而已），GitHub也可以看做是git的远程仓库
+
+jvm 一次编译，处处运行
+docker 一次封装，处处运行
+       1、更快捷的部署和交付应用
+       2、弹性云伸缩（扩容和缩容）
+       3、更简单的系统运维
+       4、更高效的利用计算机的系统资源
+
+一句话介绍docker：docker可以解决运行环境以及配置问题的软件容器，方便做持续集成并有助于整体发布的容器虚拟化技术
+
+安装docker：
+可以参照docker官方文档，阿里云docker安装文档、菜鸟教程、GitHub、B站等等等
+CentOS6.x安装（docker-io）：不建议在6.x上安装了，我弄一大半天没成功，试过各种方式，最终由于时间原因而且觉得没必要了果断放弃(⊙︿⊙)
+CentOS8.x安装（docker-ce）：我是参照菜鸟教程安装成功了，但是因为我的VPS的RAM小了点，docker run命令直接给我报错，报错内容有OOM（哈哈哈大名鼎鼎的内存不足）
+CentOS7.x安装（docker-ce）：在vultr上我直接Deploy New Server的同时带上docker，这样构建一个操作系统里面会给自动给安装上docker客户端
+直接测试下docker客户端好不好使docker version/docker info命令看看即可
+下一步更改一下默认的docker镜像的下载源（即docker镜像的下载地址，俗称docker远程仓库），因为这个默认的docker镜像的下载源在国外服务器
+下载速度死慢死慢的，更改可以使用阿里云的容器镜像服务的镜像加速器，使用加速器可以提升获取Docker官方镜像的速度
+
+docker和虚拟机的区别：看底层原理的架构图即可，docker服务启动是秒级别的，虚拟机是分钟级别的
+
+docker的本质：是一个精简版、高度浓缩版小型linux操作系统
+
+docker三个核心概念：
+仓库，
+放东西的，用来放docker镜像的，默认docker的仓库是docker hub，但是由于GFW，都懂
+docker hub我们一般不使用它作为docker镜像的下载源，而是使用它的代理，即docker镜像的国内镜像下载源
+比如说
+阿里云的容器镜像服务，网易的容器镜像服务等等等等
+这就类似maven的仓库，道理都是互通的
+学习一定要去懂原理和基本思想和方法才能做到由此及彼，举一反三，触类旁通，做到活学活用，以不变应万变
+镜像：
+相当于是一个模板
+容器：
+相当于是通过模板创建出来的对象实例
+docker镜像和docker容器的关系就类似于Java类和类的对象实例的关系
+
+分析docker的logo：
+蓝色大海：docker客户端所在计算机的操作系统
+鲸鱼：docker
+鲸鱼背上的集装箱：docker容器实例（docker容器实例来源于docker镜像模板）
+
+docker常用命令：
+docker --help（官方文档 official manual，有问题看官方文档自己练，高手都是自己练出来的，只需要掌握基本的思想和方法即可）
+docker version
+docker info
+docker images
+docker search 镜像名称
+docker pull 镜像名称 [:TAG]表示从docker仓库中拉取docker镜像，后面的TAG可选，不写表示拉取latest版本的docker镜像，写了就是拉取指定版本的docker镜像
+docker rmi 镜像名称/镜像ID
+
+技巧：linux里面有问题问男人，man ls，man top等
