@@ -42,7 +42,7 @@ docker hub我们一般不使用它作为docker镜像的下载源，而是使用�
 阿里云的容器镜像服务，网易的容器镜像服务等等等等
 这就类似maven的仓库，道理都是互通的
 学习一定要去懂原理和基本思想和方法才能做到由此及彼，举一反三，触类旁通，做到活学活用，以不变应万变
-镜像（像是千层饼）：
+镜像（docker镜像类似于同心圆，一层套一层）：
 相当于是一个模板
 容器：
 相当于是通过模板创建出来的对象实例
@@ -65,16 +65,24 @@ docker pull 镜像名称 [TAG]表示从docker仓库中拉取docker镜像，后�
 docker rmi 镜像名称/镜像ID
 3、容器相关命令（有docker镜像才可以有docker容器，这是大前提）
 docker run [OPTIONS] IMAGE [COMMAND] [ARGS...]
+说明：OPTIONS表示可选指令，COMMAND表示运行docker容器使用的命令，ARGS...表示可变个数形参
+docker run -it 容器名称表示启动交互式容器（说白了就是以前台模式启动容器，启动docker容器并且docker宿主机可以和docker容器交互）
 docker ps [OPTIONS]表示列出当前docker宿主机所有正在运行的容器，通俗点的理解就是看看鲸鱼背上有哪几个集装箱
 说明：
 根据原理，应该好理解这个命令是在你docker宿主机上面跑的而不是在docker容器实例里面跑的
 除非你docker容器实例里面也有装了并启动了docker客户端，你跑这个命令就没问题，否则给你差不多这样的提示
 bash: docker: command not found
-exit或者ctrl+P+Q退出docker容器回到docker宿主机中，两个有区别，参照，退出docker容器的两种方式.png
+exit（退出还停止了docker容器）或者ctrl+P+Q（退出不停止docker容器，后面还可以通过命令进入这个正在运行的容器）退出docker容器回到docker宿主机中
 docker restart 容器名称/容器ID表示重启docker容器
 docker stop 容器名称/容器ID表示停止docker容器（温柔停止）
 docker kill 容器名称/容器ID表示强制停止docker容器
 docker rm 容器ID表示删除已经停止的docker容器，若容器在运行状态你用这个就会有冲突，不过可以使用-f强制删除，即docker rm -f 容器ID
-
+docker run -d 容器名称表示启动守护式容器（说白了就是以后台模式启动容器）
+docker logs -f -t --tail 一个数字 容器ID表示查看容器日志（f：跟随最新的日志打印，t：加入时间戳，tail 一个数字：显示最后多少行日志）
+docker top 容器ID表示查看容器内运行的进程
+docker inspect 容器ID表示查看容器内部细节
+docker attach 容器ID表示进入正在运行的容器并以命令行的方式进行交互
+说明：还有一种方式exec（隔山打牛的方式），参照，进入正在运行的docker容器的两种方式.jpg
+docker cp 容器ID:容器内路径 宿主机路径表示从容器内拷贝文件到docker宿主机上
 
 技巧：linux里面有问题问男人，man ls，man top等
