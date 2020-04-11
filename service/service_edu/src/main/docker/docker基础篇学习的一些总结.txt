@@ -1,4 +1,7 @@
 勿在浮沙筑高台，理论和实践55开，同等重要
+在技术的道路上
+走的快很简单，各种名词搞一搞，粗略学一下入门简单的快的很，秒秒钟
+但是记住，要想走的远，基本功，基本原理，基本思想和方法，非常重要，要日积月累
 
 这个总结是基于比较早的docker版本学习的，如果实际工作中发现敲了这里面的某些命令但不起作用，不要感觉奇怪，很正常(*￣︶￣)
 不管版本怎么更新迭代，绝大多数都是兼容的，思想是相通的
@@ -76,13 +79,14 @@ bash: docker: command not found
 exit（退出还停止了docker容器）或者ctrl+P+Q（退出不停止docker容器，后面还可以通过命令进入这个正在运行的容器）退出docker容器回到docker宿主机中
 我试过我的docker客户端版本19.03.7，exit指令只是退出docker容器并没有停止docker容器，可能不同版本有不一样的情况，无伤大雅只要注意一下即可
 docker restart 容器名称/容器ID表示重启docker容器
+docker start 容器名称/容器ID表示启动docker容器
 docker stop 容器名称/容器ID表示停止docker容器（温柔停止）
 docker kill 容器名称/容器ID表示强制停止docker容器
 docker rm 容器ID表示删除已经停止的docker容器，若容器在运行状态你用这个就会有冲突，不过可以使用-f强制删除，即docker rm -f 容器ID
 docker run -d 容器名称表示启动守护式容器（说白了就是以后台模式启动容器）
 docker logs -f -t --tail 一个数字 容器ID表示查看容器日志（f：跟随最新的日志打印，t：加入时间戳，tail 一个数字：显示最后多少行日志）
 docker top 容器ID表示查看容器内运行的进程
-docker inspect 容器ID表示查看容器内部细节
+docker inspect 容器ID表示查看容器内部的细节
 docker attach 容器ID表示进入正在运行的容器并以命令行的方式进行交互
 说明：还有一种方式exec（隔山打牛的方式），参照，进入正在运行的docker容器的两种方式.jpg
 docker cp 容器ID:容器内路径 宿主机路径表示从容器内拷贝文件到docker宿主机上
@@ -109,4 +113,15 @@ docker端口映射以及docker commit指令：
 很简单，可以看看docker commit.jpg+Docker.xmind脑图（思维导图）
 
 docker容器数据卷：
+docker容器数据卷出现的诉求.png+docker容器数据卷能干嘛.png
+为了持久化的保存docker容器运行的时候产生的数据，docker容器数据卷的概念诞生
+docker容器数据卷主要做两件事，第一件docker容器的持久化，第二件docker容器之间的继承和共享数据
+
+在docker容器中添加数据卷的方式：
+1、直接使用相关命令添加
+docker run -it -v /docker宿主机绝对路径目录:/docker容器内目录 镜像名（备注：v是volume的缩写，有体积、卷的含义）
+说明：这个命令是双向同步写数据（写权限包含了读权限，怎么可能存在能写不能读的操作呢？读写权限一般就两种：只读，非只读）
+docker run -it -v /docker宿主机绝对路径目录:/docker容器内目录:ro 镜像名（这个命令相当于上一个命令而言表示带了ro（只读）权限，不能进行写操作）
+说明：这个命令是单向同步写数据，docker宿主机可以写数据，docker容器内不能写数据
+2、使用DockerFile添加
 
