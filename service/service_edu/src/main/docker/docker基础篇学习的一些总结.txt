@@ -74,6 +74,7 @@ docker ps [OPTIONS]表示列出当前docker宿主机所有正在运行的容器�
 除非你docker容器实例里面也有装了并启动了docker客户端，你跑这个命令就没问题，否则给你差不多这样的提示
 bash: docker: command not found
 exit（退出还停止了docker容器）或者ctrl+P+Q（退出不停止docker容器，后面还可以通过命令进入这个正在运行的容器）退出docker容器回到docker宿主机中
+我试过我的docker客户端版本19.03.7，exit指令只是退出docker容器并没有停止docker容器，可能不同版本有不一样的情况，无伤大雅只要注意一下即可
 docker restart 容器名称/容器ID表示重启docker容器
 docker stop 容器名称/容器ID表示停止docker容器（温柔停止）
 docker kill 容器名称/容器ID表示强制停止docker容器
@@ -104,4 +105,8 @@ docker部署很快的原因一部分可以归功于共用宿主机的内核这�
 为什么docker镜像要采用这种分层结构：
 最大的一个好处就是能够共享资源
 
+docker端口映射以及docker commit指令：
+很简单，可以看看docker commit.jpg+Docker.xmind脑图（思维导图）
+
+docker容器数据卷：
 
