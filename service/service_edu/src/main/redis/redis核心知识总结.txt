@@ -71,7 +71,7 @@ nosql
 
 学习的相通和传递性，还是那句话，多学原理、思想、方法、本质不要去学表面现象
 
-没有那么多新的技术，切记新从旧始
+没有那么多新的技术，切记新从旧始，思想相通，你抄袭我的，我抄袭你的，变个皮让表面现象不一样，本质是一样的
 
 CAP定理
 在理论计算机科学中，CAP定理，又被称作布鲁尔定理
@@ -122,5 +122,16 @@ BASE：BA表示基本可用（Basically Available）、S表示软状态（Soft S
 
 redis是单进程的，redis默认有16个数据库，redis默认端口号是6379
 详情参照redis杂项基础知识.jpg
+
+redis数据类型（redis将memcached干掉了的一个重要原因也是因为redis支持的数据类型更加丰富）
+1、String（字符串）
+2、Hash（类似于java中的Map）
+3、List（列表）
+4、Set（集合）
+5、Zset（sorted set：有序集合）
+说明：Zset只是在Set的基础上加了一个score值，Set是sadd k1 v1 v2，Zset是zadd k1 score1 v1 score2 v2
+
+哪里去获取redis数据类型的命令操作，参照官方文档，当然不仅限官方文档，菜鸟教程各种地方也找的到学习资源，找资源也是一种能力，多摸索
+
 
 
