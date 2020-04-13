@@ -98,7 +98,7 @@ docker cp 容器ID:容器内路径 宿主机路径表示从容器内拷贝文件
 一种轻量级、可执行的独立软件包，用来打包软件运行环境和基于运行环境开发的软件，它包含运行某个软件所需的所有内容，包括代码、运行时、库、环境变量和配置文件
 
 docker镜像的底层原理：
-UnionFS（联合文件系统），一层层叠加，一个docker镜像是由很多层打包构成
+docker镜像的本质是UnionFS（联合文件系统），一层层叠加，一个docker镜像是由很多层打包构成
 
 docker镜像的加载原理：
 docker真正工作的是docker容器，而它实质是精简版的小型linux操作系统
@@ -135,4 +135,4 @@ DockerFile有点类似于linux操作系统里面的shell编程，只不过这里
 看DockerFile的方式在docker容器中添加数据卷.jpg+Docker.xmind脑图（思维导图）
 
 容器数据卷：
-todo p21，后期持续更新
+todo p21，后期继续更新
