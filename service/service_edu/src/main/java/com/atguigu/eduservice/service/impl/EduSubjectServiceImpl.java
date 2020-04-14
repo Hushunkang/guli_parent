@@ -54,7 +54,6 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
 
         //将数据封装成前端所期望的数据模型
         List<SubjectLevelOne> finalOnes = new ArrayList<>();
-        List<SubjectLevelTwo> finalTwos = new ArrayList<>();
         for (EduSubject subjectLevelOne : subjectLevelOnes) {
             SubjectLevelOne one = new SubjectLevelOne();
 //            one.setId(subjectLevelOne.getId());
@@ -63,6 +62,7 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
             //使用spring提供的api简化操作
             BeanUtils.copyProperties(subjectLevelOne,one);
             //在每一个一级分类下面，封装二级分类的数据
+            List<SubjectLevelTwo> finalTwos = new ArrayList<>();
             for (EduSubject subjectLevelTwo : subjectLevelTwos) {
                 if (subjectLevelOne.getId().equals(subjectLevelTwo.getParentId())) {
                     SubjectLevelTwo two = new SubjectLevelTwo();
