@@ -1,6 +1,7 @@
 package com.atguigu.eduservice.controller;
 
 
+import com.atguigu.eduservice.entity.subject.SubjectLevelOne;
 import com.atguigu.eduservice.service.EduSubjectService;
 import com.atguigu.util.R;
 import io.swagger.annotations.Api;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * <p>
@@ -38,6 +41,15 @@ public class EduSubjectController {
         //上传过来的excel文件
         eduSubjectService.saveSubject(file,eduSubjectService);
         return R.ok();
+    }
+
+    //课程分类列表（要求返回的数据模型是树结构的）
+    @ApiOperation(value = "课程分类列表")
+    @PostMapping("getAllSubject")
+    public R getAllSubject(){
+        //List集合中的泛型要定义成一级分类的，因为一级分类里关联了二级分类
+        List<SubjectLevelOne> list = eduSubjectService.getAllSubject();
+        return R.ok().data("list",list);
     }
 
 }

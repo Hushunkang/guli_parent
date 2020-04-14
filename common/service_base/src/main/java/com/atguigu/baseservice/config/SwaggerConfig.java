@@ -37,7 +37,7 @@ public class SwaggerConfig {
                 .title("web app-在线教育平台-谷粒学院-API文档")
                 .description("本文档描述了谷粒学院微服务接口定义")
                 .version("1.0")
-                .contact(new Contact("hskVirtuoso", "https://github.com/Hushunkang/guli_parent.git", "2752962035@qq.com"))
+                .contact(new Contact("Hushunkang", "https://github.com/Hushunkang/guli_parent.git", "2752962035@qq.com"))
                 .build();
     }
 

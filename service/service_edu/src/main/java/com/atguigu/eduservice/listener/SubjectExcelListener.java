@@ -61,7 +61,7 @@ public class SubjectExcelListener extends AnalysisEventListener<SubjectData> {
         }
     }
 
-    //说明：课程分类表是一种树体系结构的表，
+    //说明：课程分类表是一种树体系结构的表
     //     并且它是多根节点（多个一级分类）的那种类型，类似于Windows操作系统的体系结构
     //     如果它是单根节点（只有一个一级分类）的那种类型，类似于Linux操作系统的体系结构
     //     树的深度为2（我没理解错应该是这样，目前数据结构基础不是很厉害，后期学习强化一哈）
