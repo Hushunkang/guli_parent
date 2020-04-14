@@ -8,7 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @author hskBeginner Email：2752962035@qq.com
  * @version 1.0
  * @description
- * @create 2020年04月05日 07时31分07秒
+ * @create 2020年04月05日
  */
 @SpringBootApplication//默认只在当前模块下扫描，注册bean
 @ComponentScan(basePackages = {"com.atguigu"})//不仅仅在当前模块下扫描，还在其依赖的模块下扫描，注册bean

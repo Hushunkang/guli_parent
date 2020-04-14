@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @author hskBeginner Email：2752962035@qq.com
  * @version 1.0
  * @description
- * @create 2020年04月07日 19时20分47秒
+ * @create 2020年04月07日
  */
 //当模块启动的时候，会初始化各种spring ioc容器，而ConstantPropertiesUtils组件交给spring ioc容器管理，spring ioc容器来管理Bean的生命周期
 //spring里面有个很重要的接口InitializingBean，这个接口有一个方法afterPropertiesSet

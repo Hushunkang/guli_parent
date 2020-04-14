@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @author hskBeginner Email：2752962035@qq.com
  * @version 1.0
  * @description
- * @create 2020年04月07日 18时37分05秒
+ * @create 2020年04月07日
  */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)//默认只在当前模块下扫描，注册bean
 //(exclude = DataSourceAutoConfiguration.class)表示让spring boot应用启动的时候不去加载数据库配置

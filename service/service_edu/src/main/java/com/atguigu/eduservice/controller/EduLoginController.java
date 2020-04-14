@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
  * @author hskBeginner Email：2752962035@qq.com
  * @version 1.0
  * @description
- * @create 2020年04月07日 08时12分32秒
+ * @create 2020年04月07日
  */
 @Api(description = "后台管理信息系统登录API")
 @RestController

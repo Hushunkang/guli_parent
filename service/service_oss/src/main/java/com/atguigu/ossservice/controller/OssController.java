@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @author hskBeginner Email：2752962035@qq.com
  * @version 1.0
  * @description
- * @create 2020年04月07日 19时56分29秒
+ * @create 2020年04月07日
  */
 @Api(description = "OSS服务API")
 @RestController

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @author hskBeginner Email：2752962035@qq.com
  * @version 1.0
  * @description
- * @create 2020年04月05日 17时42分41秒
+ * @create 2020年04月05日
  */
 //@ControllerAdvice
 @RestControllerAdvice

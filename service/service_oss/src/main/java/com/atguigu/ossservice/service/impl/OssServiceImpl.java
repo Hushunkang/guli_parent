@@ -16,7 +16,7 @@ import java.util.UUID;
  * @author hskBeginner Email：2752962035@qq.com
  * @version 1.0
  * @description
- * @create 2020年04月07日 19时56分58秒
+ * @create 2020年04月07日
  */
 @Service
 public class OssServiceImpl implements OssService {

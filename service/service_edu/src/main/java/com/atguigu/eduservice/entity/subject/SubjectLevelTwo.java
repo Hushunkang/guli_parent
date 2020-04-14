@@ -9,7 +9,7 @@ import lombok.Data;
  * @author hskBeginner Email：2752962035@qq.com
  * @version 1.0
  * @description
- * @create 2020年04月14日 17时39分30秒
+ * @create 2020年04月14日
  */
 @Data
 public class SubjectLevelTwo {
