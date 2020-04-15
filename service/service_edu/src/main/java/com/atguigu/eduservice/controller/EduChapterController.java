@@ -1,10 +1,16 @@
 package com.atguigu.eduservice.controller;
 
 
+import com.atguigu.eduservice.entity.vo.ChapterVo;
+import com.atguigu.eduservice.service.EduChapterService;
+import com.atguigu.util.R;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -20,6 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class EduChapterController {
 
+    @Autowired
+    private EduChapterService eduChapterService;
 
+    //根据课程ID来查询下面的章节和小节信息
+    @ApiOperation(value = "获取课程下章节和小节信息")
+    @GetMapping("getChapterVideo/{courseId}")
+    public R getChapterVideo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
+        List<ChapterVo> list = eduChapterService.getChapterVideoByCourseId(courseId);
+        return R.ok().data("allChapterVideo",list);
+    }
 
 }
