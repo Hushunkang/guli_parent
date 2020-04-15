@@ -1,7 +1,7 @@
 package com.atguigu.eduservice.controller;
 
 
-import com.atguigu.eduservice.entity.subject.SubjectLevelOne;
+import com.atguigu.eduservice.entity.vo.SubjectLevelOneVo;
 import com.atguigu.eduservice.service.EduSubjectService;
 import com.atguigu.util.R;
 import io.swagger.annotations.Api;
@@ -45,7 +45,7 @@ public class EduSubjectController {
     @GetMapping("getAllSubject")
     public R getAllSubject(){
         //List集合中的泛型要定义成一级分类的，因为一级分类里关联了二级分类
-        List<SubjectLevelOne> list = eduSubjectService.getAllSubject();
+        List<SubjectLevelOneVo> list = eduSubjectService.getAllSubject();
         return R.ok().data("list",list);
     }
 

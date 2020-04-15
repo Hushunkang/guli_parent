@@ -3,8 +3,8 @@ package com.atguigu.eduservice.service.impl;
 import com.alibaba.excel.EasyExcel;
 import com.atguigu.eduservice.entity.EduSubject;
 import com.atguigu.eduservice.entity.excel.SubjectData;
-import com.atguigu.eduservice.entity.subject.SubjectLevelOne;
-import com.atguigu.eduservice.entity.subject.SubjectLevelTwo;
+import com.atguigu.eduservice.entity.vo.SubjectLevelOneVo;
+import com.atguigu.eduservice.entity.vo.SubjectLevelTwoVo;
 import com.atguigu.eduservice.listener.SubjectExcelListener;
 import com.atguigu.eduservice.mapper.EduSubjectMapper;
 import com.atguigu.eduservice.service.EduSubjectService;
@@ -41,7 +41,7 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
     }
 
     @Override
-    public List<SubjectLevelOne> getAllSubject() {
+    public List<SubjectLevelOneVo> getAllSubject() {
         //1、查询出所有的一级分类课程，parent_id=0
         QueryWrapper<EduSubject> wapperLevelOne = new QueryWrapper<>();
         wapperLevelOne.eq("parent_id","0");
@@ -53,19 +53,19 @@ public class EduSubjectServiceImpl extends ServiceImpl<EduSubjectMapper, EduSubj
         List<EduSubject> subjectLevelTwos = baseMapper.selectList(wapperLevelTwo);
 
         //将数据封装成前端所期望的数据模型
-        List<SubjectLevelOne> finalOnes = new ArrayList<>();
+        List<SubjectLevelOneVo> finalOnes = new ArrayList<>();
         for (EduSubject subjectLevelOne : subjectLevelOnes) {
-            SubjectLevelOne one = new SubjectLevelOne();
+            SubjectLevelOneVo one = new SubjectLevelOneVo();
 //            one.setId(subjectLevelOne.getId());
 //            one.setTitle(subjectLevelOne.getTitle());
 
             //使用spring提供的api简化操作
             BeanUtils.copyProperties(subjectLevelOne,one);
             //在每一个一级分类下面，封装二级分类的数据
-            List<SubjectLevelTwo> finalTwos = new ArrayList<>();
+            List<SubjectLevelTwoVo> finalTwos = new ArrayList<>();
             for (EduSubject subjectLevelTwo : subjectLevelTwos) {
                 if (subjectLevelOne.getId().equals(subjectLevelTwo.getParentId())) {
-                    SubjectLevelTwo two = new SubjectLevelTwo();
+                    SubjectLevelTwoVo two = new SubjectLevelTwoVo();
                     BeanUtils.copyProperties(subjectLevelTwo,two);
                     finalTwos.add(two);
                 }

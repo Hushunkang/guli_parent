@@ -1,4 +1,4 @@
-package com.atguigu.eduservice.entity.subject;
+package com.atguigu.eduservice.entity.vo;
 
 import lombok.Data;
 
@@ -12,7 +12,7 @@ import lombok.Data;
  * @create 2020年04月14日
  */
 @Data
-public class SubjectLevelTwo {
+public class SubjectLevelTwoVo {
 
     private String id;
     private String title;

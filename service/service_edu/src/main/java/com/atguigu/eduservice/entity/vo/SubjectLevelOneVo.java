@@ -1,4 +1,4 @@
-package com.atguigu.eduservice.entity.subject;
+package com.atguigu.eduservice.entity.vo;
 
 import lombok.Data;
 
@@ -15,11 +15,11 @@ import java.util.List;
  * @create 2020年04月14日
  */
 @Data
-public class SubjectLevelOne {
+public class SubjectLevelOneVo {
 
     private String id;
     private String title;
-    //模拟表示一个一级分类下面可以有多个二级分类
-    private List<SubjectLevelTwo> children = new ArrayList<>();
+    //模拟表示一个一级课程分类下面可以有多个二级课程分类
+    private List<SubjectLevelTwoVo> children = new ArrayList<>();
 
 }

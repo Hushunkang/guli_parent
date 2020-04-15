@@ -1,7 +1,7 @@
 package com.atguigu.eduservice.service;
 
 import com.atguigu.eduservice.entity.EduSubject;
-import com.atguigu.eduservice.entity.subject.SubjectLevelOne;
+import com.atguigu.eduservice.entity.vo.SubjectLevelOneVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,6 +27,6 @@ public interface EduSubjectService extends IService<EduSubject> {
      * 课程分类列表
      * @return
      */
-    List<SubjectLevelOne> getAllSubject();
+    List<SubjectLevelOneVo> getAllSubject();
 
 }

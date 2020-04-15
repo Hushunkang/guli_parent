@@ -12,7 +12,7 @@ import java.math.BigDecimal;
  * @create 2020年04月15日
  */
 @Data
-public class CourseInfoVo {
+public class CourseVo {
 
     @ApiModelProperty(value = "课程ID")
     private String id;

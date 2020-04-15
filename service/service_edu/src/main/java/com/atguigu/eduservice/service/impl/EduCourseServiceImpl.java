@@ -3,7 +3,7 @@ package com.atguigu.eduservice.service.impl;
 import com.atguigu.baseservice.exception.GuliException;
 import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.EduCourseDescription;
-import com.atguigu.eduservice.entity.vo.CourseInfoVo;
+import com.atguigu.eduservice.entity.vo.CourseVo;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
 import com.atguigu.eduservice.service.EduCourseDescriptionService;
 import com.atguigu.eduservice.service.EduCourseService;
@@ -28,9 +28,9 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     private EduCourseDescriptionService eduCourseDescriptionService;
 
     @Override
-    public String addCourseInfo(CourseInfoVo courseInfoVo) {
+    public String addCourseInfo(CourseVo courseVo) {
         EduCourse eduCourse = new EduCourse();
-        BeanUtils.copyProperties(courseInfoVo,eduCourse);
+        BeanUtils.copyProperties(courseVo,eduCourse);
         //课程表中添加数据
         int insert = baseMapper.insert(eduCourse);//影响的行数
         if (insert <= 0) {
@@ -45,7 +45,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         EduCourseDescription eduCourseDescription = new EduCourseDescription();
         //手动设置课程描述ID，让课程表和课程简介表构成1对1的关系
         eduCourseDescription.setId(courseId);
-        eduCourseDescription.setDescription(courseInfoVo.getDescription());
+        eduCourseDescription.setDescription(courseVo.getDescription());
         eduCourseDescriptionService.save(eduCourseDescription);
 
         return courseId;
