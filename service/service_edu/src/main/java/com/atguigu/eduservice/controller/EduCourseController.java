@@ -31,8 +31,8 @@ public class EduCourseController {
     @ApiOperation(value = "添加课程基本信息")
     @PostMapping("addCourseInfo")
     public R addCourseInfo(@ApiParam(name = "courseInfoVo", value = "课程基本信息") @RequestBody CourseInfoVo courseInfoVo){
-        eduCourseService.addCourseInfo(courseInfoVo);
-        return R.ok();
+        String courseId = eduCourseService.addCourseInfo(courseInfoVo);
+        return R.ok().data("courseId",courseId);
     }
 
 }
