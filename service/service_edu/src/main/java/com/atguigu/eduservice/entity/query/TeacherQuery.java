@@ -1,4 +1,4 @@
-package com.atguigu.eduservice.entity.vo;
+package com.atguigu.eduservice.entity.query;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;

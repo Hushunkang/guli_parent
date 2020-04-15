@@ -3,7 +3,7 @@ package com.atguigu.eduservice.controller;
 
 import com.atguigu.baseservice.exception.GuliException;
 import com.atguigu.eduservice.entity.EduTeacher;
-import com.atguigu.eduservice.entity.vo.TeacherQuery;
+import com.atguigu.eduservice.entity.query.TeacherQuery;
 import com.atguigu.eduservice.service.EduTeacherService;
 import com.atguigu.util.R;
 import com.atguigu.util.ResultCode;
