@@ -16,7 +16,7 @@ import lombok.Data;
 public class Subject {
 
     @ExcelProperty(value = "一级分类",index = 0)
-    private String subjectLevelOneName;//课程分类管理之一级分类名称
+    private String subjectLevelOneName;//一级课程分类
 
     @ExcelProperty(value = "二级分类",index = 1)
     private String subjectLevelTwoName;//课程分类管理之二级分类名称

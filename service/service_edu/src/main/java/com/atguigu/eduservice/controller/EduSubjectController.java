@@ -15,7 +15,7 @@ import java.util.List;
 
 /**
  * <p>
- * 课程科目 前端控制器
+ * 课程科目表 前端控制器
  * </p>
  *
  * @author hskBeginner
@@ -40,11 +40,11 @@ public class EduSubjectController {
         return R.ok();
     }
 
-    //课程分类列表（要求返回的数据模型是树结构的）
+    //课程分类列表（要求返回有层级关系那种树结构的数据模型）
     @ApiOperation(value = "课程分类列表")
     @GetMapping("getAllSubject")
     public R getAllSubject(){
-        //List集合中的泛型要定义成一级分类的，因为一级分类里关联了二级分类
+        //List集合中的泛型要定义成一级课程分类，因为一级课程分类里关联了二级课程分类，最后返回的数据模型就是依照这样的关系封装的
         List<SubjectLevelOneVo> list = eduSubjectService.getAllSubject();
         return R.ok().data("list",list);
     }

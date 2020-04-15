@@ -15,10 +15,10 @@ import lombok.Data;
 @Data
 public class SubjectData {
 
-    @ExcelProperty(value = "一级分类",index = 0)//表示对应Excel表格里面的第一列数据
-    private String subjectLevelOneName;//课程分类管理之一级分类名称
+    @ExcelProperty(value = "一级分类",index = 0)//表示对应excel表格里面的第一列数据
+    private String subjectLevelOneName;//一级课程名称
 
-    @ExcelProperty(value = "二级分类",index = 1)//表示对应Excel表格里面的第二列数据
-    private String subjectLevelTwoName;//课程分类管理之二级分类名称
+    @ExcelProperty(value = "二级分类",index = 1)//表示对应excel表格里面的第二列数据
+    private String subjectLevelTwoName;//二级课程名称
 
 }

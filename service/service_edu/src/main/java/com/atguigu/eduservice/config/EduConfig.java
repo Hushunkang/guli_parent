@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
  * @create 2020年04月05日
  */
 @Configuration
-@MapperScan("com.atguigu.eduservice.mapper")//说明：很重要！！！这一步其实是将mybatis动态生成的dao层Mapper接口的实现类注册到spring ioc容器里面，要用的话就di
+@MapperScan("com.atguigu.eduservice.mapper")//说明：很重要！！！这一步其实是将mybatis通过jdk动态代理生成的dao层Mapper接口的实现类注册到spring ioc容器里面，要用的话就di
 public class EduConfig {
 
     //mybatis plus逻辑删除插件

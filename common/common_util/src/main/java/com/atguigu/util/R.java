@@ -30,7 +30,7 @@ public class R {
     @ApiModelProperty(value = "返回数据")
     private Map<String, Object> data = new HashMap<>();
 
-    //私有构造器
+    //私有的构造器
     private R() {}
 
     //成功的静态方法
@@ -38,7 +38,7 @@ public class R {
         R r = new R();
         r.setSuccess(true);
         r.setCode(ResultCode.SUCCESS);
-        r.setMessage("操作成功啦(*^▽^*)");
+        r.setMessage("您的操作成功啦(*^▽^*)");
         return r;
     }
 
@@ -47,11 +47,11 @@ public class R {
         R r = new R();
         r.setSuccess(false);
         r.setCode(ResultCode.ERROR);
-        r.setMessage("操作失败啦(⊙︿⊙)");
+        r.setMessage("您的操作失败啦(⊙︿⊙)");
         return r;
     }
 
-    //说明：the follow methods all return this，链式编程
+    //the follow methods all return this，链式编程
     public R success(Boolean success){
         this.setSuccess(success);
         return this;

@@ -15,10 +15,10 @@ import lombok.Data;
 @Data
 public class Student {
 
-    @ExcelProperty("学生编号")//设置Excel表头内容
+    @ExcelProperty("学生编号")//设置excel表头
     private Integer studentNo;
 
-    @ExcelProperty("学生姓名")//设置Excel表头内容
+    @ExcelProperty("学生姓名")//设置excel表头
     private String studentName;
 
 }

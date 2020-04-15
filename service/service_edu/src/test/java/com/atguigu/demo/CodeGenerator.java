@@ -22,10 +22,10 @@ public class CodeGenerator {
 
     @Test
     public void run() {
-        // 1、创建代码生成器
+        //1、创建代码生成器
         AutoGenerator mpg = new AutoGenerator();
 
-        // 2、全局配置
+        //2、全局配置
         GlobalConfig gc = new GlobalConfig();
 //        String projectPath = System.getProperty("user.dir");
         gc.setOutputDir("E:\\ideaWorkspace01\\guli_parent\\service\\service_edu" + "/src/main/java");
@@ -38,7 +38,7 @@ public class CodeGenerator {
         gc.setSwagger2(true);//开启Swagger2模式
         mpg.setGlobalConfig(gc);
 
-        // 3、数据源配置
+        //3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl("jdbc:mysql://localhost:3306/guli?serverTimezone=GMT%2B8");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
@@ -47,28 +47,28 @@ public class CodeGenerator {
         dsc.setDbType(DbType.MYSQL);
         mpg.setDataSource(dsc);
 
-        // 4、包配置
+        //4、包配置
         PackageConfig pc = new PackageConfig();
         pc.setParent("com.atguigu");
-        pc.setModuleName("eduservice");//模块名
+        pc.setModuleName("eduservice");//模块名称
         pc.setController("controller");
         pc.setService("service");
         pc.setMapper("mapper");
         pc.setEntity("entity");
         mpg.setPackageInfo(pc);
 
-        // 5、策略配置
+        //5、策略配置
         StrategyConfig strategy = new StrategyConfig();
         strategy.setInclude("edu_course","edu_course_description","edu_chapter","edu_video");
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体类的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_");//生成实体类时去掉表前缀
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);//数据库表字段映射到实体类属性的命名策略
         strategy.setEntityLombokModel(true);// lombok模型@Accessors(chain = true)setter链式操作
-        strategy.setRestControllerStyle(true);//restful api风格控制器
+        strategy.setRestControllerStyle(true);//restful api风格的控制器
         strategy.setControllerMappingHyphenStyle(true);//url中驼峰转连字符
         mpg.setStrategy(strategy);
 
-        // 6、执行
+        //6、执行
         mpg.execute();
     }
 

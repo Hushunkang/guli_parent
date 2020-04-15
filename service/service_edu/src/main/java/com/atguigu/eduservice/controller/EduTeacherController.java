@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * <p>
- * 讲师 前端控制器
+ * 讲师表 前端控制器
  * </p>
  *
  * @author hskBeginner
@@ -42,20 +42,15 @@ public class EduTeacherController {
     public R findAllTeacher(){
         //调用service方法实现查询所有讲师数据
         List<EduTeacher> eduTeachers = eduTeacherService.list(null);
-        return R.ok().data("items",eduTeachers);
+        return R.ok().data("list",eduTeachers);
     }
 
-    //删除讲师
-    @ApiOperation(value = "逻辑删除讲师")
-    @DeleteMapping("removeTeacher/{id}")
-    public R removeTeacher(@ApiParam(name = "id", value = "讲师ID", required = true)
-                                 @PathVariable String id){
-        boolean flag = eduTeacherService.removeById(id);
-        if (flag) {
-            return R.ok();
-        } else {
-            return R.error();
-        }
+    //根据讲师ID查询讲师
+    @ApiOperation(value = "根据讲师ID查询讲师")
+    @GetMapping("getTeacherById/{teacherId}")
+    public R getTeacherById(@ApiParam(name = "teacherId", value = "讲师ID", required = true) @PathVariable String teacherId){
+        EduTeacher eduTeacher = eduTeacherService.getById(teacherId);
+        return R.ok().data("eduTeacher",eduTeacher);
     }
 
     //分页查询所有讲师数据
@@ -70,19 +65,19 @@ public class EduTeacherController {
 
         //业务上面要求每页的大小不能超过100
         if(size > 100){
-            throw new GuliException(ResultCode.ERROR,"分页操作每页的大小不能超过100");//项目中业务异常种类多的情况下，往往都需要定义一个异常的枚举类
+            throw new GuliException(ResultCode.ERROR,"分页操作每页的大小不能超过100(⊙︿⊙)");
         }
 
         eduTeacherService.page(pageTeacher, null);
 
         long total = pageTeacher.getTotal();
-        List<EduTeacher> rows = pageTeacher.getRecords();
+        List<EduTeacher> records = pageTeacher.getRecords();
 
 //        Map<String,Object> map = new HashMap<>();
 //        map.put("total",total);
-//        map.put("rows",rows);
+//        map.put("records",records);
 //        return R.ok().data(map);
-        return R.ok().data("total",total).data("rows",rows);
+        return R.ok().data("total",total).data("records",records);
     }
 
     //多条件组合查询带分页效果的讲师数据
@@ -91,14 +86,17 @@ public class EduTeacherController {
     public R pageTeacherCondition(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
                                   @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size,
                                   @ApiParam(name = "teacherQuery", value = "多个查询条件") @RequestBody(required = false) TeacherQuery teacherQuery){
+        //todo 最好code refactor一下，业务逻辑写在Service层，后端模块化分层的思想，一来结构清晰，各层有各层的用处，二来实现Service层代码共用
         Page<EduTeacher> pageTeacher = new Page<>(current,size);
-        QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
+
         //多条件组合查询
         String name = teacherQuery.getName();
         Integer level = teacherQuery.getLevel();
         String begin = teacherQuery.getBegin();
         String end = teacherQuery.getEnd();
-        //判断条件值是否为空，如果不为空则拼接条件，这里类似mybatis dynamic sql
+
+        QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
+        //判断条件值是否为空，如果不为空则拼接条件，类似mybatis dynamic sql
         if(!StringUtils.isEmpty(name)) {
             //构建条件
             wrapper.like("name",name);
@@ -112,20 +110,20 @@ public class EduTeacherController {
         if(!StringUtils.isEmpty(end)) {
             wrapper.le("gmt_create",end);
         }
-
         //按照添加时间降序来排序记录
         wrapper.orderByDesc("gmt_create");
 
         eduTeacherService.page(pageTeacher,wrapper);
+
         long total = pageTeacher.getTotal();
-        List<EduTeacher> rows = pageTeacher.getRecords();
-        return R.ok().data("total",total).data("rows",rows);
+        List<EduTeacher> records = pageTeacher.getRecords();
+        return R.ok().data("total",total).data("records",records);
     }
 
     //添加讲师
     @ApiOperation(value = "添加讲师")
     @PostMapping("addTeacher")
-    public R addTeacher(@ApiParam(name = "eduTeacher", value = "添加讲师json数据") @RequestBody EduTeacher eduTeacher){
+    public R addTeacher(@ApiParam(name = "eduTeacher", value = "讲师信息") @RequestBody EduTeacher eduTeacher){
         boolean flag = eduTeacherService.save(eduTeacher);
         if (flag) {
             return R.ok();
@@ -134,18 +132,23 @@ public class EduTeacherController {
         }
     }
 
-    //根据讲师id查询讲师
-    @ApiOperation(value = "根据讲师表的主键查询讲师")
-    @GetMapping("getTeacherById/{id}")
-    public R getTeacherById(@ApiParam(name = "id", value = "讲师ID", required = true) @PathVariable String id){
-        EduTeacher eduTeacher = eduTeacherService.getById(id);
-        return R.ok().data("teacher",eduTeacher);
+    //逻辑删除讲师
+    @ApiOperation(value = "逻辑删除讲师")
+    @DeleteMapping("removeTeacher/{teacherId}")
+    public R removeTeacher(@ApiParam(name = "teacherId", value = "讲师ID", required = true)
+                           @PathVariable String teacherId){
+        boolean flag = eduTeacherService.removeById(teacherId);
+        if (flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
     }
 
     //修改讲师
     @ApiOperation(value = "修改讲师")
     @PostMapping("updateTeacher")
-    public R updateTeacher(@ApiParam(name = "eduTeacher", value = "修改讲师json数据") @RequestBody EduTeacher eduTeacher){
+    public R updateTeacher(@ApiParam(name = "eduTeacher", value = "讲师信息") @RequestBody EduTeacher eduTeacher){
         boolean flag = eduTeacherService.updateById(eduTeacher);
         if (flag) {
             return R.ok();

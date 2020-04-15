@@ -12,6 +12,9 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
+ *
+ * 生成Swagger2在线接口文档
+ *
  * @author hskBeginner Email：2752962035@qq.com
  * @version 1.0
  * @description
@@ -19,7 +22,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {
+public class Swagger2Config {
 
     @Bean
     public Docket webApiConfig(){

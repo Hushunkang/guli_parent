@@ -40,17 +40,17 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         wrapperVideo.eq("course_id",courseId);
         List<EduVideo> eduVideoList = eduVideoService.list(wrapperVideo);
 
-        //最终需要拿到的数据模型
+        //最终的数据模型，即最终需要给前端返回的信息
         List<ChapterVo> finalList = new ArrayList<>();
 
         for (int i = 0; i < eduChapterList.size(); i++) {
             EduChapter eduChapter = eduChapterList.get(i);
             ChapterVo chapterVo = new ChapterVo();
             BeanUtils.copyProperties(eduChapter,chapterVo);
+
             finalList.add(chapterVo);
 
             List<VideoVo> videoList = new ArrayList<>();
-
             for (int m = 0; m < eduVideoList.size(); m++) {
                 EduVideo eduVideo = eduVideoList.get(m);
                 if(eduChapter.getId().equals(eduVideo.getChapterId())) {

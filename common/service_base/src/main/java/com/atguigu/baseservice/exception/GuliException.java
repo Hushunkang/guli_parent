@@ -11,9 +11,9 @@ import lombok.ToString;
  * @description
  * @create 2020年04月05日
  */
+@NoArgsConstructor//使用lombok生成无参构造器
+@AllArgsConstructor//使用lombok生成所有属性参数构造器
 @Data
-@NoArgsConstructor//lombok生成无参构造器
-@AllArgsConstructor//lombok生成所有属性参数构造器
 @ToString
 public class GuliException extends RuntimeException {
 

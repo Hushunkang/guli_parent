@@ -29,12 +29,12 @@ public class EduChapterController {
     @Autowired
     private EduChapterService eduChapterService;
 
-    //根据课程ID来查询下面的章节和小节信息
-    @ApiOperation(value = "获取课程下章节和小节信息")
+    //根据课程ID来查询课程下面的课程章节信息和课程小节信息
+    @ApiOperation(value = "获取课程章节和课程小节信息")
     @GetMapping("getChapterVideo/{courseId}")
     public R getChapterVideo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
         List<ChapterVo> list = eduChapterService.getChapterVideoByCourseId(courseId);
-        return R.ok().data("allChapterVideo",list);
+        return R.ok().data("list",list);
     }
 
 }

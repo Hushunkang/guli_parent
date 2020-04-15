@@ -3,7 +3,6 @@ package com.atguigu.eduservice.entity.vo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,7 +20,7 @@ public class ChapterVo {
     @ApiModelProperty(value = "课程章节名称")
     private String title;
 
-    //模拟表示一个一级章节下面可以有多个小节
-    private List<VideoVo> children = new ArrayList<>();
+    //模拟表示章节下面可以有多个小节
+    private List<VideoVo> children;
 
 }

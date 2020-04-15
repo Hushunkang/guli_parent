@@ -31,7 +31,7 @@ public class EduCourseDescription implements Serializable {
 
     @ApiModelProperty(value = "课程ID")
 //    @TableId(value = "id", type = IdType.ID_WORKER_STR)
-    @TableId(value = "id", type = IdType.INPUT)//不让mp底层帮生成id，由用户自己设置
+    @TableId(value = "id", type = IdType.INPUT)//不让mp底层帮生成ID，由用户自己设置ID
     private String id;
 
     @ApiModelProperty(value = "课程简介")

@@ -61,10 +61,10 @@ public class EduCourse implements Serializable {
     @ApiModelProperty(value = "乐观锁")
     private Long version;
 
-    @ApiModelProperty(value = "课程状态 Draft未发布  Normal已发布")
+    @ApiModelProperty(value = "课程状态 Draft未发布，Normal已发布")
     private String status;
 
-    @ApiModelProperty(value = "逻辑删除 1（true）已删除， 0（false）未删除")
+    @ApiModelProperty(value = "逻辑删除 0（false）未删除，1（true）已删除")
     @TableLogic
     private Boolean isDeleted;
 

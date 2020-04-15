@@ -17,13 +17,13 @@ public class ExcelListener extends AnalysisEventListener<Subject> {
     //一行一行读取excel文件中的数据
     @Override
     public void invoke(Subject data, AnalysisContext context) {
-        System.out.println("***" + data);
+        System.out.println("*********" + data);
     }
 
     //读取excel表头
     @Override
     public void invokeHeadMap(Map<Integer, String> headMap, AnalysisContext context) {
-        System.out.println("表头" + headMap);
+        System.out.println("表头：" + headMap);
     }
 
     //读完excel后干的事儿

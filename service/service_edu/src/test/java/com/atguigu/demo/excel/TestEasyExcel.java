@@ -17,7 +17,7 @@ public class TestEasyExcel {
 
     @Test
     public void write(){
-        //设置给Excel文件写到哪儿去和文件名称
+        //设置给excel文件写到哪儿去和文件名称
         String filePath = "C:\\Users\\27529\\Desktop\\essential\\grade8class6student.xlsx";
         EasyExcel.write(filePath,Student.class).sheet("学生列表").doWrite(data());
     }
@@ -36,7 +36,6 @@ public class TestEasyExcel {
     @Test
     public void read(){
         String filePath = "C:\\Users\\27529\\Desktop\\essential\\subject.xlsx";
-
         EasyExcel.read(filePath,Subject.class,new ExcelListener()).sheet().doRead();
     }
 

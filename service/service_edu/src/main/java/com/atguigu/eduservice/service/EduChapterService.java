@@ -17,8 +17,8 @@ import java.util.List;
 public interface EduChapterService extends IService<EduChapter> {
 
     /**
-     * 获取课程下章节和小节信息
-     * @param courseId
+     * 根据课程ID来查询课程下面的课程章节信息和课程小节信息
+     * @param courseId 课程ID
      * @return
      */
     List<ChapterVo> getChapterVideoByCourseId(String courseId);
