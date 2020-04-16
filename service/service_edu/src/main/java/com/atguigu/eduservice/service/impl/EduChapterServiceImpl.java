@@ -1,5 +1,6 @@
 package com.atguigu.eduservice.service.impl;
 
+import com.atguigu.baseservice.exception.GuliException;
 import com.atguigu.eduservice.entity.EduChapter;
 import com.atguigu.eduservice.entity.EduVideo;
 import com.atguigu.eduservice.entity.vo.ChapterVo;
@@ -7,6 +8,7 @@ import com.atguigu.eduservice.entity.vo.VideoVo;
 import com.atguigu.eduservice.mapper.EduChapterMapper;
 import com.atguigu.eduservice.service.EduChapterService;
 import com.atguigu.eduservice.service.EduVideoService;
+import com.atguigu.util.ResultCode;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
@@ -62,6 +64,21 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
             chapterVo.setChildren(videoList);
         }
         return finalList;
+    }
+
+    @Override
+    public boolean deleteChapter(String chapterId) {
+        QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
+        wrapper.eq("chapter_id",chapterId);
+        //业务上面的要求，根据课程章节ID去课程小节表里面找对应的数据，如果找的到，则不能删除课程章节
+        int count = eduVideoService.count(wrapper);
+
+        if(count >0) {//课程章节下面有小节，不能进行删除
+            throw new GuliException(ResultCode.ERROR,"删除失败，章节下存在课时");
+        } else {
+            int result = baseMapper.deleteById(chapterId);
+            return result > 0;
+        }
     }
 
 }
