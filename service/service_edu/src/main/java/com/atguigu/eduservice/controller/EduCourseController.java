@@ -1,6 +1,7 @@
 package com.atguigu.eduservice.controller;
 
 
+import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
 import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.util.R;
@@ -49,6 +50,14 @@ public class EduCourseController {
     public R updateCourseInfo(@ApiParam(name = "courseVo", value = "课程基本信息") @RequestBody CourseVo courseVo) {
         eduCourseService.updateCourseInfo(courseVo);
         return R.ok();
+    }
+
+    //根据课程ID查询到要被发布的课程确认信息
+    @ApiOperation(value = "课程确认信息")
+    @GetMapping("getPublishCourseInfo/{courseId}")
+    public R getPublishCourseInfo(@PathVariable String courseId) {
+        CoursePublishVo coursePublishVo = eduCourseService.getPublishCourseInfo(courseId);
+        return R.ok().data("coursePublishVo",coursePublishVo);
     }
 
 }

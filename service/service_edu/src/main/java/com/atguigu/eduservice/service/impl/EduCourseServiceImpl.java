@@ -3,6 +3,7 @@ package com.atguigu.eduservice.service.impl;
 import com.atguigu.baseservice.exception.GuliException;
 import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.EduCourseDescription;
+import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
 import com.atguigu.eduservice.service.EduCourseDescriptionService;
@@ -77,6 +78,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         description.setId(courseVo.getId());
         description.setDescription(courseVo.getDescription());
         eduCourseDescriptionService.updateById(description);
+    }
+
+    @Override
+    public CoursePublishVo getPublishCourseInfo(String courseId) {
+        CoursePublishVo coursePublishVo = baseMapper.getPublishCourseInfo(courseId);
+        return coursePublishVo;
     }
 
 }
