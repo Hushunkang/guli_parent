@@ -65,7 +65,7 @@ public class EduCourse implements Serializable {
     private String status;
 
     @ApiModelProperty(value = "逻辑删除 0（false）未删除，1（true）已删除")
-    @TableLogic
+    @TableLogic//业务上面要求的，课程的删除是逻辑删除，因此加上这个注解，使用mp框架，后面底层用的sql语句就是update，否则就是使用delete
     private Boolean isDeleted;
 
     @ApiModelProperty(value = "创建时间")

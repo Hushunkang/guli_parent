@@ -118,4 +118,16 @@ public class EduCourseController {
         return R.ok().data("total",total).data("records",records);
     }
 
+    //删除课程数据（删除课程的时候需要删除课程关联的所有数据），最好按照课程小节、课程章节、课程描述、课程的顺序来删除
+    @ApiOperation(value = "删除课程数据")
+    @DeleteMapping("deleteCourse/{courseId}")
+    public R deleteCourse(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
+        boolean flag = eduCourseService.deleteCourse(courseId);
+        if(flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
+    }
+
 }

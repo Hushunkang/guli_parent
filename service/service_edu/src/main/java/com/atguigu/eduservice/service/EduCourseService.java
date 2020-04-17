@@ -42,4 +42,10 @@ public interface EduCourseService extends IService<EduCourse> {
      */
     CoursePublishVo getPublishCourseInfo(String courseId);
 
+    /**
+     * 删除课程数据
+     * @param courseId 课程ID
+     */
+    boolean deleteCourse(String courseId);
+
 }

@@ -74,11 +74,18 @@ public class EduChapterServiceImpl extends ServiceImpl<EduChapterMapper, EduChap
         int count = eduVideoService.count(wrapper);
 
         if(count >0) {//课程章节下面有小节，不能进行删除
-            throw new GuliException(ResultCode.ERROR,"删除失败，章节下存在课时");
+            throw new GuliException(ResultCode.ERROR,"删除失败，此章节下存在课时，不能删除");
         } else {
             int result = baseMapper.deleteById(chapterId);
             return result > 0;
         }
+    }
+
+    @Override
+    public void removeChapterByCourseId(String courseId) {
+        QueryWrapper<EduChapter> wrapper = new QueryWrapper<>();
+        wrapper.eq("course_id",courseId);
+        baseMapper.delete(wrapper);
     }
 
 }

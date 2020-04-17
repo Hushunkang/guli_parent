@@ -6,8 +6,10 @@ import com.atguigu.eduservice.entity.EduCourseDescription;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
+import com.atguigu.eduservice.service.EduChapterService;
 import com.atguigu.eduservice.service.EduCourseDescriptionService;
 import com.atguigu.eduservice.service.EduCourseService;
+import com.atguigu.eduservice.service.EduVideoService;
 import com.atguigu.util.ResultCode;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.BeanUtils;
@@ -26,6 +28,12 @@ import org.springframework.stereotype.Service;
 public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse> implements EduCourseService {
 
     @Autowired
+    private EduVideoService eduVideoService;
+
+    @Autowired
+    private EduChapterService eduChapterService;
+
+    @Autowired
     private EduCourseDescriptionService eduCourseDescriptionService;
 
     @Override
@@ -36,7 +44,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         int insert = baseMapper.insert(eduCourse);//影响的行数
         if (insert <= 0) {
             //添加失败
-            throw new GuliException(ResultCode.ERROR,"添加课程信息失败(⊙︿⊙)");
+            throw new GuliException(ResultCode.ERROR,"添加课程基本信息失败(⊙︿⊙)");
         }
 
         //获取添加课程后课程ID
@@ -47,7 +55,10 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         //手动设置课程描述ID，让课程表和课程简介表构成1对1的关系
         eduCourseDescription.setId(courseId);
         eduCourseDescription.setDescription(courseVo.getDescription());
-        eduCourseDescriptionService.save(eduCourseDescription);
+        boolean flag = eduCourseDescriptionService.save(eduCourseDescription);
+        if (!flag) {
+            throw new GuliException(ResultCode.ERROR,"添加课程描述基本信息失败(⊙︿⊙)");
+        }
 
         return courseId;
     }
@@ -84,6 +95,26 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     public CoursePublishVo getPublishCourseInfo(String courseId) {
         CoursePublishVo coursePublishVo = baseMapper.getPublishCourseInfo(courseId);
         return coursePublishVo;
+    }
+
+    @Override
+    public boolean deleteCourse(String courseId) {
+        //根据课程id删除小节
+        eduVideoService.removeVideoByCourseId(courseId);
+
+        //根据课程id删除章节
+        eduChapterService.removeChapterByCourseId(courseId);
+
+        //根据课程id删除描述
+        eduCourseDescriptionService.removeById(courseId);//课程ID和课程描述ID一一对应，因此课程ID等于课程描述ID
+
+        //根据课程id删除课程本身
+        int result = baseMapper.deleteById(courseId);
+        if(result == 0) {//注意虽然删除不存在的记录，逻辑上属于成功，但是这里的result指的是数据库操作返回影响条数，这里的result为0表示没有删除任何记录
+            throw new GuliException(20001,"删除课程失败(⊙︿⊙)");
+        }else{
+            return result > 0;
+        }
     }
 
 }
