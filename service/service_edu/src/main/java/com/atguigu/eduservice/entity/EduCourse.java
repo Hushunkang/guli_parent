@@ -1,6 +1,9 @@
 package com.atguigu.eduservice.entity;
 
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -65,8 +68,8 @@ public class EduCourse implements Serializable {
     private String status;
 
     @ApiModelProperty(value = "逻辑删除 0（false）未删除，1（true）已删除")
-    @TableLogic//业务上面要求的，课程的删除是逻辑删除，因此加上这个注解，使用mp框架，后面底层用的sql语句就是update，否则就是使用delete
-    private Boolean isDeleted;
+//    @TableLogic//业务上面要求的课程的删除是物理删除，因此注释掉这个注解，使用mp框架，后面底层用的sql语句就是delete，否则就是使用update
+    private Boolean isDeleted;//如果业务上面要求某种类型的数据是需要逻辑删除的，那么表里面建立这个字段默认值为0，没有要求逻辑删除也可以建立这样的字段放着，可以灵活应对需求变更
 
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)

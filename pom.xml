@@ -39,7 +39,7 @@
         <aliyun-sdk-oss.version>3.1.0</aliyun-sdk-oss.version>
         <aliyun-java-sdk-vod.version>2.15.2</aliyun-java-sdk-vod.version>
 <!--        <aliyun-java-vod-upload.version>1.4.11</aliyun-java-vod-upload.version>-->
-<!--        <aliyun-sdk-vod-upload.version>1.4.11</aliyun-sdk-vod-upload.version>-->
+        <aliyun-sdk-vod-upload.version>1.4.11</aliyun-sdk-vod-upload.version>
         <fastjson.version>1.2.28</fastjson.version>
         <gson.version>2.8.2</gson.version>
         <json.version>20170516</json.version>
@@ -179,17 +179,18 @@
                 <version>${aliyun-java-sdk-vod.version}</version>
             </dependency>
 
+            <!--aliyun-java-vod-upload-1.4.11.jar还未正式开源，在maven中心仓库是搜索不到的-->
 <!--            <dependency>-->
 <!--                <groupId>com.aliyun</groupId>-->
 <!--                <artifactId>aliyun-java-vod-upload</artifactId>-->
 <!--                <version>${aliyun-java-vod-upload.version}</version>-->
 <!--            </dependency>-->
 
-<!--            <dependency>-->
-<!--                <groupId>com.aliyun</groupId>-->
-<!--                <artifactId>aliyun-sdk-vod-upload</artifactId>-->
-<!--                <version>${aliyun-sdk-vod-upload.version}</version>-->
-<!--            </dependency>-->
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-sdk-vod-upload</artifactId>
+                <version>${aliyun-sdk-vod-upload.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.alibaba</groupId>
