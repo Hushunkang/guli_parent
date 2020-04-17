@@ -65,7 +65,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     }
 
     @Override
-    public void updateCourseInfo(CourseVo courseVo) {
+    public boolean updateCourseInfo(CourseVo courseVo) {
         EduCourse eduCourse = new EduCourse();
         BeanUtils.copyProperties(courseVo,eduCourse);
 
@@ -77,7 +77,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         EduCourseDescription description = new EduCourseDescription();
         description.setId(courseVo.getId());
         description.setDescription(courseVo.getDescription());
-        eduCourseDescriptionService.updateById(description);
+        return eduCourseDescriptionService.updateById(description);
     }
 
     @Override

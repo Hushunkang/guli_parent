@@ -31,8 +31,12 @@ public class EduVideoController {
     @ApiOperation(value = "添加课程小节")
     @PostMapping("addVideo")
     public R addVideo(@ApiParam(name = "eduVideo", value = "课程小节信息") @RequestBody EduVideo eduVideo) {
-        eduVideoService.save(eduVideo);
-        return R.ok();
+        boolean flag = eduVideoService.save(eduVideo);
+        if(flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
     }
 
     //删除课程小节 todo 后面这个方法需要完善：删除课程小节的同时把它下面的视频删除
@@ -44,6 +48,7 @@ public class EduVideoController {
     }
 
     //根据课程小节ID来查询课程小节信息
+    @ApiOperation(value = "查询课程小节信息")
     @GetMapping("getVideoInfo/{videoId}")
     public R getVideoInfo(@ApiParam(name = "videoId", value = "课程小节ID", required = true) @PathVariable String videoId) {
         EduVideo eduVideo = eduVideoService.getById(videoId);
@@ -54,8 +59,12 @@ public class EduVideoController {
     @ApiOperation(value = "修改课程小节")
     @PostMapping("updateVideo")
     public R updateVideo(@ApiParam(name = "eduVideo", value = "课程小节信息") @RequestBody EduVideo eduVideo) {
-        eduVideoService.updateById(eduVideo);
-        return R.ok();
+        boolean flag = eduVideoService.updateById(eduVideo);
+        if(flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
     }
 
 }

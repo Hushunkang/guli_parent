@@ -39,6 +39,7 @@ public class EduChapterController {
     }
 
     //根据课程章节ID来查询课程章节信息
+    @ApiOperation(value = "查询课程章节信息")
     @GetMapping("getChapterInfo/{chapterId}")
     public R getChapterInfo(@ApiParam(name = "chapterId", value = "课程章节ID", required = true) @PathVariable String chapterId) {
         EduChapter eduChapter = eduChapterService.getById(chapterId);
@@ -49,20 +50,28 @@ public class EduChapterController {
     @ApiOperation(value = "添加课程章节")
     @PostMapping("addChapter")
     public R addChapter(@ApiParam(name = "eduChapter", value = "课程章节信息") @RequestBody EduChapter eduChapter) {
-        eduChapterService.save(eduChapter);
-        return R.ok();
+        boolean flag = eduChapterService.save(eduChapter);
+        if(flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
     }
 
     //修改课程章节
     @ApiOperation(value = "修改课程章节")
     @PostMapping("updateChapter")
     public R updateChapter(@ApiParam(name = "eduChapter", value = "课程章节信息") @RequestBody EduChapter eduChapter) {
-        eduChapterService.updateById(eduChapter);
-        return R.ok();
+        boolean flag = eduChapterService.updateById(eduChapter);
+        if(flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
     }
 
     //删除课程章节
-    @ApiParam(name = "eduChapter", value = "删除课程章节")
+    @ApiOperation(value = "删除课程章节")
     @DeleteMapping("{chapterId}")
     public R deleteChapter(@ApiParam(name = "chapterId", value = "课程章节ID", required = true) @PathVariable String chapterId) {
         boolean flag = eduChapterService.deleteChapter(chapterId);

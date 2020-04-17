@@ -124,7 +124,7 @@ public class EduTeacherController {
     @ApiOperation(value = "添加讲师")
     @PostMapping("addTeacher")
     public R addTeacher(@ApiParam(name = "eduTeacher", value = "讲师信息") @RequestBody EduTeacher eduTeacher){
-        boolean flag = eduTeacherService.save(eduTeacher);
+        boolean flag = eduTeacherService.save(eduTeacher);//flag是依据影响的行数来判断的，若大于等于1才返回true
         if (flag) {
             return R.ok();
         } else {

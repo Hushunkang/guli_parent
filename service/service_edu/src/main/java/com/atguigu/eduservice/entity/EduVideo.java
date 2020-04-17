@@ -54,8 +54,8 @@ public class EduVideo implements Serializable {
     @ApiModelProperty(value = "播放次数")
     private Long playCount;
 
-    @ApiModelProperty(value = "是否可以试听：0收费 1免费")
-    private Boolean isFree;
+    @ApiModelProperty(value = "是否可以试听：false收费 true免费")//默认课时是收费的
+    private Boolean isFree;//false最后到mysql变成0，true最后到mysql变成1
 
     @ApiModelProperty(value = "视频时长（秒）")
     private Float duration;

@@ -31,8 +31,9 @@ public interface EduCourseService extends IService<EduCourse> {
     /**
      * 修改课程基本信息
      * @param courseVo
+     * @return
      */
-    void updateCourseInfo(CourseVo courseVo);
+    boolean updateCourseInfo(CourseVo courseVo);
 
     /**
      * 根据课程ID查询到要被发布的课程确认信息

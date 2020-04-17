@@ -1,8 +1,10 @@
 package com.atguigu.eduservice.controller;
 
 
+import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
+import com.atguigu.eduservice.enums.CourseStatusEnum;
 import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.util.R;
 import io.swagger.annotations.Api;
@@ -48,16 +50,35 @@ public class EduCourseController {
     @ApiOperation(value = "修改课程基本信息")
     @PostMapping("updateCourseInfo")
     public R updateCourseInfo(@ApiParam(name = "courseVo", value = "课程基本信息") @RequestBody CourseVo courseVo) {
-        eduCourseService.updateCourseInfo(courseVo);
-        return R.ok();
+        boolean flag = eduCourseService.updateCourseInfo(courseVo);
+        if(flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
     }
 
     //根据课程ID查询到要被发布的课程确认信息
     @ApiOperation(value = "课程确认信息")
     @GetMapping("getPublishCourseInfo/{courseId}")
-    public R getPublishCourseInfo(@PathVariable String courseId) {
+    public R getPublishCourseInfo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
         CoursePublishVo coursePublishVo = eduCourseService.getPublishCourseInfo(courseId);
         return R.ok().data("coursePublishVo",coursePublishVo);
+    }
+
+    //发布课程
+    @ApiOperation(value = "发布课程")
+    @PutMapping("publishCourse/{courseId}")
+    public R publishCourse(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
+        EduCourse eduCourse = new EduCourse();
+        eduCourse.setId(courseId);
+        eduCourse.setStatus(CourseStatusEnum.NORMAL.getStatus());//设置课程状态
+        boolean flag = eduCourseService.updateById(eduCourse);
+        if(flag) {
+            return R.ok();
+        } else {
+            return R.error();
+        }
     }
 
 }
