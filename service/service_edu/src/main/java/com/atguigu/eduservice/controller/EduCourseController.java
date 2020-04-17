@@ -2,16 +2,22 @@ package com.atguigu.eduservice.controller;
 
 
 import com.atguigu.eduservice.entity.EduCourse;
+import com.atguigu.eduservice.entity.query.CourseQuery;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
 import com.atguigu.eduservice.enums.CourseStatusEnum;
 import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.util.R;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -79,6 +85,37 @@ public class EduCourseController {
         } else {
             return R.error();
         }
+    }
+
+    //多条件组合查询带分页效果的课程数据
+    @ApiOperation(value = "多条件组合查询带分页效果的课程列表")
+    @PostMapping("pageCourseCondition/{current}/{size}")
+    public R pageCourseCondition(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
+                                 @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size,
+                                 @ApiParam(name = "courseQuery", value = "多个查询条件") @RequestBody(required = false) CourseQuery courseQuery) {
+        Page<EduCourse> pageCourse = new Page<>(current,size);
+
+        //多条件组合查询
+        String title = courseQuery.getTitle();
+        String status = courseQuery.getStatus();
+
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        //判断条件值是否为空，如果不为空则拼接条件，类似mybatis dynamic sql
+        if(!StringUtils.isEmpty(title)) {
+            //构建条件
+            wrapper.like("title",title);
+        }
+        if(!StringUtils.isEmpty(status)) {
+            wrapper.eq("status",status);
+        }
+        //按照添加时间降序来排序记录
+        wrapper.orderByDesc("gmt_create");
+
+        eduCourseService.page(pageCourse,wrapper);
+
+        long total = pageCourse.getTotal();
+        List<EduCourse> records = pageCourse.getRecords();
+        return R.ok().data("total",total).data("records",records);
     }
 
 }
