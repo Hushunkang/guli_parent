@@ -39,9 +39,9 @@ public class EduVideoController {
         }
     }
 
-    //删除课程小节 todo 后面这个方法需要完善：删除课程小节的同时把它下面的视频删除
+    //删除课程小节（删除课程小节的同时要删除它所对应的云端视频）
     @ApiOperation(value = "删除课程小节")
-    @DeleteMapping("{videoId}")
+    @DeleteMapping("deleteVideo/{videoId}")
     public R deleteVideo(@ApiParam(name = "videoId", value = "课程小节ID", required = true) @PathVariable String videoId) {
         eduVideoService.removeById(videoId);
         return R.ok();

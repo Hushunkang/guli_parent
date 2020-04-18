@@ -17,4 +17,10 @@ public interface VodService {
      */
     String uploadVideo(MultipartFile file);
 
+    /**
+     * 根据阿里云视频点播服务为每一个视频生成的视频ID来删除云端视频
+     * @param videoSourceId
+     */
+    void removeVideo(String videoSourceId);
+
 }
