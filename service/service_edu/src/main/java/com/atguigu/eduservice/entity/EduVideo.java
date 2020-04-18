@@ -43,10 +43,10 @@ public class EduVideo implements Serializable {
     private String title;
 
     @ApiModelProperty(value = "云端视频资源")
-    private String videoSourceId;
+    private String videoSourceId;//就是视频ID
 
     @ApiModelProperty(value = "原始文件名称")
-    private String videoOriginalName;
+    private String videoOriginalName;//上传视频名称
 
     @ApiModelProperty(value = "排序字段")
     private Integer sort;
