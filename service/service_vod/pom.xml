@@ -19,19 +19,27 @@
         </dependency>
 
         <dependency>
-            <groupId>com.aliyun</groupId>
-            <artifactId>aliyun-java-sdk-vod</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-vod</artifactId>
+        </dependency>
+
+        <!-- aliyun-java-vod-upload-1.4.12.jar还未正式开源，在maven中心仓库是搜索不到的 -->
+        <!-- 可以通过maven命令手动的将下载好的aliyun-java-vod-upload-1.4.12.jar引入到maven本地仓库，然后再添加这个依赖 -->
+        <!-- 当然也有其它的方式解决这个问题，比如说加一个lib文件夹，然后将jar包添加到类路径下面，详情可以参照阿里云官方文档 -->
+        <dependency>
+            <groupId>com.aliyun</groupId>
             <artifactId>aliyun-sdk-vod-upload</artifactId>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.aliyun</groupId>-->
+<!--            <artifactId>aliyun-java-vod-upload</artifactId>-->
+<!--        </dependency>-->
 
         <dependency>
             <groupId>com.alibaba</groupId>

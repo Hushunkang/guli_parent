@@ -28,48 +28,33 @@
         <mybatis-plus.version>3.0.5</mybatis-plus.version>
         <velocity.version>2.0</velocity.version>
         <swagger.version>2.7.0</swagger.version>
-        <aliyun.oss.version>2.8.3</aliyun.oss.version>
         <jodatime.version>2.10.1</jodatime.version>
         <poi.version>3.17</poi.version>
         <commons-fileupload.version>1.3.3</commons-fileupload.version>
         <commons-io.version>2.6</commons-io.version>
         <httpclient.version>4.5.1</httpclient.version>
         <jwt.version>0.7.0</jwt.version>
-        <aliyun-java-sdk-core.version>4.3.3</aliyun-java-sdk-core.version>
+        <!--        <aliyun.oss.version>2.8.3</aliyun.oss.version>-->
         <aliyun-sdk-oss.version>3.1.0</aliyun-sdk-oss.version>
+        <aliyun-java-sdk-core.version>4.3.3</aliyun-java-sdk-core.version>
         <aliyun-java-sdk-vod.version>2.15.2</aliyun-java-sdk-vod.version>
-<!--        <aliyun-java-vod-upload.version>1.4.11</aliyun-java-vod-upload.version>-->
-        <aliyun-sdk-vod-upload.version>1.4.11</aliyun-sdk-vod-upload.version>
+        <aliyun-sdk-vod-upload.version>1.4.12</aliyun-sdk-vod-upload.version>
+<!--        <aliyun-java-vod-upload.version>1.4.12</aliyun-java-vod-upload.version>-->
         <fastjson.version>1.2.28</fastjson.version>
-        <gson.version>2.8.2</gson.version>
         <json.version>20170516</json.version>
+        <gson.version>2.8.2</gson.version>
         <commons-dbutils.version>1.7</commons-dbutils.version>
         <canal.client.version>1.1.0</canal.client.version>
-        <docker.image.prefix>zx</docker.image.prefix>
+        <docker.image.prefix>zx</docker.image.prefix><!--暂时没用到-->
         <cloud-alibaba.version>0.2.2.RELEASE</cloud-alibaba.version>
     </properties>
 
-    <!--父工程中统一管理依赖的版本
-    注意：dependencyManagement节点下定义的依赖是为了统一管理依赖版本，下面的依赖不会被子模块继承-->
+    <!--
+    父工程中统一管理依赖的版本
+    注意：dependencyManagement节点下定义的依赖是为了统一管理依赖版本，下面的依赖不会被子模块继承
+    -->
     <dependencyManagement>
         <dependencies>
-            <!--spring cloud-->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Hoxton.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${cloud-alibaba.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
             <!--mybatis plus-->
             <dependency>
                 <groupId>com.baomidou</groupId>
@@ -98,13 +83,6 @@
                 <version>${swagger.version}</version>
             </dependency>
 
-            <!--aliyun oss-->
-            <dependency>
-                <groupId>com.aliyun.oss</groupId>
-                <artifactId>aliyun-sdk-oss</artifactId>
-                <version>${aliyun.oss.version}</version>
-            </dependency>
-
             <!--日期时间工具-->
             <dependency>
                 <groupId>joda-time</groupId>
@@ -112,14 +90,14 @@
                 <version>${jodatime.version}</version>
             </dependency>
 
-            <!--xls-->
+            <!--poi管理办公软件 xls-->
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi</artifactId>
                 <version>${poi.version}</version>
             </dependency>
 
-            <!--xlsx-->
+            <!--poi管理办公软件 xlsx-->
             <dependency>
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml</artifactId>
@@ -140,17 +118,11 @@
                 <version>${commons-io.version}</version>
             </dependency>
 
-            <!--httpclient-->
+            <!--http client技术-->
             <dependency>
                 <groupId>org.apache.httpcomponents</groupId>
                 <artifactId>httpclient</artifactId>
                 <version>${httpclient.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-                <version>${gson.version}</version>
             </dependency>
 
             <!--jwt-->
@@ -161,12 +133,12 @@
             </dependency>
 
             <!--aliyun-->
-            <dependency>
-                <groupId>com.aliyun</groupId>
-                <artifactId>aliyun-java-sdk-core</artifactId>
-                <version>${aliyun-java-sdk-core.version}</version>
-            </dependency>
-
+            <!--aliyun oss-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.aliyun.oss</groupId>-->
+            <!--                <artifactId>aliyun-sdk-oss</artifactId>-->
+            <!--                <version>${aliyun.oss.version}</version>-->
+            <!--            </dependency>-->
             <dependency>
                 <groupId>com.aliyun.oss</groupId>
                 <artifactId>aliyun-sdk-oss</artifactId>
@@ -175,22 +147,27 @@
 
             <dependency>
                 <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>${aliyun-java-sdk-core.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-java-sdk-vod</artifactId>
                 <version>${aliyun-java-sdk-vod.version}</version>
             </dependency>
-
-            <!--aliyun-java-vod-upload-1.4.11.jar还未正式开源，在maven中心仓库是搜索不到的-->
-<!--            <dependency>-->
-<!--                <groupId>com.aliyun</groupId>-->
-<!--                <artifactId>aliyun-java-vod-upload</artifactId>-->
-<!--                <version>${aliyun-java-vod-upload.version}</version>-->
-<!--            </dependency>-->
 
             <dependency>
                 <groupId>com.aliyun</groupId>
                 <artifactId>aliyun-sdk-vod-upload</artifactId>
                 <version>${aliyun-sdk-vod-upload.version}</version>
             </dependency>
+
+<!--            <dependency>-->
+<!--                <groupId>com.aliyun</groupId>-->
+<!--                <artifactId>aliyun-java-vod-upload</artifactId>-->
+<!--                <version>${aliyun-java-vod-upload.version}</version>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>com.alibaba</groupId>
@@ -205,6 +182,12 @@
             </dependency>
 
             <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${gson.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>commons-dbutils</groupId>
                 <artifactId>commons-dbutils</artifactId>
                 <version>${commons-dbutils.version}</version>
@@ -214,6 +197,23 @@
                 <groupId>com.alibaba.otter</groupId>
                 <artifactId>canal.client</artifactId>
                 <version>${canal.client.version}</version>
+            </dependency>
+
+            <!--spring cloud-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
