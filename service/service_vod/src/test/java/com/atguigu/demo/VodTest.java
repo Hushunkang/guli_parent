@@ -4,7 +4,6 @@ import com.aliyun.vod.upload.impl.UploadVideoImpl;
 import com.aliyun.vod.upload.req.UploadVideoRequest;
 import com.aliyun.vod.upload.resp.UploadVideoResponse;
 import com.aliyuncs.DefaultAcsClient;
-import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoRequest;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoResponse;
 import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
@@ -30,7 +29,7 @@ public class VodTest {
 
     /*获取视频播放地址*/
     @Test
-    public void test01() throws ClientException {
+    public void test01() {
         DefaultAcsClient client = InitObject.initVodClient("LTAI4FcYecA2Hueh7ugWSYr5", "TcZ6OKAigVaDdVUCwrzOU0xgnyfCgu");
         GetPlayInfoResponse response = new GetPlayInfoResponse();
         try {
@@ -57,10 +56,11 @@ public class VodTest {
 
     /*获取视频播放凭证*/
     //课程的视频都需要加密，要不然别人拿到你的视频地址就可以播放看，那还咋做课程收费，加密视频后能保证视频安全
+    //数据库里面存的也是阿里云视频点播服务为每一个视频生成的视频ID，而不是视频地址
     //在阿里云视频点播控制台里面配置转码模板组可以对上传的视频进行加密，即使别人拿到你的视频地址，也是不能播放
     //加密后的视频要特殊的方式才可以播放，通过视频播放凭证整合阿里云视频播放器可以播放加密视频
     @Test
-    public void test2() throws ClientException {
+    public void test2() {
         DefaultAcsClient client = InitObject.initVodClient("LTAI4FcYecA2Hueh7ugWSYr5", "TcZ6OKAigVaDdVUCwrzOU0xgnyfCgu");
         GetVideoPlayAuthResponse response = new GetVideoPlayAuthResponse();
         try {

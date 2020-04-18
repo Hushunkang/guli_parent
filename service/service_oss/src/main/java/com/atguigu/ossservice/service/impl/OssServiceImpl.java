@@ -22,21 +22,20 @@ import java.util.UUID;
 public class OssServiceImpl implements OssService {
 
     @Override
-    public String uploadAvatar(MultipartFile file) {
-
-        // 获取Bucket存储空间名称
+    public String uploadAvatar(MultipartFile file) {//文件上传的方式：使用流式上传接口
+        //获取Bucket存储空间名称
         String bucketName = ConstantPropertiesUtils.BUCKET_NAME;
-        // Endpoint以杭州为例，其它Region请按实际情况填写。
+        //Endpoint以杭州为例，其它Region请按实际情况填写
         String endpoint = ConstantPropertiesUtils.END_POINT;
-        // 云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建。
+        //云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录https://ram.console.aliyun.com创建
         String accessKeyId = ConstantPropertiesUtils.KEY_ID;
         String accessKeySecret = ConstantPropertiesUtils.KEY_SECRET;
 
         try {
-            // 创建OSSClient实例。
+            //创建OSSClient实例
             OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
 
-            // 上传文件流。
+            //上传文件流
 //        InputStream inputStream = new FileInputStream("<yourlocalFile>");
             InputStream inputStream = file.getInputStream();
 
@@ -57,12 +56,11 @@ public class OssServiceImpl implements OssService {
             //第三个参数指的是流式上传的上传文件流（流的理解：是数据存在的一种形式）
             ossClient.putObject(bucketName, fileName, inputStream);
 
-            // 关闭OSSClient。
+            //关闭OSSClient
             ossClient.shutdown();
 
             //把上传到阿里云oss的文件所在路径手动拼接出来
 
-            //https://hsk-virtuoso-edu-guli.oss-cn-hangzhou.aliyuncs.com/0.jpg
             String url = "https://" + bucketName + "." + endpoint + "/" + fileName;
 
             return url;
