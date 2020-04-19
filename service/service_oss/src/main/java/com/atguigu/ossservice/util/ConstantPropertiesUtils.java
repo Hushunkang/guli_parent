@@ -22,9 +22,10 @@ public class ConstantPropertiesUtils implements InitializingBean {
 
     //aliyun oss 存储空间名称
     //这个注解给属性赋值，底层原理还是用了反射，反射提供了非常强大的API，可以说“无所不能”！！！
-    //以前学过Java基础阶段应该知道，很“神奇”的操作，反射API可以在当前类以外访问当前类私有的机构！！！
-    //反射和封装性并不矛盾的解释，可以看看自己总结的那一段笔记(*￣︶￣)
-    @Value("${aliyun.oss.file.bucketname}")
+    //以前学过Java基础阶段应该知道，很“神奇”的操作，反射API可以在当前类以外的地方访问当前类的私有的结构！！！
+    //它打破了我们对于传统的封装性的认识
+    //但反射和封装性其实并不矛盾的解释，可以看看自己总结的那一段“精彩的”笔记(*￣︶￣)
+    @Value("${aliyun.oss.file.bucketname}")//@Value注解可以理解成是依赖注入组件的一种方式
     private String bucketName;
 
     //aliyun oss 地域节点

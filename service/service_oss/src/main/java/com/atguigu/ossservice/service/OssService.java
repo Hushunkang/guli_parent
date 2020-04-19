@@ -11,10 +11,10 @@ import org.springframework.web.multipart.MultipartFile;
 public interface OssService {
 
     /**
-     * 上传头像
-     * @param file 上传的头像文件
-     * @return 返回了上传的头像文件最终的存储的网络地址
+     * 上传文件到阿里云OSS
+     * @param file 上传的文件
+     * @return 返回了上传的文件最终的存储的网络地址
      */
-    String uploadAvatar(MultipartFile file);
+    String uploadFileToOss(MultipartFile file);
 
 }

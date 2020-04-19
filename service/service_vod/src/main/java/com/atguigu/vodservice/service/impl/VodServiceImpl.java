@@ -55,7 +55,7 @@ public class VodServiceImpl implements VodService {
 //            DeleteVideoResponse deleteVideoResponse = client.getAcsResponse(deleteVideoRequest);
             client.getAcsResponse(deleteVideoRequest);
         } catch (ClientException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
             throw new GuliException(ResultCode.ERROR,"删除云端视频失败(⊙︿⊙)");
         }
     }

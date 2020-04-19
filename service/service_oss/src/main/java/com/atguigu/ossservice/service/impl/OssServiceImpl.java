@@ -22,7 +22,7 @@ import java.util.UUID;
 public class OssServiceImpl implements OssService {
 
     @Override
-    public String uploadAvatar(MultipartFile file) {//文件上传的方式：使用流式上传接口
+    public String uploadFileToOss(MultipartFile file) {//文件上传的方式：使用流式上传接口
         //获取Bucket存储空间名称
         String bucketName = ConstantPropertiesUtils.BUCKET_NAME;
         //Endpoint以杭州为例，其它Region请按实际情况填写

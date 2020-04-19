@@ -27,11 +27,11 @@ public class OssController {
     @Autowired
     private OssService ossService;
 
-    //上传头像
-    @ApiOperation(value = "上传文件")
+    //上传文件到阿里云OSS（比如上传讲师头像、上传课程封面等都是调用此方法）
+    @ApiOperation(value = "上传文件到阿里云OSS")
     @PostMapping("uploadFileToOss")//文件上传时提交的数据以多段的形式进行拼接，最终数据以二进制流的形式发送给服务器
     public R uploadFileToOss(@ApiParam(name = "file", value = "上传的文件") MultipartFile file){//获取上传的文件，spring mvc文件上传就这种操作(*￣︶￣)
-        String url = ossService.uploadAvatar(file);
+        String url = ossService.uploadFileToOss(file);
         return R.ok().data("url",url);
     }
 
