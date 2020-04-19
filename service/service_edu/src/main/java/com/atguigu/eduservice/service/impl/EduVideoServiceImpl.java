@@ -41,10 +41,11 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
 
         //删除课程小节所对应的云端视频（注意：传统的方式可以给删除云端视频的业务代码写这，但是现在使用微服务调用的方式）
         //edu这个微服务中的方法调用vod这个微服务中的方法
+        //用户请求的还是这个edu微服务（独立的进程），但是它远程调用了vod微服务（也是独立的进程）
 //        vodClient.removeVideo("云端视频ID");
         if (!StringUtils.isEmpty(videoSourceId)) {
-            vodClient.removeVideo(videoSourceId);
-        }
+            vodClient.removeVideo(videoSourceId);//底层原理大概是找对应服务，远程过程调用
+        }//说明，vodClient.removeVideo(videoSourceId);执行这个方法的时候如果出现异常了，当前的微服务默认感知不到，原因是因为“独立的进程”，一个进程仅仅只是远程调用了另一个进程
 
         //根据课程小节ID删除课程小节记录
         baseMapper.deleteById(videoId);

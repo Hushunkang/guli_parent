@@ -15,11 +15,11 @@ public class Test {
         }
 
         try {
-            double result1 = test01();//拿不到返回值
-//            double result2 = test02();//拿不到返回值
-            System.out.println(result1);
-//            System.out.println(result2);
-            System.out.println("注释掉和不注释掉double result2 = test02();，看看能不能执行到此处！！！");
+//            double result1 = test01();//拿不到返回值
+            double result2 = test02();//拿不到返回值
+//            System.out.println(result1);
+            System.out.println(result2);
+            System.out.println("模拟场景执行test01和test02互斥，看看能不能执行到此处！！！");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,7 +50,7 @@ public class Test {
         try {
             System.out.println("test02 ex before");
             y = 1 / 0;
-            System.out.println("test02 ex before");
+            System.out.println("test02 ex after");
         } catch (Exception e) {
             throw new Exception();
         } finally {
