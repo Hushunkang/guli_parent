@@ -1,11 +1,14 @@
 package com.atguigu.eduservice.service.impl;
 
+import com.atguigu.eduservice.client.VodClient;
 import com.atguigu.eduservice.entity.EduVideo;
 import com.atguigu.eduservice.mapper.EduVideoMapper;
 import com.atguigu.eduservice.service.EduVideoService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  * <p>
@@ -18,6 +21,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> implements EduVideoService {
 
+    @Autowired
+    private VodClient vodClient;
+
     @Override
     public void removeVideoByCourseId(String courseId) {
         QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
@@ -28,12 +34,20 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
     }
 
     @Override
-    public void deleteVideo(String videoId) {
-        //根据课程小节ID删除课程小节记录
-        baseMapper.deleteById(videoId);
+    public void deleteVideo(String videoId) {//videoId指的是课程小节ID不是云端视频ID，不要误解了
+        //根据课程小节ID找到其所对应的云端视频ID
+        EduVideo eduVideo = baseMapper.selectById(videoId);
+        String videoSourceId = eduVideo.getVideoSourceId();
+
         //删除课程小节所对应的云端视频（注意：传统的方式可以给删除云端视频的业务代码写这，但是现在使用微服务调用的方式）
         //edu这个微服务中的方法调用vod这个微服务中的方法
+//        vodClient.removeVideo("云端视频ID");
+        if (!StringUtils.isEmpty(videoSourceId)) {
+            vodClient.removeVideo(videoSourceId);
+        }
 
+        //根据课程小节ID删除课程小节记录
+        baseMapper.deleteById(videoId);
     }
 
 }
