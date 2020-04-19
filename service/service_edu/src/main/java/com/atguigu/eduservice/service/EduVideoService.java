@@ -19,4 +19,10 @@ public interface EduVideoService extends IService<EduVideo> {
      */
     void removeVideoByCourseId(String courseId);
 
+    /**
+     * 删除课程小节（删除课程小节的同时要删除它所对应的云端视频）
+     * @param videoId 课程小节ID
+     */
+    void deleteVideo(String videoId);
+
 }

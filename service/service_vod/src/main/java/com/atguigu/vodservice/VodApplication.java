@@ -3,6 +3,7 @@ package com.atguigu.vodservice;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)//默认只在当前模块下扫描，注册bean
 //(exclude = DataSourceAutoConfiguration.class)表示让spring boot应用启动的时候不去加载数据库配置
 @ComponentScan(basePackages = {"com.atguigu"})//不仅仅在当前模块下扫描，还在其依赖的模块下扫描，注册bean
+@EnableDiscoveryClient//nacos服务的发现注册
 public class VodApplication {
 
     public static void main(String[] args) {

@@ -43,11 +43,11 @@
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>-->
 
-        <!--服务的发现与注册-->
-        <!-- <dependency>
-             <groupId>org.springframework.cloud</groupId>
-             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-         </dependency>-->
+        <!--nacos服务的发现注册-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
 
         <!--服务调用-->
         <!-- <dependency>

@@ -43,7 +43,7 @@ public class EduVideoController {
     @ApiOperation(value = "删除课程小节")
     @DeleteMapping("deleteVideo/{videoId}")
     public R deleteVideo(@ApiParam(name = "videoId", value = "课程小节ID", required = true) @PathVariable String videoId) {
-        eduVideoService.removeById(videoId);
+        eduVideoService.deleteVideo(videoId);
         return R.ok();
     }
 
