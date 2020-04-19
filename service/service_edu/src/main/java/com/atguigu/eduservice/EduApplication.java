@@ -14,7 +14,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @SpringBootApplication//默认只在当前模块下扫描，注册bean
 @ComponentScan(basePackages = {"com.atguigu"})//不仅仅在当前模块下扫描，还在其依赖的模块下扫描，注册bean
-@EnableDiscoveryClient//nacos服务的发现注册
+@EnableDiscoveryClient//nacos服务的注册
 @EnableFeignClients//feign服务的调用，服务的消费者即微服务的调用方添加此注解
 public class EduApplication {
 

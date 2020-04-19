@@ -43,13 +43,13 @@
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>-->
 
-        <!--nacos服务的发现注册-->
+        <!--nacos服务的注册-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
-        <!--feign服务的调用-->
+        <!--feign服务的发现调用-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
