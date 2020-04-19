@@ -4,8 +4,10 @@ import com.atguigu.eduservice.client.VodClient;
 import com.atguigu.eduservice.entity.EduVideo;
 import com.atguigu.eduservice.mapper.EduVideoMapper;
 import com.atguigu.eduservice.service.EduVideoService;
+import com.atguigu.util.R;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -19,6 +21,7 @@ import org.springframework.util.StringUtils;
  * @since 2020-04-14
  */
 @Service
+@Slf4j
 public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> implements EduVideoService {
 
     @Autowired
@@ -44,7 +47,13 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
         //用户请求的还是这个edu微服务（独立的进程），但是它远程调用了vod微服务（也是独立的进程）
 //        vodClient.removeVideo("云端视频ID");
         if (!StringUtils.isEmpty(videoSourceId)) {
-            vodClient.removeVideo(videoSourceId);//底层原理大概是找对应服务，远程过程调用
+            R result = vodClient.removeVideo(videoSourceId);//底层原理大概是找对应服务，远程过程调用
+            if (result.getCode() == 20000) {//表示RPC成功，成功就不会触发hystrix熔断机制
+                log.info("RPC成功...");
+            } else {
+                log.info("RPC失败...触发熔断机制...");
+                log.info("结果为：" + result);
+            }
         }//说明，vodClient.removeVideo(videoSourceId);执行这个方法的时候如果出现异常了，当前的微服务默认感知不到，原因是因为“独立的进程”，一个进程仅仅只是远程调用了另一个进程
 
         //根据课程小节ID删除课程小节记录

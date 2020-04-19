@@ -1,5 +1,6 @@
 package com.atguigu.eduservice.client;
 
+import com.atguigu.eduservice.client.impl.VodDegradeFeignClient;
 import com.atguigu.util.R;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @create 2020年04月19日
  */
 @Component
-@FeignClient("service-vod")//service-vod为要被调用的微服务名称
+@FeignClient(name = "service-vod", fallback = VodDegradeFeignClient.class)//service-vod为要被调用的微服务名称
 //spring cloud微服务间调用的流程（RPC流程），大致会经过如下几个组件的配合
 //1、消费者（即微服务的调用者）
 //2、接口化请求调用：通俗的讲通过设置服务名和请求地址来具体定位到调用哪个服务的哪个方法，这一步只是做了接口的定义
