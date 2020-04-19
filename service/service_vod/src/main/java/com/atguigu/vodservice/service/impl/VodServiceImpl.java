@@ -44,14 +44,14 @@ public class VodServiceImpl implements VodService {
     }
 
     @Override
-    public void removeVideo(String videoSourceId) {
+    public void removeVideo(String videoSourceIds) {
         try {
             //初始化一个vod的客户端
             DefaultAcsClient client = InitVodClientUtils.initVodClient(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET);
             //创建删除视频的request对象
             DeleteVideoRequest deleteVideoRequest = new DeleteVideoRequest();
             //向删除视频的request对象里面设置云端视频ID
-            deleteVideoRequest.setVideoIds(videoSourceId);
+            deleteVideoRequest.setVideoIds(videoSourceIds);
 //            DeleteVideoResponse deleteVideoResponse = client.getAcsResponse(deleteVideoRequest);
             client.getAcsResponse(deleteVideoRequest);
         } catch (ClientException e) {

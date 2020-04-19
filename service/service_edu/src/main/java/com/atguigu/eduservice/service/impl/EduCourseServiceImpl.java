@@ -1,8 +1,10 @@
 package com.atguigu.eduservice.service.impl;
 
 import com.atguigu.baseservice.exception.GuliException;
+import com.atguigu.eduservice.client.VodClient;
 import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.EduCourseDescription;
+import com.atguigu.eduservice.entity.EduVideo;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
@@ -11,10 +13,16 @@ import com.atguigu.eduservice.service.EduCourseDescriptionService;
 import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.eduservice.service.EduVideoService;
 import com.atguigu.util.ResultCode;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -25,6 +33,7 @@ import org.springframework.stereotype.Service;
  * @since 2020-04-14
  */
 @Service
+@Slf4j
 public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse> implements EduCourseService {
 
     @Autowired
@@ -35,6 +44,9 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Autowired
     private EduCourseDescriptionService eduCourseDescriptionService;
+
+    @Autowired
+    private VodClient vodClient;
 
     @Override
     public String addCourseInfo(CourseVo courseVo) {
@@ -99,6 +111,26 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
 
     @Override
     public boolean deleteCourse(String courseId) {
+        //查询出这个课程下面所有小节的所有云端视频ID，然后拼串
+        QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
+        wrapper.select("video_source_id").eq("course_id",courseId);//mp只查询这一列数据video_source_id
+        List<EduVideo> eduVideos = eduVideoService.list(wrapper);
+        List<String> videoSourceIds = new ArrayList<>();
+        //todo 利用Java8新特性Stream API来操作集合，简化操作
+        for (EduVideo eduVideo : eduVideos) {
+            if (!StringUtils.isEmpty(eduVideo.getVideoSourceId())) {
+                videoSourceIds.add(eduVideo.getVideoSourceId());
+            }
+        }
+        String vodIds = String.join(",",videoSourceIds);
+
+        log.info("将要被删除的云端视频IDS：" + vodIds);
+
+        if (!StringUtils.isEmpty(vodIds)) {
+            //远程调用
+            vodClient.removeVideo(vodIds);
+        }
+
         //根据课程id删除小节
         eduVideoService.removeVideoByCourseId(courseId);
 

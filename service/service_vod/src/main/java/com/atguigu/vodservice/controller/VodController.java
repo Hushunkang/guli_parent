@@ -32,11 +32,11 @@ public class VodController {
         return R.ok().data("videoId",videoId);
     }
 
-    //根据阿里云视频点播服务为每一个视频生成的视频ID来删除云端视频
+    //根据阿里云视频点播服务为每一个视频生成的视频ID来删除云端视频，支持删除至少为零个的视频
     @ApiOperation(value = "删除云端视频")
-    @DeleteMapping("removeVideo/{videoSourceId}")
-    public R removeVideo(@ApiParam(name = "videoSourceId", value = "云端视频ID", required = true) @PathVariable String videoSourceId){
-        vodService.removeVideo(videoSourceId);
+    @DeleteMapping("removeVideo/{videoSourceIds}")
+    public R removeVideo(@ApiParam(name = "videoSourceIds", value = "云端视频IDS", required = true) @PathVariable String videoSourceIds){
+        vodService.removeVideo(videoSourceIds);
         return R.ok();
     }
 

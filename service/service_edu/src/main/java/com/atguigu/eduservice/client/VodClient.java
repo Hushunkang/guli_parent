@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface VodClient {
 
     //根据阿里云视频点播服务为每一个视频生成的视频ID来删除云端视频
-    @ApiOperation(value = "删除云端视频")
-    @DeleteMapping("/vodservice/video/removeVideo/{videoSourceId}")
-    R removeVideo(@ApiParam(name = "videoSourceId", value = "云端视频ID", required = true) @PathVariable("videoSourceId") String videoSourceId);
+    @ApiOperation(value = "单个删除云端视频")
+    @DeleteMapping("/vodservice/video/removeVideo/{videoSourceIds}")
+    R removeVideo(@ApiParam(name = "videoSourceIds", value = "云端视频IDS", required = true) @PathVariable("videoSourceIds") String videoSourceIds);
 
 }
