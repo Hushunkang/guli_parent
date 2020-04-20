@@ -39,7 +39,7 @@ public class EduSubject implements Serializable {
     @ApiModelProperty(value = "父ID，0表示课程科目为一级课程分类")
     private String parentId;
 
-    @ApiModelProperty(value = "排序字段")
+    @ApiModelProperty(value = "排序")
     private Integer sort;
 
     @ApiModelProperty(value = "创建时间")

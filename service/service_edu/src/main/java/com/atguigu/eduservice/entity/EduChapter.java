@@ -39,7 +39,7 @@ public class EduChapter implements Serializable {
     @ApiModelProperty(value = "章节名称")
     private String title;
 
-    @ApiModelProperty(value = "显示排序")
+    @ApiModelProperty(value = "排序")
     private Integer sort;
 
     @ApiModelProperty(value = "创建时间")

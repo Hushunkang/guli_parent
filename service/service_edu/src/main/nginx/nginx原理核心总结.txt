@@ -1,14 +1,19 @@
 nginx采用master+worker的方式工作
-master是领导进程，这个进程不做事而是接收到用户请求的时候通知worker，worker采用争抢的方式来处理用户请求
-worker进程才是真正干活的进程，真正处理用户的请求的进程
+master是领导进程，这个进程不做事而是在接收到用户请求的时候通知worker做事
+worker采用争抢的方式来处理用户请求
+worker进程才是真正干活的进程，真正处理用户请求的进程
 
 nginx需要设置多少个worker合适
-nginx同redis类似，都采用了io多路复用机制，每个worker都是一个独立的进程，但每个进
-程里只有一个主线程，通过异步非阻塞的方式来处理用户请求， 即使是千上万个请求也不在话
-下。每个worker进程的对应主线程可以把一个cpu的性能发挥到极致。所以worker数和服务器的cpu
-数相等是最为适宜的。设少了会浪费cpu，设多了会造成cpu频繁切换上下文带来的损耗
+nginx同redis类似，都采用了io多路复用机制
+每个worker都是一个独立的进程，但每个进程里只有一个主线程
+通过异步非阻塞的方式来处理用户请求， 即使是千上万个请求也不在话下
+每个worker进程的对应主线程可以把一个cpu的性能发挥到极致
+所以worker数和服务器的cpu数相等是最为适宜的
+设少了会浪费cpu，设多了会造成cpu频繁切换上下文带来的系统资源的损耗
 
-细心的可以发现在windows上启动nginx，你会发现启动了两个nginx进程，为什么
+细心点，可以发现在windows上启动nginx，会发现启动了两个nginx进程，为什么
 这就是nginx的io多路复用机制
 
-在windows下安装nginx也可以，但是nginx这种io多路复用机制在windows下得不到完美体现，因此nginx常常安装在linux下
+在windows下安装nginx也可以
+但是nginx这种io多路复用机制在windows下得不到完美体现
+因此nginx常常安装在linux下

@@ -29,7 +29,7 @@ public class EduVideo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "视频ID")
+    @ApiModelProperty(value = "小节ID")
     @TableId(value = "id", type = IdType.ID_WORKER_STR)
     private String id;
 
@@ -39,28 +39,28 @@ public class EduVideo implements Serializable {
     @ApiModelProperty(value = "章节ID")
     private String chapterId;
 
-    @ApiModelProperty(value = "节点名称")
+    @ApiModelProperty(value = "小节名称")
     private String title;
 
-    @ApiModelProperty(value = "云端视频资源")
-    private String videoSourceId;//就是视频ID
+    @ApiModelProperty(value = "云端视频ID")
+    private String videoSourceId;//云端视频ID
 
-    @ApiModelProperty(value = "原始文件名称")
+    @ApiModelProperty(value = "原始视频文件名称")
     private String videoOriginalName;//上传视频名称
 
-    @ApiModelProperty(value = "排序字段")
+    @ApiModelProperty(value = "排序")
     private Integer sort;
 
     @ApiModelProperty(value = "播放次数")
     private Long playCount;
 
-    @ApiModelProperty(value = "是否可以试听：false收费 true免费")//默认课时是收费的
+    @ApiModelProperty(value = "是否可以试听：0收费，1免费")//默认课时是收费的
     private Boolean isFree;//false最后到mysql变成0，true最后到mysql变成1
 
     @ApiModelProperty(value = "视频时长（秒）")
     private Float duration;
 
-    @ApiModelProperty(value = "Empty未上传 Transcoding转码中  Normal正常")
+    @ApiModelProperty(value = "视频状态：Empty未上传，Transcoding转码中，Normal正常")
     private String status;
 
     @ApiModelProperty(value = "视频源文件大小（字节）")

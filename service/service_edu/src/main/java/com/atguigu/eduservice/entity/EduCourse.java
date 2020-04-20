@@ -64,12 +64,12 @@ public class EduCourse implements Serializable {
     @ApiModelProperty(value = "乐观锁")
     private Long version;
 
-    @ApiModelProperty(value = "课程状态 Draft未发布，Normal已发布")
+    @ApiModelProperty(value = "课程状态：Draft未发布，Normal已发布")
     private String status;
 
-    @ApiModelProperty(value = "逻辑删除 0（false）未删除，1（true）已删除")
+    @ApiModelProperty(value = "0（false）未删除，1（true）已删除")
 //    @TableLogic//业务上面要求的课程的删除是物理删除，因此注释掉这个注解，使用mp框架，后面底层用的sql语句就是delete，否则就是使用update
-    private Boolean isDeleted;//如果业务上面要求某种类型的数据是需要逻辑删除的，那么表里面建立这个字段默认值为0，没有要求逻辑删除也可以建立这样的字段放着，可以灵活应对需求变更
+    private Boolean isDeleted;//如果业务上面要求某种类型的数据是需要逻辑删除的，那么表里面建立这个字段默认值为0，没有要求逻辑删除也可以建立这样的字段先放着，可以灵活应对需求变更
 
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)
