@@ -32,8 +32,6 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
         QueryWrapper<EduVideo> wrapper = new QueryWrapper<>();
         wrapper.eq("course_id",courseId);
         baseMapper.delete(wrapper);
-        //todo 完善，根据课程ID删除一个课程下面所有课程小节数据信息后需要删除这些课程小节所对应的全部云端视频
-
     }
 
     @Override
