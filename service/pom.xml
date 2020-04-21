@@ -32,6 +32,12 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>--><!--本身引入了service_base依赖，service_base又引入了common_util依赖，因此本身就没必要再引入common_util依赖，这个就叫做maven的依赖传递-->
 
+        <!--spring boot的web场景启动器-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!--mysql的jdbc驱动-->
         <dependency>
             <groupId>mysql</groupId>
@@ -48,12 +54,6 @@
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
-        </dependency>
-
-        <!--spring boot的web场景启动器-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
         <!--nacos服务的注册-->
