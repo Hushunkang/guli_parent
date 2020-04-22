@@ -26,6 +26,7 @@ docker 一次封装，处处运行
 可以参照docker官方文档，阿里云docker安装文档、菜鸟教程、GitHub、B站等
 CentOS6.x安装（docker-io），不建议在6.x上安装了，我弄一大半天没成功，试过各种方式，最终由于时间原因而且觉得没必要了果断放弃(⊙︿⊙)
 CentOS8.x安装（docker-ce），我是参照菜鸟教程安装成功了，但是因为我的VPS的RAM小了点，docker run命令直接给我报错，报错内容有OOM（哈哈哈大名鼎鼎的内存不足）
+补充说明：CentOS8.x安装（docker-ce）有一个坑，我当时是去B站里面找到了问题解决的答案，这里并不想说明啥，只是想说解决问题的思路要多元化
 CentOS7.x安装（docker-ce），在vultr上我直接Deploy New Server的同时带上docker，这样构建一个操作系统里面会给自动给安装上docker客户端
 直接测试下docker客户端好不好使docker version/docker info命令看看即可
 下一步更改一下默认的docker镜像的下载源（即docker镜像的下载地址，俗称docker远程仓库），因为这个默认的docker镜像的下载源是在国外的服务器
