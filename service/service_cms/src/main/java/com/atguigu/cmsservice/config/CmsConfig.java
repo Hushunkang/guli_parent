@@ -1,0 +1,32 @@
+package com.atguigu.cmsservice.config;
+
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * @author hskBeginner Email：2752962035@qq.com
+ * @version 1.0
+ * @description
+ * @create 2020年04月05日
+ */
+@Configuration
+@MapperScan("com.atguigu.cmsservice.mapper")//说明：很重要！！！这一步其实是将mybatis通过jdk动态代理生成的dao层Mapper接口的实现类注册到spring ioc容器里面，要用的话就di
+public class CmsConfig {
+
+    //mybatis plus逻辑删除插件
+    @Bean
+    public ISqlInjector sqlInjector() {
+        return new LogicSqlInjector();
+    }
+
+    //mybatis plus分页插件
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        return new PaginationInterceptor();
+    }
+
+}
