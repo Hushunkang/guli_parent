@@ -1,8 +1,8 @@
 package com.atguigu.cmsservice.service.impl;
 
-import com.atguigu.cmsservice.entity.CrmBanner;
-import com.atguigu.cmsservice.mapper.CrmBannerMapper;
-import com.atguigu.cmsservice.service.CrmBannerService;
+import com.atguigu.cmsservice.entity.Banner;
+import com.atguigu.cmsservice.mapper.BannerMapper;
+import com.atguigu.cmsservice.service.BannerService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2020-04-22
  */
 @Service
-public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner> implements CrmBannerService {
+public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> implements BannerService {
 
 }

@@ -2,6 +2,7 @@ package com.atguigu.cmsservice.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -22,8 +23,9 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="CrmBanner对象", description="首页banner表")
-public class CrmBanner implements Serializable {
+@TableName("cms_banner")
+@ApiModel(value="Banner对象", description="首页banner表")
+public class Banner implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

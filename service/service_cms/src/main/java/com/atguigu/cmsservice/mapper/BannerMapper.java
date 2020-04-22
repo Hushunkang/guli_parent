@@ -1,6 +1,6 @@
 package com.atguigu.cmsservice.mapper;
 
-import com.atguigu.cmsservice.entity.CrmBanner;
+import com.atguigu.cmsservice.entity.Banner;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author hskBeginner
  * @since 2020-04-22
  */
-public interface CrmBannerMapper extends BaseMapper<CrmBanner> {
+public interface BannerMapper extends BaseMapper<Banner> {
 
 }

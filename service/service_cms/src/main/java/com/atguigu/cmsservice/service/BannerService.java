@@ -1,6 +1,6 @@
 package com.atguigu.cmsservice.service;
 
-import com.atguigu.cmsservice.entity.CrmBanner;
+import com.atguigu.cmsservice.entity.Banner;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author hskBeginner
  * @since 2020-04-22
  */
-public interface CrmBannerService extends IService<CrmBanner> {
+public interface BannerService extends IService<Banner> {
 
 }

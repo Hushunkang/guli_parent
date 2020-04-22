@@ -61,7 +61,7 @@ public class CodeGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setInclude("edu_course","edu_course_description","edu_chapter","edu_video");
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体类的命名策略
-        strategy.setTablePrefix(pc.getModuleName() + "_");//生成实体类时去掉表前缀
+        strategy.setTablePrefix("edu_");//生成实体类时去掉表前缀，实际执行没有去掉
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);//数据库表字段映射到实体类属性的命名策略
         strategy.setEntityLombokModel(true);// lombok模型@Accessors(chain = true)setter链式操作
         strategy.setRestControllerStyle(true);//restful api风格的控制器

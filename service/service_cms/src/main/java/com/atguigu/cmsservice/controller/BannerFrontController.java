@@ -7,15 +7,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
- * 首页banner表 前端控制器
+ * 前台系统，banner展示
  * </p>
  *
  * @author hskBeginner
  * @since 2020-04-22
  */
 @RestController
-@RequestMapping("/cmsservice/banner")
+@RequestMapping("/cmsservice/frontbanner")
 @CrossOrigin
-public class CrmBannerController {
+public class BannerFrontController {
+
+
 
 }
