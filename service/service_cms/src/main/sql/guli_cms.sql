@@ -5,7 +5,7 @@ create table cms_banner
 (
     id char(19) not null comment 'ID'
         primary key,
-    title varchar(20) not null comment '标题',
+    title varchar(40) not null comment '标题',
     image_url varchar(500) not null comment '图片地址',
     link_url varchar(500) null comment '链接地址',
     sort int unsigned default 0 not null comment '排序',

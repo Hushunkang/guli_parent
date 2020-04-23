@@ -51,6 +51,12 @@ public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> impleme
 
     @Override
     @Cacheable(value = "banner", key = "'getBanners'")//value::key组合形成了redis键值对数据库当中的key，此处为banner::getBanners
+    //为什么key是这样的，尤其是中间的那两个::，请看org.springframework.data.redis.cache.CacheKeyPrefix源码
+    //@Cacheable注解一般用于查询方法上面
+    //此场景下的大致含义是将方法的返回值放到redis缓存里面去，key为banner::getBanners，value为方法的返回值
+    //用户每次请求这个方法的时候，会去redis中根据key找数据
+    //找到，就返回redis中的数据到前端去（控制台没打印出sql）
+    //没有找到，还要调用一下这个方法，底层通过jdbc的方式访问mysql，最终拿到数据返回给前端（控制台有打印出sql）
     public List<Banner> getBanners() {
         //查询出最近更新的四个banner（若不足4个，查询所有）
         QueryWrapper<Banner> wrapper = new QueryWrapper<>();
