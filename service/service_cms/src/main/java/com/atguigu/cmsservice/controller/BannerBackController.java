@@ -33,7 +33,7 @@ public class BannerBackController {
 
     //分页查询banner列表
     @ApiOperation(value = "多条件组合查询带分页效果的banner列表")
-    @GetMapping("pageBanner/{current}/{size}")
+    @PostMapping("pageBanner/{current}/{size}")
     public R pageBanner(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
                         @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size,
                         @ApiParam(name = "bannerQuery", value = "多个查询条件") @RequestBody(required = false) BannerQuery bannerQuery) {
