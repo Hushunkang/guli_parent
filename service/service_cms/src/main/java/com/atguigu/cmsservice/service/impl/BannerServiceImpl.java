@@ -7,6 +7,7 @@ import com.atguigu.cmsservice.service.BannerService;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -49,6 +50,7 @@ public class BannerServiceImpl extends ServiceImpl<BannerMapper, Banner> impleme
     }
 
     @Override
+    @Cacheable(value = "banner", key = "'getBanners'")//value::key组合形成了redis键值对数据库当中的key，此处为banner::getBanners
     public List<Banner> getBanners() {
         //查询出最近更新的四个banner（若不足4个，查询所有）
         QueryWrapper<Banner> wrapper = new QueryWrapper<>();
