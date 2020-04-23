@@ -18,6 +18,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -147,6 +148,16 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         }else{
             return result > 0;
         }
+    }
+
+    @Override
+    @Cacheable(value = "course", key = "'getCourses'")
+    public List<EduCourse> getCourses() {
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("gmt_create");
+        wrapper.last("limit 8");
+        List<EduCourse> courses = baseMapper.selectList(wrapper);
+        return courses;
     }
 
 }

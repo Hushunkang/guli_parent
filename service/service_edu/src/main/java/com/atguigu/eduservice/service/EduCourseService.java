@@ -5,6 +5,8 @@ import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程表 服务类
@@ -47,5 +49,11 @@ public interface EduCourseService extends IService<EduCourse> {
      * @param courseId 课程ID
      */
     boolean deleteCourse(String courseId);
+
+    /**
+     * 查询前8门热门课程
+     * @return
+     */
+    List<EduCourse> getCourses();
 
 }

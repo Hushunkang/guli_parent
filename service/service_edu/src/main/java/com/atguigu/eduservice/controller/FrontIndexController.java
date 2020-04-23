@@ -5,7 +5,6 @@ import com.atguigu.eduservice.entity.EduTeacher;
 import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.eduservice.service.EduTeacherService;
 import com.atguigu.util.R;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,16 +38,10 @@ public class FrontIndexController {
     @GetMapping("index")
     public R index() {
         //查询前8门热门课程
-        QueryWrapper<EduCourse> wrapperCourse = new QueryWrapper<>();
-        wrapperCourse.orderByDesc("gmt_create");
-        wrapperCourse.last("limit 8");
-        List<EduCourse> courseList = eduCourseService.list(wrapperCourse);
+        List<EduCourse> courseList = eduCourseService.getCourses();
 
         //查询前4名讲师
-        QueryWrapper<EduTeacher> wrapperTeacher = new QueryWrapper<>();
-        wrapperTeacher.orderByDesc("gmt_create");
-        wrapperTeacher.last("limit 4");
-        List<EduTeacher> teacherList = eduTeacherService.list(wrapperTeacher);
+        List<EduTeacher> teacherList = eduTeacherService.getTeachers();
 
         return R.ok().data("courseList",courseList).data("teacherList",teacherList);
     }
