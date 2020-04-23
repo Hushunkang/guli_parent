@@ -4,6 +4,7 @@ package com.atguigu.cmsservice.controller;
 import com.atguigu.cmsservice.entity.Banner;
 import com.atguigu.cmsservice.service.BannerService;
 import com.atguigu.util.R;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,6 +22,7 @@ import java.util.List;
  * @author hskBeginner
  * @since 2020-04-22
  */
+@Api(description = "前台banner展示API")
 @RestController
 @RequestMapping("/cmsservice/frontbanner")
 @CrossOrigin
