@@ -10,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,7 +23,7 @@ import java.util.List;
  * @author hskBeginner
  * @since 2020-04-22
  */
-@Api(description = "后台banner管理API")
+@Api(description = "后台系统banner管理API")
 @RestController
 @RequestMapping("/cmsservice/backbanner")
 @CrossOrigin
@@ -49,6 +50,7 @@ public class BannerBackController {
     //添加讲师
     @ApiOperation(value = "添加banner")
     @PostMapping("addBanner")
+    @CacheEvict(value = "banner", allEntries=true)//移除缓存名称为banner的缓存，若这个缓存名称下面存在多个key-value，那么全部多个key-value全部移除掉
     public R addBanner(@ApiParam(name = "banner", value = "banner信息") @RequestBody Banner banner){
         boolean flag = bannerService.save(banner);
         if (flag) {
@@ -61,6 +63,7 @@ public class BannerBackController {
     //删除banner
     @ApiOperation(value = "删除banner")
     @DeleteMapping("removeBanner/{bannerId}")
+    @CacheEvict(value = "banner", allEntries=true)
     public R removeBanner(@ApiParam(name = "bannerId", value = "bannerID", required = true)
                            @PathVariable String bannerId){
         boolean flag = bannerService.removeById(bannerId);
@@ -82,6 +85,7 @@ public class BannerBackController {
     //修改banner
     @ApiOperation(value = "修改banner")
     @PostMapping("updateBanner")
+    @CacheEvict(value = "banner", allEntries=true)
     public R updateBanner(@ApiParam(name = "banner", value = "banner信息") @RequestBody Banner banner){
         boolean flag = bannerService.updateById(banner);
         if (flag) {

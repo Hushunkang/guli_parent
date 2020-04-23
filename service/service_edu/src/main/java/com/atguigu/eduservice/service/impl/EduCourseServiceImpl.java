@@ -7,6 +7,7 @@ import com.atguigu.eduservice.entity.EduCourseDescription;
 import com.atguigu.eduservice.entity.EduVideo;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
+import com.atguigu.eduservice.enums.CourseStatusEnum;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
 import com.atguigu.eduservice.service.EduChapterService;
 import com.atguigu.eduservice.service.EduCourseDescriptionService;
@@ -155,6 +156,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     public List<EduCourse> getCourses() {
         QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("gmt_create");
+        wrapper.eq("status", CourseStatusEnum.NORMAL.getStatus());//已经发布的课程才可以在前台系统查询的到
         wrapper.last("limit 8");
         List<EduCourse> courses = baseMapper.selectList(wrapper);
         return courses;

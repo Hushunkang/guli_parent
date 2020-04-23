@@ -22,7 +22,7 @@ import java.util.List;
  * @author hskBeginner
  * @since 2020-04-22
  */
-@Api(description = "前台banner展示API")
+@Api(description = "前台系统banner展示API")
 @RestController
 @RequestMapping("/cmsservice/frontbanner")
 @CrossOrigin
