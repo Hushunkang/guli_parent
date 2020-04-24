@@ -38,11 +38,6 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     public void sendSmsCode(String phoneNumber) {
-        //会员注册，获取验证码
-        boolean alreadyRegister = isAlreadyRegister(phoneNumber);
-        if (alreadyRegister) {
-            throw new GuliException(ResultCode.ERROR,"获取验证码失败，此手机号已被注册(⊙︿⊙)");
-        }
         //从redis获取验证码，如果获取到直接返回
         String code = redisTemplate.opsForValue().get(phoneNumber);
         if(!StringUtils.isEmpty(code)) {
@@ -53,7 +48,7 @@ public class SmsServiceImpl implements SmsService {
         code = RandomUtils.getFourBitRandom();//应用内部自己生成的手机短信验证码（注意：根据项目具体的业务需求，有时候需要建立一张验证码表做一些的事情）
         Map<String,Object> param = new HashMap<>();
         param.put("code",code);//key必须是code，因为阿里云openapi里面要求的请求报文的参数名相关内容必须是这个，详情参照阿里云openapi相关文档
-        //调用service发送手机短信验证码
+        //调用阿里云短信服务，实现发送手机短信验证码
         boolean isSend = sendSmsCode(param,phoneNumber);
         if(isSend) {//发送手机短信验证码成功，将发送成功的验证码放到redis里面
             //设置redis键值对的有效时间
@@ -61,16 +56,6 @@ public class SmsServiceImpl implements SmsService {
         } else {
             throw new GuliException(ResultCode.ERROR,"抱歉，验证码发送失败，请您稍后再试(⊙︿⊙)");
         }
-    }
-
-    /**
-     * 判断手机号是否已经被注册
-     * @param phoneNumber
-     * @return
-     */
-    private boolean isAlreadyRegister(String phoneNumber){
-        //todo 此处应该调用用户中心暴露出来的接口，即远程调用给我返回这个手机号是否已经被注册，后面完善，先写死为false
-        return false;
     }
 
     /**

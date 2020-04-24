@@ -9,7 +9,7 @@ package com.atguigu.smsservice.service;
 public interface SmsService {
 
     /**
-     *
+     * 发送手机短信验证码（阿里云短信服务，模板类型为验证码）
      * @param phoneNumber
      */
     void sendSmsCode(String phoneNumber);

@@ -16,6 +16,8 @@ create table ucenter_member
     is_disabled tinyint(1) default 0 not null comment '是否禁用：0（false）未禁用，1（true）已禁用',
     is_deleted tinyint(1) default 0 not null comment '0（false）未删除，1（true）已删除',
     gmt_create datetime not null comment '创建时间',
-    gmt_modified datetime not null comment '更新时间'
+    gmt_modified datetime not null comment '更新时间',
+    constraint ucenter_member_mobile_uindex
+        unique (mobile)
 )
     comment '会员表' charset=utf8mb4;
