@@ -39,20 +39,20 @@ public class SmsServiceImpl implements SmsService {
         request.setMethod(MethodType.POST);
         request.setDomain("dysmsapi.aliyuncs.com");
         request.setVersion("2017-05-25");
-        request.setAction("SendSms");//用于表示调用阿里云openapi中的哪一个接口
+        request.setAction("SendSms");//表示调用阿里云openapi中的哪一个接口，此处为SendSms
         request.putQueryParameter("RegionId", "cn-hangzhou");
 
         //设置发送手机短信验证码相关的参数
         request.putQueryParameter("PhoneNumbers", phoneNumber);//手机号
-        request.putQueryParameter("SignName", "谷粒学院在线教育网站");//申请阿里云 签名名称
-        request.putQueryParameter("TemplateCode", "SMS_189030146");//申请阿里云 模板code
-        request.putQueryParameter("TemplateParam", JSONObject.toJSONString(param));//验证码数据，接口文档要求转换json数据传递
+        request.putQueryParameter("SignName", "谷粒学院在线教育网站");//阿里云短信服务中申请的签名的签名名称
+        request.putQueryParameter("TemplateCode", "SMS_189030146");//阿里云短信服务中申请的模板的模板CODE
+        request.putQueryParameter("TemplateParam", JSONObject.toJSONString(param));//验证码数据，接口文档要求转换为json数据格式
 
         try {
             //最终发送手机短信验证码
             CommonResponse response = client.getCommonResponse(request);
             JSONObject jsonObject = JSON.parseObject(response.getData());
-            if ("OK".equals(jsonObject.get("Code")))//表明发送手机短信验证码成功
+            if ("OK".equals(jsonObject.get("Code")))//表明发送手机短信验证码成功，代码为什么这么写，要去看阿里云openapi相关文档
                 return true;
             return false;
         } catch (Exception e) {

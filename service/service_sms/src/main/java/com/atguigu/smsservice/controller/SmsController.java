@@ -1,8 +1,10 @@
 package com.atguigu.smsservice.controller;
 
+import com.atguigu.baseservice.exception.GuliException;
 import com.atguigu.smsservice.service.SmsService;
 import com.atguigu.smsservice.util.RandomUtils;
 import com.atguigu.util.R;
+import com.atguigu.util.ResultCode;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -40,7 +42,7 @@ public class SmsController {
         //从redis获取验证码，如果获取到直接返回
         String code = redisTemplate.opsForValue().get(phoneNumber);
         if(!StringUtils.isEmpty(code)) {
-            return R.error().message("手速太快了，请您稍后再试(⊙︿⊙)");
+            throw new GuliException(ResultCode.ERROR,"手速太快了，请您稍后再试(⊙︿⊙)");
         }
 
         //从redis获取不到验证码，调用阿里云短信服务发送验证码
@@ -54,7 +56,7 @@ public class SmsController {
             redisTemplate.opsForValue().set(phoneNumber,code,5, TimeUnit.MINUTES);//验证码5分钟内有效
             return R.ok().message("验证码成功发送，请您注意及时查收(*￣︶￣)");
         } else {
-            return R.error().message("抱歉，验证码发送失败，请您稍后再试(⊙︿⊙)");
+            throw new GuliException(ResultCode.ERROR,"抱歉，验证码发送失败，请您稍后再试(⊙︿⊙)");
         }
     }
 
