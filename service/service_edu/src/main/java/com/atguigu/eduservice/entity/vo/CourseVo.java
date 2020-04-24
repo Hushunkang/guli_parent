@@ -1,5 +1,6 @@
 package com.atguigu.eduservice.entity.vo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -11,6 +12,7 @@ import java.math.BigDecimal;
  * @description
  * @create 2020年04月15日
  */
+@ApiModel(value="课程对象", description="课程对象")
 @Data
 public class CourseVo {
 

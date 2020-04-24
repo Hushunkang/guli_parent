@@ -1,5 +1,6 @@
 package com.atguigu.eduservice.entity.vo;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -9,6 +10,7 @@ import lombok.Data;
  * @description
  * @create 2020年04月15日
  */
+@ApiModel(value="课程小节", description="课程小节")
 @Data
 public class VideoVo {
 

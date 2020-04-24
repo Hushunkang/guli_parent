@@ -1,5 +1,6 @@
 package com.atguigu.smsservice.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.aliyuncs.CommonRequest;
 import com.aliyuncs.CommonResponse;
@@ -48,12 +49,12 @@ public class SmsServiceImpl implements SmsService {
         request.putQueryParameter("TemplateParam", JSONObject.toJSONString(param));//验证码数据，接口文档要求转换json数据传递
 
         try {
-            log.info("阿里云openapi---调用阿里云短信服务中SendSms接口的请求报文为：" + request);
             //最终发送手机短信验证码
             CommonResponse response = client.getCommonResponse(request);
-            log.info("阿里云openapi---调用阿里云短信服务中SendSms接口的响应报文为：" + response);
-            boolean success = response.getHttpResponse().isSuccess();
-            return success;
+            JSONObject jsonObject = JSON.parseObject(response.getData());
+            if ("OK".equals(jsonObject.get("Code")))//表明发送手机短信验证码成功
+                return true;
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;
