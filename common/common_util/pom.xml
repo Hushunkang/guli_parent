@@ -12,4 +12,12 @@
 
     <artifactId>common_util</artifactId>
 
+    <dependencies>
+        <!--jwt json web token-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+        </dependency>
+    </dependencies>
+
 </project>

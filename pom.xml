@@ -125,7 +125,7 @@
                 <version>${httpclient.version}</version>
             </dependency>
 
-            <!--jwt-->
+            <!--jwt json web token-->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
