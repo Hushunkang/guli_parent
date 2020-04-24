@@ -5,6 +5,7 @@ import com.atguigu.smsservice.util.RandomUtils;
 import com.atguigu.util.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.util.StringUtils;
@@ -34,8 +35,8 @@ public class SmsController {
 
     //发送手机短信验证码（阿里云短信服务，模板类型为验证码）
     @ApiOperation(value = "发送手机短信验证码")
-    @GetMapping("send/{phoneNumber}")
-    public R sendMsm(@PathVariable String phoneNumber) {
+    @GetMapping("sendSms/{phoneNumber}")
+    public R sendSms(@ApiParam(name = "phoneNumber", value = "手机号码") @PathVariable String phoneNumber) {
         //从redis获取验证码，如果获取到直接返回
         String code = redisTemplate.opsForValue().get(phoneNumber);
         if(!StringUtils.isEmpty(code)) {
