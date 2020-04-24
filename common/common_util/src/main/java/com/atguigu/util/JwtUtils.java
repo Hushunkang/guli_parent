@@ -81,7 +81,7 @@ public class JwtUtils {
     }
 
     /**
-     * 获取用户id
+     * 获取会员id
      *
      * @param request
      * @return

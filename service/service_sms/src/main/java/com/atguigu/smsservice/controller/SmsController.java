@@ -40,7 +40,7 @@ public class SmsController {
         //从redis获取验证码，如果获取到直接返回
         String code = redisTemplate.opsForValue().get(phoneNumber);
         if(!StringUtils.isEmpty(code)) {
-            return R.ok();
+            return R.error().message("手速太快了，请您稍后再试(⊙︿⊙)");
         }
 
         //从redis获取不到验证码，调用阿里云短信服务发送验证码
@@ -52,9 +52,9 @@ public class SmsController {
         if(isSend) {//发送手机短信验证码成功，将发送成功的验证码放到redis里面
             //设置redis键值对的有效时间
             redisTemplate.opsForValue().set(phoneNumber,code,5, TimeUnit.MINUTES);//验证码5分钟内有效
-            return R.ok();
+            return R.ok().message("验证码成功发送，请您注意及时查收(*￣︶￣)");
         } else {
-            return R.error().message("抱歉，验证码发送失败，请稍后再试(⊙︿⊙)");
+            return R.error().message("抱歉，验证码发送失败，请您稍后再试(⊙︿⊙)");
         }
     }
 
