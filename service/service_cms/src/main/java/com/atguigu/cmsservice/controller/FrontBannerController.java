@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/cmsservice/frontbanner")
 @CrossOrigin
-public class BannerFrontController {
+public class FrontBannerController {
 
     @Autowired
     private BannerService bannerService;
