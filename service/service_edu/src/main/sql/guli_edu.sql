@@ -86,7 +86,7 @@ create table edu_course_collect
         primary key,
     course_id char(19) not null comment '课程讲师ID',
     member_id char(19) default '' not null comment '课程专业ID',
-    is_deleted tinyint(3) default 0 not null comment '逻辑删除 1（true）已删除， 0（false）未删除',
+    is_deleted tinyint(3) default 0 not null comment '0（false）未删除，1（true）已删除',
     gmt_create datetime not null comment '创建时间',
     gmt_modified datetime not null comment '更新时间'
 )

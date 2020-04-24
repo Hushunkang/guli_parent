@@ -30,7 +30,7 @@ public class SmsController {
     private SmsService smsService;
 
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;//spring boot整合redis提供的一个redis模板
+    private RedisTemplate<String,String> redisTemplate;//spring boot底层整合了redis，自动配置类中通过了一定的条件然后向spring ioc容器里面注册了redis模板组件
 
     //发送手机短信验证码（阿里云短信服务，模板类型为验证码）
     @ApiOperation(value = "发送手机短信验证码")
