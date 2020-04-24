@@ -47,6 +47,7 @@ public class SmsServiceImpl implements SmsService {
         request.putQueryParameter("TemplateParam", JSONObject.toJSONString(param));//验证码数据，接口文档要求转换json数据传递
 
         try {
+            log.info("阿里云openapi---调用阿里云短信服务中SendSms接口的请求报文为：" + request);
             //最终发送手机短信验证码
             CommonResponse response = client.getCommonResponse(request);
             log.info("阿里云openapi---调用阿里云短信服务中SendSms接口的响应报文为：" + response);

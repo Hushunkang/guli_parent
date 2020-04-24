@@ -30,7 +30,7 @@ public class SmsController {
     private SmsService smsService;
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplate<String,String> redisTemplate;//spring boot整合redis提供的一个redis模板
 
     //发送手机短信验证码（阿里云短信服务，模板类型为验证码）
     @ApiOperation(value = "发送手机短信验证码")
@@ -41,20 +41,19 @@ public class SmsController {
         if(!StringUtils.isEmpty(code)) {
             return R.ok();
         }
-        //2 如果redis获取 不到，进行阿里云发送
-        //生成随机值，传递阿里云进行发送
+
+        //从redis获取不到验证码，调用阿里云短信服务发送验证码
         code = RandomUtils.getFourBitRandom();//应用内部自己生成的手机短信验证码（注意：根据项目具体的业务需求，有时候需要建立一张验证码表做一些的事情）
         Map<String,Object> param = new HashMap<>();
         param.put("code",code);//key必须是code，因为阿里云openapi里面要求的请求报文的参数名相关内容必须是这个，详情参照阿里云openapi相关文档
-        //调用service发送短信的方法
+        //调用service发送手机短信验证码
         boolean isSend = smsService.sendSmsCode(param,phoneNumber);
-        if(isSend) {
-            //发送成功，把发送成功验证码放到redis里面
-            //设置有效时间
-            redisTemplate.opsForValue().set(phoneNumber,code,5, TimeUnit.MINUTES);
+        if(isSend) {//发送手机短信验证码成功，将发送成功的验证码放到redis里面
+            //设置redis键值对的有效时间
+            redisTemplate.opsForValue().set(phoneNumber,code,5, TimeUnit.MINUTES);//验证码5分钟内有效
             return R.ok();
         } else {
-            return R.error().message("短信发送失败");
+            return R.error().message("抱歉，验证码发送失败，请稍后再试(⊙︿⊙)");
         }
     }
 
