@@ -3,7 +3,7 @@ package com.atguigu.ossservice.service.impl;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.atguigu.ossservice.service.OssService;
-import com.atguigu.ossservice.util.ConstantPropertiesUtils;
+import com.atguigu.ossservice.util.ConstantOssUtils;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,12 +24,12 @@ public class OssServiceImpl implements OssService {
     @Override
     public String uploadFileToOss(MultipartFile file) {//文件上传的方式：使用流式上传接口
         //获取Bucket存储空间名称
-        String bucketName = ConstantPropertiesUtils.BUCKET_NAME;
+        String bucketName = ConstantOssUtils.BUCKET_NAME;
         //Endpoint以杭州为例，其它Region请按实际情况填写
-        String endpoint = ConstantPropertiesUtils.END_POINT;
+        String endpoint = ConstantOssUtils.END_POINT;
         //云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录https://ram.console.aliyun.com创建
-        String accessKeyId = ConstantPropertiesUtils.KEY_ID;
-        String accessKeySecret = ConstantPropertiesUtils.KEY_SECRET;
+        String accessKeyId = ConstantOssUtils.KEY_ID;
+        String accessKeySecret = ConstantOssUtils.KEY_SECRET;
 
         try {
             //创建OSSClient实例

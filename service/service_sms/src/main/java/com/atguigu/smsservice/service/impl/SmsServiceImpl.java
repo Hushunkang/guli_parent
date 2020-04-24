@@ -8,6 +8,7 @@ import com.aliyuncs.IAcsClient;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.atguigu.smsservice.service.SmsService;
+import com.atguigu.smsservice.util.ConstantSmsUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -29,7 +30,7 @@ public class SmsServiceImpl implements SmsService {
         if (StringUtils.isEmpty(phoneNumber)) return false;
 
         DefaultProfile profile =
-                DefaultProfile.getProfile("default", "LTAI4FvvVEWiTJ3GNJJqJnk7", "9st82dv7EvFk9mTjYO1XXbM632fRbG");
+                DefaultProfile.getProfile("cn-hangzhou", ConstantSmsUtils.ACCESS_KEY_ID, ConstantSmsUtils.ACCESS_KEY_SECRET);
         IAcsClient client = new DefaultAcsClient(profile);
 
         //设置相关固定的参数

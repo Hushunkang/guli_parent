@@ -14,9 +14,9 @@ import org.springframework.stereotype.Component;
 //spring里面有个很重要的接口InitializingBean，这个接口有一个方法afterPropertiesSet
 //这个方法是当Bean的对象实例的属性初始化后执行，做一些事情，详情可以看官方文档、API等资料
 @Component
-public class ConstantPropertiesUtils implements InitializingBean {
+public class ConstantOssUtils implements InitializingBean {
 
-    public ConstantPropertiesUtils() {
+    public ConstantOssUtils() {
         System.out.println("ConstantPropertiesUtils's constructor...");
     }
 

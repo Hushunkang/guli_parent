@@ -5,6 +5,7 @@ import com.atguigu.ucenterservice.entity.Member;
 import com.atguigu.ucenterservice.mapper.MemberMapper;
 import com.atguigu.ucenterservice.service.MemberService;
 import com.atguigu.util.JwtUtils;
+import com.atguigu.util.MD5Utils;
 import com.atguigu.util.ResultCode;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -47,7 +48,7 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
         }
 
         //判断密码
-        if (!password.equals(mobileMember.getPassword())) {
+        if (!MD5Utils.encrypt(password).equals(mobileMember.getPassword())) {
             throw new GuliException(ResultCode.ERROR,"登录失败，密码不匹配(⊙︿⊙)");
         }
 
