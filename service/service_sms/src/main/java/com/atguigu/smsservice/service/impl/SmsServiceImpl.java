@@ -41,7 +41,7 @@ public class SmsServiceImpl implements SmsService {
         //从redis获取验证码，如果获取到直接返回
         String code = redisTemplate.opsForValue().get(phoneNumber);
         if(!StringUtils.isEmpty(code)) {
-            throw new GuliException(ResultCode.ERROR,"手速太快了，请您稍后再试(⊙︿⊙)");
+            throw new GuliException(ResultCode.ERROR,"获取验证码太频繁了，请您稍后再试(⊙︿⊙)");
         }
 
         //从redis获取不到验证码，调用阿里云短信服务发送验证码
@@ -59,7 +59,7 @@ public class SmsServiceImpl implements SmsService {
     }
 
     /**
-     * 发送手机短信验证码
+     * 调用阿里云短信服务实现发送手机短信验证码
      * @param param
      * @param phoneNumber
      * @return 如果发送手机短信验证码成功返回true，否则返回false
