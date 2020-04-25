@@ -69,9 +69,6 @@ public class MemberServiceImpl extends ServiceImpl<MemberMapper, Member> impleme
 //        save(member);
         //将注册会员的相关数据存到数据库
         baseMapper.insert(member);
-        //会员注册成功后，将此会员注册时用的验证码信息从redis里面清除
-        redisTemplate.delete(mobile);//（作用：后期如果需求变更了，会员还可以通过手机+验证码的方式登录，可以让注册和登录时发送验证码共用同一个接口）
-        //目前系统支持的登录方式：1、手机+密码；2、微信登录
     }
 
     @Override

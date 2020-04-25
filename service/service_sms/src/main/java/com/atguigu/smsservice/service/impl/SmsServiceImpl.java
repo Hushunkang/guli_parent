@@ -38,14 +38,13 @@ public class SmsServiceImpl implements SmsService {
 
     @Override
     public void sendSmsCode(String phoneNumber) {
-        //从redis获取验证码，如果获取到直接返回
-        String code = redisTemplate.opsForValue().get(phoneNumber);
-        if(!StringUtils.isEmpty(code)) {
-            throw new GuliException(ResultCode.ERROR,"获取验证码太频繁了，请您稍后再试(⊙︿⊙)");
-        }
+//        String code = redisTemplate.opsForValue().get(phoneNumber);
+//        if(!StringUtils.isEmpty(code)) {
+//            throw new GuliException(ResultCode.ERROR,"获取验证码太频繁了，请您稍后再试(⊙︿⊙)");
+//        }
 
-        //从redis获取不到验证码，调用阿里云短信服务发送验证码
-        code = RandomUtils.getFourBitRandom();//应用内部自己生成的手机短信验证码（注意：根据项目具体的业务需求，有时候需要建立一张验证码表做一些的事情）
+        //调用阿里云短信服务发送验证码
+        String code = RandomUtils.getFourBitRandom();//应用内部自己生成的手机短信验证码（注意：根据项目具体的业务需求，有时候需要建立一张验证码表做一些的事情）
         Map<String,Object> param = new HashMap<>();
         param.put("code",code);//key必须是code，因为阿里云openapi里面要求的请求报文的参数名相关内容必须是这个，详情参照阿里云openapi相关文档
         //调用阿里云短信服务，实现发送手机短信验证码
