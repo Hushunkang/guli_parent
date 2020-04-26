@@ -24,7 +24,7 @@ public class ConstantUserCenterUtils implements InitializingBean {
 
     public static String APP_ID;
     public static String APP_SECRET;
-    private static String REDIRECT_URL;
+    public static String REDIRECT_URL;
 
     @Override
     public void afterPropertiesSet() throws Exception {
