@@ -107,31 +107,31 @@ public class WeChatApiController {
 //            result.get("scope");
 //            result.get("unionid");
 
-            //通过access_token再去调用微信提供的接口，最终可以拿到扫码人的相关数据
-            String baseUserInfoUrl = "https://api.weixin.qq.com/sns/userinfo" +
-                    "?access_token=%s" +
-                    "&openid=%s";
-
-            //设置%s里面值
-            String userInfoUrl = String.format(
-                    baseUserInfoUrl,
-                    accessToken,
-                    openId
-            );
-
-            //httpclient技术（很古老的一种接口调用技术）调用微信提供的接口
-            String userInfo = HttpClientUtils.get(userInfoUrl);
-            log.info("userInfo为：" + userInfo);
-
-            HashMap userInfoMap = gson.fromJson(userInfo, HashMap.class);
-
-            //拿到接口响应报文里面的nickname和headimgurl
-            String nickName = (String)userInfoMap.get("nickname");//扫码人昵称
-            String headImgUrl = (String)userInfoMap.get("headimgurl");//扫码人头像地址
-
             //根据调用微信提供的接口返回的openId去找会员信息
             Member member = memberService.getMemberByOpenId(openId);
             if (member == null) {
+                //通过access_token再去调用微信提供的接口，最终可以拿到扫码人的相关数据
+                String baseUserInfoUrl = "https://api.weixin.qq.com/sns/userinfo" +
+                        "?access_token=%s" +
+                        "&openid=%s";
+
+                //设置%s里面值
+                String userInfoUrl = String.format(
+                        baseUserInfoUrl,
+                        accessToken,
+                        openId
+                );
+
+                //httpclient技术（很古老的一种接口调用技术）调用微信提供的接口
+                String userInfo = HttpClientUtils.get(userInfoUrl);
+                log.info("userInfo为：" + userInfo);
+
+                HashMap userInfoMap = gson.fromJson(userInfo, HashMap.class);
+
+                //拿到接口响应报文里面的nickname和headimgurl
+                String nickName = (String)userInfoMap.get("nickname");//扫码人昵称
+                String headImgUrl = (String)userInfoMap.get("headimgurl");//扫码人头像地址
+
                 member = new Member();
                 member.setOpenId(openId);
                 member.setNickname(nickName);
