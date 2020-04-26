@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import java.util.Date;
  * @author helen
  * @since 2019/10/16
  */
+@Slf4j
 public class JwtUtils {
 
     public static final long EXPIRE = 1000 * 60 * 60 * 24;//设置token过期时间，单位ms
@@ -87,6 +89,9 @@ public class JwtUtils {
      * @return
      */
     public static String getMemberIdByJwtToken(HttpServletRequest request) {
+
+        log.info("会话id---" + request.getSession().getId());
+
         String jwtToken = request.getHeader("token");
         if (StringUtils.isEmpty(jwtToken)) return "";
         Jws<Claims> claimsJws = Jwts.parser().setSigningKey(APP_SECRET).parseClaimsJws(jwtToken);
