@@ -27,4 +27,11 @@ public interface MemberService extends IService<Member> {
      */
     String login(Member member);
 
+    /**
+     * 根据调用微信提供的接口返回的openId去找会员信息
+     * @param openId 唯一标识一个微信账号
+     * @return
+     */
+    Member getMemberByOpenId(String openId);
+
 }
