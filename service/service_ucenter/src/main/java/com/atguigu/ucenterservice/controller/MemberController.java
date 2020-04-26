@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>
@@ -42,9 +43,13 @@ public class MemberController {
     //会员登录
     @ApiOperation(value = "会员登录")
     @PostMapping("login")
-    public R login(@ApiParam(name = "member", value = "登录会员信息") @RequestBody Member member){
+    public R login(@ApiParam(name = "member", value = "登录会员信息") @RequestBody Member member, HttpServletResponse response){
         //返回jwt生成的token字符串
         String token = memberService.login(member);
+
+        //服务端设置一个cookie，在响应头里面设置cookie，通知客户端保存这个cookie
+//        response.setHeader("Set-Cookie","k1=v1; Domain=localhost; Path=/; HttpOnly");
+
         return R.ok().data("token",token);
     }
 

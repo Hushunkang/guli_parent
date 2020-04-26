@@ -23,10 +23,10 @@ public class JwtUtils {
     public static final String APP_SECRET = "ukc8BDbRigUDaY6pZFfWus2jZWLPHO";//秘钥
 
     /**
-     * 生成token字符串
+     * 根据会员id和会员昵称生成token字符串
      *
-     * @param id       用户id
-     * @param nickname 用户昵称
+     * @param id       会员id
+     * @param nickname 会员昵称
      * @return
      */
     public static String getJwtToken(String id, String nickname) {

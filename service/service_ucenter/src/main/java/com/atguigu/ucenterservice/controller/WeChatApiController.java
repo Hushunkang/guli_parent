@@ -5,6 +5,7 @@ import com.atguigu.ucenterservice.entity.Member;
 import com.atguigu.ucenterservice.service.MemberService;
 import com.atguigu.ucenterservice.util.ConstantUserCenterUtils;
 import com.atguigu.ucenterservice.util.HttpClientUtils;
+import com.atguigu.util.JwtUtils;
 import com.atguigu.util.ResultCode;
 import com.google.gson.Gson;
 import io.swagger.annotations.Api;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -71,7 +73,7 @@ public class WeChatApiController {
     //扫描微信登录的二维码后，确认登录，最终调用的方法
     @ApiOperation(value = "回调方法")
     @GetMapping("callback")
-    public String callback(String code,String state){
+    public String callback(String code, String state, HttpServletResponse response){
         log.info("code为：" + code);//授权临时票据
         log.info("state为：" + state);//用于保持请求和回调的状态，授权请求后原样带回给第三方
 
@@ -139,8 +141,14 @@ public class WeChatApiController {
                 memberService.save(member);
             }
 
-            //回到谷粒学院的前台系统的首页
-            return "redirect:http://localhost:3000";
+            //根据member信息，利用jwt技术生成存有会员信息的token
+            String token = JwtUtils.getJwtToken(member.getId(), member.getNickname());
+
+            //服务端设置一个cookie，在响应头里面设置cookie，通知客户端保存这个cookie
+//            response.setHeader("Set-Cookie","k1=v1; Domain=localhost; Path=/; HttpOnly");
+
+            //回到谷粒学院前台系统首页
+            return "redirect:http://localhost:3000?token=" + token;//通过请求的路径传递token到谷粒学院前台系统首页
         } catch (Exception e) {
             e.printStackTrace();
             throw new GuliException(ResultCode.ERROR,"登录失败(⊙︿⊙)");
