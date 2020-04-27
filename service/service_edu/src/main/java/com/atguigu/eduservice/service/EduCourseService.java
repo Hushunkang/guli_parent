@@ -3,6 +3,7 @@ package com.atguigu.eduservice.service;
 import com.atguigu.eduservice.entity.EduCourse;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
+import com.atguigu.eduservice.entity.vo.FrontCourseDetailVo;
 import com.atguigu.eduservice.entity.vo.FrontCourseVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -73,5 +74,12 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     Map<String, Object> frontPageCourse(Long current, Long size, FrontCourseVo frontCourseVo);
+
+    /**
+     * 根据课程ID查询出前端所需的课程详情
+     * @param courseId
+     * @return
+     */
+    FrontCourseDetailVo getBaseCourseInfo(String courseId);
 
 }

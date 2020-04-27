@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
@@ -73,7 +72,7 @@ public class WeChatApiController {
     //扫描微信登录的二维码后，确认登录，最终调用的方法
     @ApiOperation(value = "回调方法")
     @GetMapping("callback")
-    public String callback(String code, String state, HttpServletResponse response){
+    public String callback(String code, String state/*, HttpServletResponse response*/){
         log.info("code为：" + code);//授权临时票据
         log.info("state为：" + state);//用于保持请求和回调的状态，授权请求后原样带回给第三方
 

@@ -7,6 +7,7 @@ import com.atguigu.eduservice.entity.EduCourseDescription;
 import com.atguigu.eduservice.entity.EduVideo;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
+import com.atguigu.eduservice.entity.vo.FrontCourseDetailVo;
 import com.atguigu.eduservice.entity.vo.FrontCourseVo;
 import com.atguigu.eduservice.enums.CourseStatusEnum;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
@@ -194,6 +195,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         if (!StringUtils.isEmpty(frontCourseVo.getPriceSort())) {//价格
             wrapper.orderByDesc("price");
         }
+        wrapper.eq("status", CourseStatusEnum.NORMAL.getStatus());//已经发布的课程才可以在前台系统查询的到
         baseMapper.selectPage(pageCourse, wrapper);
 
         current = pageCourse.getCurrent();
@@ -215,6 +217,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         result.put("hasPrevious", hasPrevious);
 
         return result;
+    }
+
+    @Override
+    public FrontCourseDetailVo getBaseCourseInfo(String courseId) {
+        FrontCourseDetailVo frontCourseDetailVo = baseMapper.getBaseCourseInfo(courseId);
+        return frontCourseDetailVo;
     }
 
 }

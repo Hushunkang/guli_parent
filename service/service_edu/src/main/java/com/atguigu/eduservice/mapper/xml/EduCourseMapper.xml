@@ -15,4 +15,19 @@
         WHERE ec.id=#{courseId}
     </select>
 
+    <!-- 根据课程ID查询出前端所需的课程详情 -->
+    <select id="getBaseCourseInfo" resultType="com.atguigu.eduservice.entity.vo.FrontCourseDetailVo">
+        SELECT ec.id,ec.title,ec.price,ec.lesson_num lessonNum,ec.cover,
+               ec.buy_count buyCount,ec.view_count viewCount,
+               ecd.description,
+               et.id teacherId,et.name teacherName,et.intro,et.avatar,
+               es1.id subjectLevelOneId,es1.title subjectLevelOne,
+               es2.id subjectLevelTwoId,es2.title subjectLevelTwo
+        FROM edu_course ec LEFT JOIN edu_course_description ecd ON ec.id=ecd.id
+                           LEFT JOIN edu_teacher et ON ec.teacher_id=et.id
+                           LEFT JOIN edu_subject es1 ON ec.subject_parent_id=es1.id
+                           LEFT JOIN edu_subject es2 ON ec.subject_id=es2.id
+        WHERE ec.id=#{courseId}
+    </select>
+
 </mapper>
