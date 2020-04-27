@@ -55,7 +55,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
         result.put("size", size);
         result.put("pages", pages);
         result.put("total", total);
-        result.put("items", records);
+        result.put("records", records);
         result.put("hasNext", hasNext);
         result.put("hasPrevious", hasPrevious);
 

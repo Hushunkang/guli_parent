@@ -43,6 +43,8 @@ public class RedisConfig extends CachingConfigurerSupport {
         template.setKeySerializer(redisSerializer);
         //value 序列化
         template.setValueSerializer(jackson2JsonRedisSerializer);
+        //key hashmap序列化
+        template.setHashKeySerializer(jackson2JsonRedisSerializer);
         //value hashmap序列化
         template.setHashValueSerializer(jackson2JsonRedisSerializer);
         return template;
@@ -57,7 +59,7 @@ public class RedisConfig extends CachingConfigurerSupport {
         om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
         om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
         jackson2JsonRedisSerializer.setObjectMapper(om);
-        //配置序列化（解决乱码的问题），缓存过期时间600秒，即redis缓存中的键值对600秒的存活时间，到了就自动被移除掉咯（亲测）
+        //配置序列化（解决乱码的问题），缓存过期时间600秒，即redis缓存中的键值对600秒的存活时间，到了就自动被移除掉咯（亲测It work...）
         RedisCacheConfiguration config = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofSeconds(600))//为了测试方便，我给这个设置成30秒了，最终提交代码应该设置成600秒
                 .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer))

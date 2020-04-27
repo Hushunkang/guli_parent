@@ -162,4 +162,12 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         return courses;
     }
 
+    @Override
+    public List<EduCourse> getCoursesByTeacherId(String teacherId) {
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        wrapper.eq("teacher_id",teacherId);
+        List<EduCourse> courses = baseMapper.selectList(wrapper);
+        return courses;
+    }
+
 }

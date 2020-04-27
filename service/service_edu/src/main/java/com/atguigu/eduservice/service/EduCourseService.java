@@ -56,4 +56,11 @@ public interface EduCourseService extends IService<EduCourse> {
      */
     List<EduCourse> getCourses();
 
+    /**
+     * 根据讲师ID查询讲师所讲课程
+     * @param teacherId
+     * @return
+     */
+    List<EduCourse> getCoursesByTeacherId(String teacherId);
+
 }
