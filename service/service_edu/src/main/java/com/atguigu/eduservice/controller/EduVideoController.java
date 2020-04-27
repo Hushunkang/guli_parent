@@ -2,12 +2,14 @@ package com.atguigu.eduservice.controller;
 
 
 import com.atguigu.eduservice.entity.EduVideo;
+import com.atguigu.eduservice.enums.VideoStatusEnum;
 import com.atguigu.eduservice.service.EduVideoService;
 import com.atguigu.util.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -31,6 +33,10 @@ public class EduVideoController {
     @ApiOperation(value = "添加课程小节")
     @PostMapping("addVideo")
     public R addVideo(@ApiParam(name = "eduVideo", value = "课程小节信息") @RequestBody EduVideo eduVideo) {
+        //如果前端传递过来云端视频ID不为空，则表示上传视频到云端是成功的
+        if(!StringUtils.isEmpty(eduVideo.getVideoSourceId())){
+            eduVideo.setStatus(VideoStatusEnum.NORMAL.getStatus());
+        }
         boolean flag = eduVideoService.save(eduVideo);
         if(flag) {
             return R.ok();
@@ -59,6 +65,10 @@ public class EduVideoController {
     @ApiOperation(value = "修改课程小节")
     @PostMapping("updateVideo")
     public R updateVideo(@ApiParam(name = "eduVideo", value = "课程小节信息") @RequestBody EduVideo eduVideo) {
+        //如果前端传递过来云端视频ID不为空，则表示上传视频到云端是成功的
+        if(!StringUtils.isEmpty(eduVideo.getVideoSourceId())){
+            eduVideo.setStatus(VideoStatusEnum.NORMAL.getStatus());
+        }
         boolean flag = eduVideoService.updateById(eduVideo);
         if(flag) {
             return R.ok();
