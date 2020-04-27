@@ -4,6 +4,7 @@ import com.atguigu.eduservice.entity.EduTeacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -20,5 +21,13 @@ public interface EduTeacherService extends IService<EduTeacher> {
      * @return
      */
     List<EduTeacher> getTeachers();
+
+    /**
+     * 分页查询讲师数据
+     * @param current
+     * @param size
+     * @return
+     */
+    Map<String, Object> pageTeacher(Long current,Long size);
 
 }
