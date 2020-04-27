@@ -29,6 +29,7 @@ public class FrontTeacherController {
     @Autowired
     private EduTeacherService eduTeacherService;
 
+    @Autowired
     private EduCourseService eduCourseService;
 
     //分页查询讲师数据
@@ -38,7 +39,7 @@ public class FrontTeacherController {
     public R frontPageTeacher(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
                          @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size){
 //        IPage<Map<String, Object>> result = eduTeacherService.pageTeacher(current,size);
-        Map<String, Object> result = eduTeacherService.pageTeacher(current, size);
+        Map<String, Object> result = eduTeacherService.frontPageTeacher(current, size);
 
         return R.ok().data("result",result);
     }

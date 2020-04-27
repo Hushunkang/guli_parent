@@ -7,6 +7,7 @@ import com.atguigu.eduservice.entity.EduCourseDescription;
 import com.atguigu.eduservice.entity.EduVideo;
 import com.atguigu.eduservice.entity.vo.CoursePublishVo;
 import com.atguigu.eduservice.entity.vo.CourseVo;
+import com.atguigu.eduservice.entity.vo.FrontCourseVo;
 import com.atguigu.eduservice.enums.CourseStatusEnum;
 import com.atguigu.eduservice.mapper.EduCourseMapper;
 import com.atguigu.eduservice.service.EduChapterService;
@@ -15,6 +16,7 @@ import com.atguigu.eduservice.service.EduCourseService;
 import com.atguigu.eduservice.service.EduVideoService;
 import com.atguigu.util.ResultCode;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -24,7 +26,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -168,6 +172,49 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         wrapper.eq("teacher_id",teacherId);
         List<EduCourse> courses = baseMapper.selectList(wrapper);
         return courses;
+    }
+
+    @Override
+    public Map<String, Object> frontPageCourse(Long current, Long size, FrontCourseVo frontCourseVo) {
+        Page<EduCourse> pageCourse = new Page<>(current,size);
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        //判断条件值是否为空，不为空拼接
+        if(!StringUtils.isEmpty(frontCourseVo.getSubjectParentId())) {//一级分类
+            wrapper.eq("subject_parent_id",frontCourseVo.getSubjectParentId());
+        }
+        if(!StringUtils.isEmpty(frontCourseVo.getSubjectId())) {//二级分类
+            wrapper.eq("subject_id",frontCourseVo.getSubjectId());
+        }
+        if(!StringUtils.isEmpty(frontCourseVo.getBuyCountSort())) {//关注度===销售数量
+            wrapper.orderByDesc("buy_count");//业务上面使用销售数量来表示关注度，销售数量多的课程表示其关注度高
+        }
+        if (!StringUtils.isEmpty(frontCourseVo.getGmtCreateSort())) {//最新
+            wrapper.orderByDesc("gmt_create");
+        }
+        if (!StringUtils.isEmpty(frontCourseVo.getPriceSort())) {//价格
+            wrapper.orderByDesc("price");
+        }
+        baseMapper.selectPage(pageCourse, wrapper);
+
+        current = pageCourse.getCurrent();
+        size = pageCourse.getSize();
+        long pages = pageCourse.getPages();
+        long total = pageCourse.getTotal();
+        List<EduCourse> records = pageCourse.getRecords();
+        boolean hasNext = pageCourse.hasNext();//当前页是否有下一页
+        boolean hasPrevious = pageCourse.hasPrevious();//当前页是否有上一页
+
+        //将分页模型里面的属性全部取出来，放到map集合里面，用于返回给前端
+        Map<String, Object> result = new HashMap<>();
+        result.put("current", current);
+        result.put("size", size);
+        result.put("pages", pages);
+        result.put("total", total);
+        result.put("records", records);
+        result.put("hasNext", hasNext);
+        result.put("hasPrevious", hasPrevious);
+
+        return result;
     }
 
 }

@@ -28,6 +28,6 @@ public interface EduTeacherService extends IService<EduTeacher> {
      * @param size
      * @return
      */
-    Map<String, Object> pageTeacher(Long current,Long size);
+    Map<String, Object> frontPageTeacher(Long current,Long size);
 
 }

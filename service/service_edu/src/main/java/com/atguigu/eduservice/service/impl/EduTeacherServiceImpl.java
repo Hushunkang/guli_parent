@@ -35,7 +35,7 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
     }
 
     @Override
-    public Map<String, Object> pageTeacher(Long current,Long size) {
+    public Map<String, Object> frontPageTeacher(Long current,Long size) {
         Page<EduTeacher> pageTeacher = new Page<>(current,size);
         QueryWrapper<EduTeacher> wrapper = new QueryWrapper<>();
         wrapper.orderByDesc("gmt_create");
