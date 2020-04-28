@@ -19,5 +19,4 @@
             <artifactId>jjwt</artifactId>
         </dependency>
     </dependencies>
-
 </project>

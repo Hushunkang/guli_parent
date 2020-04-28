@@ -4,6 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <parent>
+        <groupId>com.atguigu</groupId>
+        <artifactId>guli_parent</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
     <modules>
         <module>service_edu</module>
         <module>service_oss</module>
@@ -13,12 +19,6 @@
         <module>service_sms</module>
         <module>service_ucenter</module>
     </modules>
-
-    <parent>
-        <groupId>com.atguigu</groupId>
-        <artifactId>guli_parent</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
 
     <artifactId>service</artifactId>
     <packaging>pom</packaging>
@@ -153,5 +153,4 @@
             </resource>
         </resources>
     </build>
-
 </project>
