@@ -33,7 +33,7 @@ public class EduChapterController {
     //根据课程ID来查询课程下面的课程章节信息和课程小节信息
     @ApiOperation(value = "获取课程章节和课程小节信息")
     @GetMapping("getChapterVideo/{courseId}")
-    public R getChapterVideo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
+    public R getChapterVideo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable("courseId") String courseId) {
         List<ChapterVo> list = eduChapterService.getChapterVideoByCourseId(courseId);
         return R.ok().data("list",list);
     }
@@ -41,7 +41,7 @@ public class EduChapterController {
     //根据课程章节ID来查询课程章节信息
     @ApiOperation(value = "查询课程章节信息")
     @GetMapping("getChapterInfo/{chapterId}")
-    public R getChapterInfo(@ApiParam(name = "chapterId", value = "课程章节ID", required = true) @PathVariable String chapterId) {
+    public R getChapterInfo(@ApiParam(name = "chapterId", value = "课程章节ID", required = true) @PathVariable("chapterId") String chapterId) {
         EduChapter eduChapter = eduChapterService.getById(chapterId);
         return R.ok().data("eduChapter",eduChapter);
     }
@@ -73,7 +73,7 @@ public class EduChapterController {
     //删除课程章节
     @ApiOperation(value = "删除课程章节")
     @DeleteMapping("{chapterId}")
-    public R deleteChapter(@ApiParam(name = "chapterId", value = "课程章节ID", required = true) @PathVariable String chapterId) {
+    public R deleteChapter(@ApiParam(name = "chapterId", value = "课程章节ID", required = true) @PathVariable("chapterId") String chapterId) {
         boolean flag = eduChapterService.deleteChapter(chapterId);
         if(flag) {
             return R.ok();

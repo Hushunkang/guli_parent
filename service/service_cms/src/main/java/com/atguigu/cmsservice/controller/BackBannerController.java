@@ -35,8 +35,8 @@ public class BackBannerController {
     //分页查询banner列表
     @ApiOperation(value = "多条件组合查询带分页效果的banner列表")
     @PostMapping("pageBanner/{current}/{size}")
-    public R pageBanner(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
-                        @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size,
+    public R pageBanner(@ApiParam(name = "current", value = "当前页") @PathVariable("current") Long current,
+                        @ApiParam(name = "size", value = "每页记录数") @PathVariable("size") Long size,
                         @ApiParam(name = "bannerQuery", value = "多个查询条件") @RequestBody(required = false) BannerQuery bannerQuery) {
         Page<Banner> pageBanner = bannerService.pageBanner(current,size,bannerQuery);
 
@@ -65,7 +65,7 @@ public class BackBannerController {
     @DeleteMapping("removeBanner/{bannerId}")
     @CacheEvict(value = "banner", allEntries=true)
     public R removeBanner(@ApiParam(name = "bannerId", value = "bannerID", required = true)
-                           @PathVariable String bannerId){
+                           @PathVariable("bannerId") String bannerId){
         boolean flag = bannerService.removeById(bannerId);
         if (flag) {
             return R.ok();
@@ -77,7 +77,7 @@ public class BackBannerController {
     //根据bannerID查询banner
     @ApiOperation(value = "根据bannerID查询banner")
     @GetMapping("getBannerById/{bannerId}")
-    public R getBannerById(@ApiParam(name = "bannerId", value = "bannerID", required = true) @PathVariable String bannerId){
+    public R getBannerById(@ApiParam(name = "bannerId", value = "bannerID", required = true) @PathVariable("bannerId") String bannerId){
         Banner banner = bannerService.getById(bannerId);
         return R.ok().data("banner",banner);
     }

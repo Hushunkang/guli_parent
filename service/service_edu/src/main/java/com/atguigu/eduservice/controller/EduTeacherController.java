@@ -48,7 +48,7 @@ public class EduTeacherController {
     //根据讲师ID查询讲师
     @ApiOperation(value = "根据讲师ID查询讲师")
     @GetMapping("getTeacherById/{teacherId}")
-    public R getTeacherById(@ApiParam(name = "teacherId", value = "讲师ID", required = true) @PathVariable String teacherId){
+    public R getTeacherById(@ApiParam(name = "teacherId", value = "讲师ID", required = true) @PathVariable("teacherId") String teacherId){
         EduTeacher eduTeacher = eduTeacherService.getById(teacherId);
         return R.ok().data("eduTeacher",eduTeacher);
     }
@@ -57,8 +57,8 @@ public class EduTeacherController {
     @ApiOperation(value = "分页查询讲师列表")
     //current表示当前页；size表示每页记录数
     @GetMapping("pageTeacher/{current}/{size}")
-    public R pageTeacher(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
-                         @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size){
+    public R pageTeacher(@ApiParam(name = "current", value = "当前页") @PathVariable("current") Long current,
+                         @ApiParam(name = "size", value = "每页记录数") @PathVariable("size") Long size){
         Page<EduTeacher> pageTeacher = new Page<>(current,size);
 
 //        int i = 10 / 0;//手动模拟一个运行时异常
@@ -83,8 +83,8 @@ public class EduTeacherController {
     //多条件组合查询带分页效果的讲师数据
     @ApiOperation(value = "多条件组合查询带分页效果的讲师列表")
     @PostMapping("pageTeacherCondition/{current}/{size}")
-    public R pageTeacherCondition(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
-                                  @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size,
+    public R pageTeacherCondition(@ApiParam(name = "current", value = "当前页") @PathVariable("current") Long current,
+                                  @ApiParam(name = "size", value = "每页记录数") @PathVariable("size") Long size,
                                   @ApiParam(name = "teacherQuery", value = "多个查询条件") @RequestBody(required = false) TeacherQuery teacherQuery){
         //todo 最好code refactor一下，业务逻辑写在Service层，后端模块化分层的思想，一来结构清晰，各层有各层的用处，二来实现Service层代码共用
         Page<EduTeacher> pageTeacher = new Page<>(current,size);
@@ -136,7 +136,7 @@ public class EduTeacherController {
     @ApiOperation(value = "逻辑删除讲师")
     @DeleteMapping("removeTeacher/{teacherId}")
     public R removeTeacher(@ApiParam(name = "teacherId", value = "讲师ID", required = true)
-                           @PathVariable String teacherId){
+                           @PathVariable("teacherId") String teacherId){
         boolean flag = eduTeacherService.removeById(teacherId);
         if (flag) {
             return R.ok();

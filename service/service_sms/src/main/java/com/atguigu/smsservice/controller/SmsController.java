@@ -26,7 +26,7 @@ public class SmsController {
     //发送手机短信验证码（阿里云短信服务，模板类型为验证码）
     @ApiOperation(value = "发送手机短信验证码")
     @GetMapping("sendSms/{phoneNumber}")
-    public R sendSms(@ApiParam(name = "phoneNumber", value = "手机号码") @PathVariable String phoneNumber) {
+    public R sendSms(@ApiParam(name = "phoneNumber", value = "手机号码") @PathVariable("phoneNumber") String phoneNumber) {
         smsService.sendSmsCode(phoneNumber);
         return R.ok().message("验证码成功发送，请您注意及时查收(*￣︶￣)");
     }

@@ -36,8 +36,8 @@ public class FrontTeacherController {
     @ApiOperation(value = "分页查询讲师列表")
     //current表示当前页；size表示每页记录数
     @GetMapping("frontPageTeacher/{current}/{size}")
-    public R frontPageTeacher(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
-                         @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size){
+    public R frontPageTeacher(@ApiParam(name = "current", value = "当前页") @PathVariable("current") Long current,
+                         @ApiParam(name = "size", value = "每页记录数") @PathVariable("size") Long size){
 //        IPage<Map<String, Object>> result = eduTeacherService.pageTeacher(current,size);
         Map<String, Object> result = eduTeacherService.frontPageTeacher(current, size);
 
@@ -47,7 +47,7 @@ public class FrontTeacherController {
     //根据讲师ID查询讲师
     @ApiOperation(value = "根据讲师ID查询讲师")
     @GetMapping("frontGetTeacherById/{teacherId}")
-    public R frontGetTeacherById(@ApiParam(name = "teacherId", value = "讲师ID", required = true) @PathVariable String teacherId){
+    public R frontGetTeacherById(@ApiParam(name = "teacherId", value = "讲师ID", required = true) @PathVariable("teacherId") String teacherId){
         //根据讲师ID查询讲师
         EduTeacher eduTeacher = eduTeacherService.getById(teacherId);
 

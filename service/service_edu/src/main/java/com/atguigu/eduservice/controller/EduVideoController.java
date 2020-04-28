@@ -48,7 +48,7 @@ public class EduVideoController {
     //删除课程小节（删除课程小节的同时要删除它所对应的云端视频）
     @ApiOperation(value = "删除课程小节")
     @DeleteMapping("deleteVideo/{videoId}")
-    public R deleteVideo(@ApiParam(name = "videoId", value = "课程小节ID", required = true) @PathVariable String videoId) {
+    public R deleteVideo(@ApiParam(name = "videoId", value = "课程小节ID", required = true) @PathVariable("videoId") String videoId) {
         eduVideoService.deleteVideo(videoId);
         return R.ok();
     }
@@ -56,7 +56,7 @@ public class EduVideoController {
     //根据课程小节ID来查询课程小节信息
     @ApiOperation(value = "查询课程小节信息")
     @GetMapping("getVideoInfo/{videoId}")
-    public R getVideoInfo(@ApiParam(name = "videoId", value = "课程小节ID", required = true) @PathVariable String videoId) {
+    public R getVideoInfo(@ApiParam(name = "videoId", value = "课程小节ID", required = true) @PathVariable("videoId") String videoId) {
         EduVideo eduVideo = eduVideoService.getById(videoId);
         return R.ok().data("eduVideo",eduVideo);
     }

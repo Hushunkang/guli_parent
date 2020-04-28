@@ -37,8 +37,8 @@ public class FrontCourseController {
     @ApiOperation(value = "分页查询课程数据")
     //current表示当前页；size表示每页记录数
     @PostMapping("frontPageCourse/{current}/{size}")
-    public R frontPageCourse(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
-                                @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size,
+    public R frontPageCourse(@ApiParam(name = "current", value = "当前页") @PathVariable("current") Long current,
+                                @ApiParam(name = "size", value = "每页记录数") @PathVariable("size") Long size,
                                 @RequestBody(required = false) FrontCourseVo frontCourseVo) {
         Map<String, Object> result = eduCourseService.frontPageCourse(current, size, frontCourseVo);
 
@@ -48,7 +48,7 @@ public class FrontCourseController {
     //查询课程详情
     @ApiOperation(value = "查询课程详情信息")
     @GetMapping("frontGetCourseInfo/{courseId}")
-    public R frontGetCourseInfo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId){
+    public R frontGetCourseInfo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable("courseId") String courseId){
         //根据课程ID查询出前端所需的课程详情
         FrontCourseDetailVo frontCourseDetailVo = eduCourseService.getBaseCourseInfo(courseId);
 

@@ -42,7 +42,7 @@ public class VodController {
     //根据阿里云视频点播服务为每一个视频生成的视频ID来删除云端视频，支持删除至少为零个的视频
     @ApiOperation(value = "删除云端视频")
     @DeleteMapping("removeVideo/{videoSourceIds}")
-    public R removeVideo(@ApiParam(name = "videoSourceIds", value = "云端视频IDS", required = true) @PathVariable String videoSourceIds){
+    public R removeVideo(@ApiParam(name = "videoSourceIds", value = "云端视频IDS", required = true) @PathVariable("videoSourceIds") String videoSourceIds){
         vodService.removeVideo(videoSourceIds);
         return R.ok();
     }
@@ -50,7 +50,7 @@ public class VodController {
     //根据阿里云视频点播服务为每一个视频生成的视频ID来获取视频播放凭证（补充一下，每一个云端视频的视频播放凭证是一样的，我测试发现是这样的）
     @ApiOperation(value = "根据阿里云视频点播服务为每一个视频生成的视频ID来获取视频播放凭证")
     @GetMapping("getVideoPlayAuth/{videoSourceId}")
-    public R getVideoPlayAuth(@ApiParam(name = "videoSourceId", value = "云端视频ID", required = true) @PathVariable String videoSourceId){
+    public R getVideoPlayAuth(@ApiParam(name = "videoSourceId", value = "云端视频ID", required = true) @PathVariable("videoSourceId") String videoSourceId){
         try {
             //初始化一个vod的客户端
             DefaultAcsClient client = InitVodClientUtils.initVodClient(ConstantVodUtils.ACCESS_KEY_ID, ConstantVodUtils.ACCESS_KEY_SECRET);

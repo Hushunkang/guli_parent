@@ -47,7 +47,7 @@ public class EduCourseController {
     //根据课程ID查询课程基本信息
     @ApiOperation(value = "查询课程基本信息")
     @GetMapping("getCourseInfo/{courseId}")
-    public R getCourseInfo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
+    public R getCourseInfo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable("courseId") String courseId) {
         CourseVo courseVo = eduCourseService.getCourseInfo(courseId);
         return R.ok().data("courseVo",courseVo);
     }
@@ -67,7 +67,7 @@ public class EduCourseController {
     //根据课程ID查询到要被发布的课程确认信息
     @ApiOperation(value = "课程确认信息")
     @GetMapping("getPublishCourseInfo/{courseId}")
-    public R getPublishCourseInfo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
+    public R getPublishCourseInfo(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable("courseId") String courseId) {
         CoursePublishVo coursePublishVo = eduCourseService.getPublishCourseInfo(courseId);
         return R.ok().data("coursePublishVo",coursePublishVo);
     }
@@ -75,7 +75,7 @@ public class EduCourseController {
     //发布课程
     @ApiOperation(value = "发布课程")
     @PutMapping("publishCourse/{courseId}")
-    public R publishCourse(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
+    public R publishCourse(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable("courseId") String courseId) {
         EduCourse eduCourse = new EduCourse();
         eduCourse.setId(courseId);
         eduCourse.setStatus(CourseStatusEnum.NORMAL.getStatus());//设置课程状态
@@ -90,8 +90,8 @@ public class EduCourseController {
     //多条件组合查询带分页效果的课程数据
     @ApiOperation(value = "多条件组合查询带分页效果的课程列表")
     @PostMapping("pageCourseCondition/{current}/{size}")
-    public R pageCourseCondition(@ApiParam(name = "current", value = "当前页") @PathVariable Long current,
-                                 @ApiParam(name = "size", value = "每页记录数") @PathVariable Long size,
+    public R pageCourseCondition(@ApiParam(name = "current", value = "当前页") @PathVariable("current") Long current,
+                                 @ApiParam(name = "size", value = "每页记录数") @PathVariable("size") Long size,
                                  @ApiParam(name = "courseQuery", value = "多个查询条件") @RequestBody(required = false) CourseQuery courseQuery) {
         Page<EduCourse> pageCourse = new Page<>(current,size);
 
@@ -121,7 +121,7 @@ public class EduCourseController {
     //删除课程数据（删除课程的时候需要删除课程关联的所有数据），最好按照课程小节、课程章节、课程描述、课程的顺序来删除
     @ApiOperation(value = "删除课程数据")
     @DeleteMapping("deleteCourse/{courseId}")
-    public R deleteCourse(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable String courseId) {
+    public R deleteCourse(@ApiParam(name = "courseId", value = "课程ID", required = true) @PathVariable("courseId") String courseId) {
         boolean flag = eduCourseService.deleteCourse(courseId);
         if(flag) {
             return R.ok();
