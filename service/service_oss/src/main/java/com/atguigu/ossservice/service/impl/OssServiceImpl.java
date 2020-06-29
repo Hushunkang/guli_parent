@@ -60,7 +60,6 @@ public class OssServiceImpl implements OssService {
             ossClient.shutdown();
 
             //把上传到阿里云oss的文件所在路径手动拼接出来
-
             String url = "https://" + bucketName + "." + endpoint + "/" + fileName;
 
             return url;

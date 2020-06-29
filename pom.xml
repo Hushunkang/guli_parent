@@ -51,7 +51,10 @@
 
     <!--
     父工程中统一管理依赖的版本
-    注意：dependencyManagement节点下定义的依赖是为了统一管理依赖版本，下面的依赖不会被子模块继承
+    注意：
+    dependencyManagement节点下定义的依赖是为了统一管理
+    此父工程下所有子模块的依赖版本
+    并且下面的依赖不会被子模块继承
     -->
     <dependencyManagement>
         <dependencies>
@@ -227,5 +230,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
