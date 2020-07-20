@@ -58,7 +58,7 @@
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
 
-        <!--spring boot2.X集成redis所需common-pool2的依赖， 即redis数据库的连接池-->
+        <!--spring boot2.X集成redis所需common-pool2的依赖，即redis数据库的连接池-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-pool2</artifactId>

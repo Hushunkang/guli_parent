@@ -72,10 +72,10 @@ public class SmsServiceImpl implements SmsService {
 
         //设置相关固定的参数
         CommonRequest request = new CommonRequest();
-        request.setMethod(MethodType.POST);
-        request.setDomain("dysmsapi.aliyuncs.com");
-        request.setVersion("2017-05-25");
-        request.setAction("SendSms");//表示调用阿里云openapi中的哪一个接口，此处为SendSms
+        request.setSysMethod(MethodType.POST);
+        request.setSysDomain("dysmsapi.aliyuncs.com");
+        request.setSysVersion("2017-05-25");
+        request.setSysAction("SendSms");//表示调用阿里云openapi中的哪一个接口，此处为SendSms
         request.putQueryParameter("RegionId", "cn-hangzhou");
 
         //设置发送手机短信验证码相关的参数
